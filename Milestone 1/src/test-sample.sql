@@ -1,20 +1,20 @@
--- Jacquard Index used for comparison.
+-- Jaccard Index used for comparison.
 
 SELECT Condition.name, 
     (SELECT COUNT(*) FROM 
-        ((VALUES (1), (2), (3))
-        INTERSECT
-        (SELECT SymptomId
-        FROM AssociatedWith
-        WHERE DiseaseId = D.id)) AS X)::decimal
-        /
-      (SELECT COUNT(*) FROM 
-        ((VALUES (1), (2), (3))
-        UNION
-        (SELECT SymptomId
-        FROM AssociatedWith
-        WHERE DiseaseId = D.id)) AS X)
-        AS Rank
+      ((VALUES (1), (2), (3))
+      INTERSECT
+      (SELECT SymptomId
+      FROM AssociatedWith
+      WHERE DiseaseId = D.id)) AS X)::decimal
+    /
+    (SELECT COUNT(*) FROM 
+      ((VALUES (1), (2), (3))
+      UNION
+      (SELECT SymptomId
+      FROM AssociatedWith
+      WHERE DiseaseId = D.id)) AS X)
+      AS Rank
 FROM Disease AS D, Condition
 WHERE Condition.id = D.id
 ORDER BY Rank DESC
