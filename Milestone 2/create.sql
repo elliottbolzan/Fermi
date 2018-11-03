@@ -1,0 +1,38 @@
+
+
+CREATE TABLE user
+(name VARCHAR(256) NOT NULL,
+id INTEGER NOT NULL PRIMARY KEY,
+email VARCHAR(256) NOT NULL);
+
+CREATE TABLE messages
+(timestamp TIMESTAMP NOT NULL,
+message VARCHAR(256) NOT NULL,
+to INTEGER NOT NULL REFERENCES user(id),
+from INTEGER NOT NULL REFERENCES user(id),
+id INTEGER NOT NULL PRIMARY KEY);
+
+CREATE TABLE referrals
+(timestamp TIMESTAMP NOT NULL,
+status BOOLEAN NOT NULL,
+to INTEGER NOT NULL REFERENCES user(id),
+from INTEGER NOT NULL REFERENCES user(id),
+id INTEGER NOT NULL PRIMARY KEY);
+
+CREATE TABLE educational_experience
+(university_name VARCHAR(256) NOT NULL,
+id INTEGER NOT NULL,
+degree_type VARCHAR(256) NOT NULL,
+FOREIGN KEY (user_id) REFERENCES user(id),
+PRIMARY KEY(id, user_id));
+
+CREATE TABLE professional_experience
+(company VARCHAR(256) NOT NULL,
+startdate TIMESTAMP NOT NULL,
+enddate TIMESTAMP,
+position VARCHAR(256) NOT NULL,
+professional_id INTEGER NOT NULL,
+FOREIGN KEY (user_id) REFERENCES user(id),
+PRIMARY KEY(id, user_id));
+
+
