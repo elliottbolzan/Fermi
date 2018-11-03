@@ -13,9 +13,11 @@
 		7053B21C218D4866005A12D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7053B21A218D4866005A12D3 /* Main.storyboard */; };
 		7053B21E218D4867005A12D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7053B21D218D4867005A12D3 /* Assets.xcassets */; };
 		7053B221218D4867005A12D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7053B21F218D4867005A12D3 /* LaunchScreen.storyboard */; };
+		DB5B8D9F1BBB09526C09F6A2 /* Pods_Fermi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332349FBD929C0D31D84323D /* Pods_Fermi.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		332349FBD929C0D31D84323D /* Pods_Fermi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fermi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7053B211218D4866005A12D3 /* Fermi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fermi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7053B214218D4866005A12D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7053B216218D4866005A12D3 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +26,8 @@
 		7053B21D218D4867005A12D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7053B220218D4867005A12D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7053B222218D4867005A12D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		924C474CB9FA35B4855E9024 /* Pods-Fermi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fermi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fermi/Pods-Fermi.debug.xcconfig"; sourceTree = "<group>"; };
+		B3584B38386FD010A01F5E4E /* Pods-Fermi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fermi.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fermi/Pods-Fermi.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB5B8D9F1BBB09526C09F6A2 /* Pods_Fermi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +47,8 @@
 			children = (
 				7053B213218D4866005A12D3 /* Fermi */,
 				7053B212218D4866005A12D3 /* Products */,
+				A8F76671F3EDDD2AE1FB3404 /* Pods */,
+				73CA4D6B1775AE0F919E11A4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +74,23 @@
 			path = Fermi;
 			sourceTree = "<group>";
 		};
+		73CA4D6B1775AE0F919E11A4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				332349FBD929C0D31D84323D /* Pods_Fermi.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A8F76671F3EDDD2AE1FB3404 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				924C474CB9FA35B4855E9024 /* Pods-Fermi.debug.xcconfig */,
+				B3584B38386FD010A01F5E4E /* Pods-Fermi.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +98,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7053B225218D4867005A12D3 /* Build configuration list for PBXNativeTarget "Fermi" */;
 			buildPhases = (
+				5565B7C7DD17ED395DCCB3D9 /* [CP] Check Pods Manifest.lock */,
 				7053B20D218D4866005A12D3 /* Sources */,
 				7053B20E218D4866005A12D3 /* Frameworks */,
 				7053B20F218D4866005A12D3 /* Resources */,
+				543DDA58F60DF54960B1C958 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +158,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		543DDA58F60DF54960B1C958 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Fermi/Pods-Fermi-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Fermi/Pods-Fermi-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5565B7C7DD17ED395DCCB3D9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Fermi-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7053B20D218D4866005A12D3 /* Sources */ = {
@@ -284,6 +349,7 @@
 		};
 		7053B226218D4867005A12D3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 924C474CB9FA35B4855E9024 /* Pods-Fermi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -301,6 +367,7 @@
 		};
 		7053B227218D4867005A12D3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3584B38386FD010A01F5E4E /* Pods-Fermi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
