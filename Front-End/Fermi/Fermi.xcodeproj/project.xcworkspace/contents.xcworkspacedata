@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:FermiTest.xcodeproj">
+      location = "self:Fermi.xcodeproj">
    </FileRef>
 </Workspace>
