@@ -12,7 +12,7 @@ sender INTEGER NOT NULL REFERENCES person(id));
 
 CREATE TABLE referrals
 (id INTEGER NOT NULL PRIMARY KEY,
-FOREIGN KEY (professional_id) REFERENCES (professional_id),
+FOREIGN KEY (professional_id) REFERENCES professional(id),
 timestamp TIMESTAMP NOT NULL,
 status BOOLEAN NOT NULL,
 recipient INTEGER NOT NULL REFERENCES person(id),
