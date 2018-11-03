@@ -1,0 +1,6 @@
+framework module Pods_Fermi {
+  umbrella header "Pods-Fermi-umbrella.h"
+
+  export *
+  module * { export * }
+}
