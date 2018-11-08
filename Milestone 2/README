@@ -1,0 +1,10 @@
+Because Gradescope would not allow us to submit our code properly, we are sharing our Github repository with you.
+You can find this repository at: https://github.com/elliottbolzan/Fermi. 
+
+In this repository:
+ – The backend code can be found in the root-level "backend" folder.
+ – The frontend code can be found in the root-level "frontend" folder.
+ – The Python code to generate our production dataset, along with the resulting load.sql file, can be found in the root-level "Milestone 2" folder. It is also available in the "backend/database" folder.
+ – The test-production.out and test-production.sql files can be found in the "backend/sql_queries" folder, which houses our SQL queries.
+
+If you need to find anything else, feel free to contact any of us for more information.
