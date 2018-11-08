@@ -1,9 +1,4 @@
---get user's name
-SELECT name FROM Person WHERE id='1';
-
---get user's education
-SELECT * FROM Education WHERE id='1';
-
---get user's experience
-SELECT * FROM Experience WHERE id='1';
-
+SELECT Person.name, Education.university, Education.degree_type, Education.startdate, Education.enddate,
+		Experience.company, Experience.position, Experience.startdate, Experience.enddate
+FROM Person, Education, Experience
+WHERE Person.id='1' AND Education.id='1' AND Experience.id='1';
