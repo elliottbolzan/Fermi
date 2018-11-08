@@ -8,12 +8,38 @@
 
 import UIKit
 
-class Home: UIViewController {
+class Home: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
 
+    @IBOutlet weak var tableView: UITableView!
+    
+    var dataArray: [String]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        //set delegate and datasource to this class
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        
+        let nibName = UINib(nibName: "InitialTableCell", bundle: nil)
+        
+        self.tableView.register(nibName, forCellReuseIdentifier: "Cell1")
+        
+        
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.dataArray!.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let currentUser = dataArray![indexPath.item]
+        return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 130
     }
     
 
