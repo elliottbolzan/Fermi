@@ -1,0 +1,34 @@
+Adobe
+Airbnb
+Alphabet Inc.
+Amazon
+Ask.com
+Box
+Cisco
+Craigslist
+Dropbox
+Ebates
+eBay
+Evernote
+Facebook
+Google
+GoDaddy
+LinkedIn
+Lyft
+Nvidia
+Palantir Technologies
+Pinterest
+Quora
+Salesforce
+Slack
+SurveyMonkey
+Stryker
+Twitter
+Uber
+VMware
+Wikimedia Foundation
+Workday
+Yahoo!
+Yelp
+YouTube
+Zillow
