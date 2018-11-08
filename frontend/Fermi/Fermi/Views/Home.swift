@@ -7,24 +7,37 @@
 //
 
 import UIKit
+import Alamofire
 
 class Home: UIViewController {
+    
+    var data: [Person] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        refresh()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func refresh() {
+        data = []
+        let uri = Constants.host + "example"
+        Alamofire.request(uri, method: .get, parameters: nil, headers: nil).validate().responseJSON { response in
+            guard response.result.isSuccess else {
+                print("error")
+                return
+            }
+            guard let response = response.result.value as? [[String: Any]] else {
+                print("error")
+                return
+            }
+            for entry in response {
+                guard let person = Person(json: entry) else {
+                    print("error")
+                    return
+                }
+                self.data.append(person)
+            }
+        }
     }
-    */
 
 }
