@@ -7,22 +7,11 @@
 //
 
 import UIKit
-import Alamofire
 
 class Referrals: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // TODO: Add URL headers and parameters
-        Alamofire.request("", method: .get, parameters: nil, headers: nil).response { response in
-            
-            // TODO: Do something with the response
-            print(response)
-            
-        }
-        
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
 

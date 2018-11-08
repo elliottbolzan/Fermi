@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4F05DF1C2193CE5100611393 /* Fermi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F05DF1B2193CE5100611393 /* Fermi.swift */; };
+		4F78F8E92193E8270053636F /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F78F8E82193E8270053636F /* Person.swift */; };
+		4F78F8EB2193ECE70053636F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F78F8EA2193ECE70053636F /* Constants.swift */; };
 		7053B215218D4866005A12D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7053B214218D4866005A12D3 /* AppDelegate.swift */; };
 		7053B217218D4866005A12D3 /* Referrals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7053B216218D4866005A12D3 /* Referrals.swift */; };
 		7053B21C218D4866005A12D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7053B21A218D4866005A12D3 /* Main.storyboard */; };
@@ -23,6 +25,8 @@
 /* Begin PBXFileReference section */
 		332349FBD929C0D31D84323D /* Pods_Fermi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fermi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F05DF1B2193CE5100611393 /* Fermi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fermi.swift; sourceTree = "<group>"; };
+		4F78F8E82193E8270053636F /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		4F78F8EA2193ECE70053636F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7053B211218D4866005A12D3 /* Fermi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fermi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7053B214218D4866005A12D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7053B216218D4866005A12D3 /* Referrals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Referrals.swift; sourceTree = "<group>"; };
@@ -50,6 +54,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F78F8E72193E68F0053636F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4F78F8E82193E8270053636F /* Person.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		4FD2A15D2193C4A0007066D0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -65,6 +77,8 @@
 		4FD2A15E2193C596007066D0 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				7053B214218D4866005A12D3 /* AppDelegate.swift */,
+				7053B21D218D4867005A12D3 /* Assets.xcassets */,
 				709D0858218D670600A166E6 /* ImageCredits */,
 			);
 			path = Other;
@@ -100,11 +114,11 @@
 		7053B213218D4866005A12D3 /* Fermi */ = {
 			isa = PBXGroup;
 			children = (
-				7053B21D218D4867005A12D3 /* Assets.xcassets */,
+				4F78F8E72193E68F0053636F /* Model */,
 				4FD2A15D2193C4A0007066D0 /* Views */,
 				4FD2A15F2193C5AC007066D0 /* Storyboards */,
 				4FD2A15E2193C596007066D0 /* Other */,
-				7053B214218D4866005A12D3 /* AppDelegate.swift */,
+				4F78F8EA2193ECE70053636F /* Constants.swift */,
 				7053B222218D4867005A12D3 /* Info.plist */,
 			);
 			path = Fermi;
@@ -244,8 +258,10 @@
 				709D085D218D698500A166E6 /* Home.swift in Sources */,
 				709D0861218D767A00A166E6 /* Login.swift in Sources */,
 				7053B215218D4866005A12D3 /* AppDelegate.swift in Sources */,
+				4F78F8E92193E8270053636F /* Person.swift in Sources */,
 				4F05DF1C2193CE5100611393 /* Fermi.swift in Sources */,
 				7053B217218D4866005A12D3 /* Referrals.swift in Sources */,
+				4F78F8EB2193ECE70053636F /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
