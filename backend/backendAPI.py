@@ -14,7 +14,7 @@ from PersonDAO import PersonDTO
 app = Flask(__name__)
 app.secret_key = 'mongoose69'
 
-@app.route('/')
+@app.route('/example/')
 def selectFake():
     selectFake = PersonDAO()
     fakePersonList = selectFake.selectFromPerson()

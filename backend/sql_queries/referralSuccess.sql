@@ -1,10 +1,10 @@
 
-SELECT from, Count(status) from Referrals WHERE
-	status = true GROUP BY from
+SELECT sender, Count(status) from Referrals WHERE
+	status = true GROUP BY sender  LIMIT 10;
 
-SELECT from, Count(status) from Referrals GROUP BY from
+SELECT sender, Count(status) from Referrals GROUP BY sender LIMIT 10;
 
-SELECT to, Count(status) from Referrals WHERE
-	status = true GROUP BY to
+SELECT recipient, Count(status) from Referrals WHERE
+	status = true GROUP BY recipient LIMIT 10;
 
-SELECT to, Count(status) from Referrals GROUP BY to
+SELECT recipient, Count(status) from Referrals GROUP BY recipient LIMIT 10;
