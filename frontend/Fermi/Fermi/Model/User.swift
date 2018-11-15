@@ -31,17 +31,17 @@ class User {
             case .success(let response):
                 guard
                     let dict = response.dictionaryValue,
-                    let fbId = dict["id"] as? String,
+                    let id = dict["id"] as? String,
                     let name = dict["name"] as? String
                     else {
                         completion(nil)
                         return
                 }
-                // Make call to server, sending fbId and name.
+                // Make call to server, sending id and name.
                 // Either create user or retrieve the user's info.
                 // In either case, return the material to create a Person object.
                 // Then, call completion with that person.
-                self.person = Person(fbId: fbId, name: name)
+                self.person = Person(id: id, name: name)
                 completion(self.person)
             case .failed(_):
                 completion(nil)

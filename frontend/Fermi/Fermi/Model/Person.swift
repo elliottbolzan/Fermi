@@ -11,31 +11,27 @@ import FacebookCore
 
 struct Person {
     
-    let id: Int
-    let fbId: String
+    let id: String
     let name: String
     
     init?(json: [String: Any]) {
-        guard let id = json["id"] as? Int,
-            let fbId = json["fb_id"] as? String,
+        guard let id = json["id"] as? String,
             let name = json["name"] as? String
             else {
                 return nil
         }
         self.id = id
-        self.fbId = fbId
         self.name = name
     }
     
-    init(fbId: String, name: String) {
-        print(fbId)
-        self.id = 0
-        self.fbId = fbId
+    init(id: String, name: String) {
+        print(id)
+        self.id = id
         self.name = name
     }
     
     var profilePictureURL: String {
-        return "http://graph.facebook.com/\(fbId)/picture?type=large"
+        return "http://graph.facebook.com/\(id)/picture?type=large"
     }
     
 }

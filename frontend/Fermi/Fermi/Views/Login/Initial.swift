@@ -24,7 +24,8 @@ class Initial: UIViewController {
                 }
                 Movement(host: self).showFermi(animated: true)
             })
-//            Movement(host: self).showLogin(animated: false)
+            // Uncomment and comment previous block to prevent movement to main tab view.
+            // Movement(host: self).showLogin(animated: false)
         }
         else {
             Movement(host: self).showLogin(animated: false)

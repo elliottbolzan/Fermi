@@ -23,9 +23,9 @@ class InitialTableCell: UITableViewCell {
     }
     
     //function that constructs the nib upon request from TableView
-    func commonInit(pName: String, pId: Int) {
+    func commonInit(pName: String, pId: String) {
         self.name.text = pName
-        self.id.text = String(pId)
+        self.id.text = pId
     }
     
 }
