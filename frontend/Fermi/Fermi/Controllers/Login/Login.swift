@@ -12,6 +12,8 @@ import FacebookCore
 
 class Login: UIViewController, LoginButtonDelegate {
     
+    @IBOutlet weak var loginView: UIView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLoginButton()
@@ -19,9 +21,8 @@ class Login: UIViewController, LoginButtonDelegate {
     
     func setupLoginButton() {
         let loginButton = LoginButton(readPermissions: [ .publicProfile ])
-        loginButton.center = CGPoint(x: view.center.x, y: view.frame.height - 150)
         loginButton.delegate = self
-        view.addSubview(loginButton)
+        loginView!.addSubview(loginButton)
     }
     
     func loginButtonDidCompleteLogin(_ loginButton: LoginButton, result: LoginResult) {
