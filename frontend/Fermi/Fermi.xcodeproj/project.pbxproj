@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4F05DF1C2193CE5100611393 /* Fermi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F05DF1B2193CE5100611393 /* Fermi.swift */; };
+		4F6CA39E219C86C4004E0E11 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6CA39D219C86C4004E0E11 /* User.swift */; };
+		4F6CA3A0219C89D4004E0E11 /* Initial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6CA39F219C89D4004E0E11 /* Initial.swift */; };
+		4F6CA3A3219C8CD8004E0E11 /* Movement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6CA3A2219C8CD8004E0E11 /* Movement.swift */; };
 		4F78F8E92193E8270053636F /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F78F8E82193E8270053636F /* Person.swift */; };
 		4F78F8EB2193ECE70053636F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F78F8EA2193ECE70053636F /* Constants.swift */; };
 		7053B215218D4866005A12D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7053B214218D4866005A12D3 /* AppDelegate.swift */; };
@@ -27,6 +30,9 @@
 /* Begin PBXFileReference section */
 		332349FBD929C0D31D84323D /* Pods_Fermi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fermi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F05DF1B2193CE5100611393 /* Fermi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fermi.swift; sourceTree = "<group>"; };
+		4F6CA39D219C86C4004E0E11 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		4F6CA39F219C89D4004E0E11 /* Initial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Initial.swift; sourceTree = "<group>"; };
+		4F6CA3A2219C8CD8004E0E11 /* Movement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movement.swift; sourceTree = "<group>"; };
 		4F78F8E82193E8270053636F /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		4F78F8EA2193ECE70053636F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7053B211218D4866005A12D3 /* Fermi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fermi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,10 +64,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F6CA3A1219C8C9B004E0E11 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				4F6CA39F219C89D4004E0E11 /* Initial.swift */,
+				709D0860218D767A00A166E6 /* Login.swift */,
+				4F6CA3A2219C8CD8004E0E11 /* Movement.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		4F78F8E72193E68F0053636F /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				4F78F8E82193E8270053636F /* Person.swift */,
+				4F6CA39D219C86C4004E0E11 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -69,8 +86,8 @@
 		4FD2A15D2193C4A0007066D0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4F6CA3A1219C8C9B004E0E11 /* Login */,
 				7053B216218D4866005A12D3 /* Referrals.swift */,
-				709D0860218D767A00A166E6 /* Login.swift */,
 				709D085A218D697800A166E6 /* Profile.swift */,
 				709D085C218D698500A166E6 /* Home.swift */,
 				4F05DF1B2193CE5100611393 /* Fermi.swift */,
@@ -84,6 +101,7 @@
 			children = (
 				7053B214218D4866005A12D3 /* AppDelegate.swift */,
 				7053B21D218D4867005A12D3 /* Assets.xcassets */,
+				4F78F8EA2193ECE70053636F /* Constants.swift */,
 				709D0858218D670600A166E6 /* ImageCredits */,
 			);
 			path = Other;
@@ -119,12 +137,11 @@
 		7053B213218D4866005A12D3 /* Fermi */ = {
 			isa = PBXGroup;
 			children = (
+				7053B222218D4867005A12D3 /* Info.plist */,
 				4F78F8E72193E68F0053636F /* Model */,
 				4FD2A15D2193C4A0007066D0 /* Views */,
 				4FD2A15F2193C5AC007066D0 /* Storyboards */,
 				4FD2A15E2193C596007066D0 /* Other */,
-				4F78F8EA2193ECE70053636F /* Constants.swift */,
-				7053B222218D4867005A12D3 /* Info.plist */,
 			);
 			path = Fermi;
 			sourceTree = "<group>";
@@ -234,10 +251,20 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Fermi/Pods-Fermi-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -270,11 +297,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				709D085B218D697800A166E6 /* Profile.swift in Sources */,
+				4F6CA39E219C86C4004E0E11 /* User.swift in Sources */,
 				709D085D218D698500A166E6 /* Home.swift in Sources */,
 				70CC68C12193E243003722C4 /* InitialTableCell.swift in Sources */,
 				709D0861218D767A00A166E6 /* Login.swift in Sources */,
+				4F6CA3A0219C89D4004E0E11 /* Initial.swift in Sources */,
 				7053B215218D4866005A12D3 /* AppDelegate.swift in Sources */,
 				4F78F8E92193E8270053636F /* Person.swift in Sources */,
+				4F6CA3A3219C8CD8004E0E11 /* Movement.swift in Sources */,
 				4F05DF1C2193CE5100611393 /* Fermi.swift in Sources */,
 				7053B217218D4866005A12D3 /* Referrals.swift in Sources */,
 				4F78F8EB2193ECE70053636F /* Constants.swift in Sources */,
@@ -430,7 +460,23 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Fermi.Fermi;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"FacebookCore\"",
+					"-framework",
+					"\"FacebookLogin\"",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.fermi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -448,7 +494,23 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Fermi.Fermi;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"FacebookCore\"",
+					"-framework",
+					"\"FacebookLogin\"",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.fermi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

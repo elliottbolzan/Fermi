@@ -52,7 +52,7 @@ class Home: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let currentUser = data[indexPath.item]
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell1", for: indexPath) as! InitialTableCell
-        cell.commonInit(pName: currentUser.name, pId: currentUser.id, pEmail: currentUser.email)
+        cell.commonInit(pName: currentUser.name, pId: currentUser.id)
         return cell
     }
     
