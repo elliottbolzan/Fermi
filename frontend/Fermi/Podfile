@@ -6,6 +6,8 @@ target 'Fermi' do
   use_frameworks!
 
   # Pods for Fermi
-    pod 'Alamofire', '~> 4.7'
+  pod 'Alamofire', '~> 4.7'  
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
 
 end

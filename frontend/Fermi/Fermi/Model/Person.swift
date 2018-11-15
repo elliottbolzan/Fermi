@@ -7,23 +7,35 @@
 //
 
 import Foundation
+import FacebookCore
 
 struct Person {
     
     let id: Int
+    let fbId: String
     let name: String
-    let email: String
     
     init?(json: [String: Any]) {
         guard let id = json["id"] as? Int,
-            let name = json["name"] as? String,
-            let email = json["email"] as? String
+            let fbId = json["fb_id"] as? String,
+            let name = json["name"] as? String
             else {
                 return nil
         }
         self.id = id
+        self.fbId = fbId
         self.name = name
-        self.email = email
+    }
+    
+    init(fbId: String, name: String) {
+        print(fbId)
+        self.id = 0
+        self.fbId = fbId
+        self.name = name
+    }
+    
+    var profilePictureURL: String {
+        return "http://graph.facebook.com/\(fbId)/picture?type=large"
     }
     
 }

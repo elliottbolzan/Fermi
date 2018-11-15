@@ -66,7 +66,7 @@ def generate():
         for i in range(NUMBER_OF_USERS):
             first = randomFrom(female)
             if i % 2:
-                name = randomFrom(male)
+                first = randomFrom(male)
             person = Person(i + 1, first, randomFrom(last), randomFrom(companies), randomFrom(jobs))
             output.write(person.create())
             persons.append(person)
