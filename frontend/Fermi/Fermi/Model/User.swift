@@ -41,7 +41,7 @@ class User {
                 // Either create user or retrieve the user's info.
                 // In either case, return the material to create a Person object.
                 // Then, call completion with that person.
-                self.person = Person(id: id, name: name)
+                self.person = Person(id: Int(id)!, name: name)
                 completion(self.person)
             case .failed(_):
                 completion(nil)

@@ -9,37 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home-->
-        <scene sceneID="Keh-cj-dTT">
-            <objects>
-                <viewController id="2wU-Pr-kjV" userLabel="Home" customClass="Home" customModule="Fermi" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="kMm-5A-LuE">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B0b-Y6-Aci">
-                                <rect key="frame" x="0.0" y="7.5" width="375" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="B0b-Y6-Aci" firstAttribute="width" secondItem="kMm-5A-LuE" secondAttribute="width" id="HuD-vO-qvl"/>
-                            <constraint firstItem="B0b-Y6-Aci" firstAttribute="centerX" secondItem="Wwb-Mi-wUT" secondAttribute="centerX" id="aFM-4H-FZ0"/>
-                            <constraint firstItem="B0b-Y6-Aci" firstAttribute="centerY" secondItem="Wwb-Mi-wUT" secondAttribute="centerY" id="oMM-ka-vIw"/>
-                            <constraint firstItem="B0b-Y6-Aci" firstAttribute="height" secondItem="kMm-5A-LuE" secondAttribute="height" id="q2g-3Y-fTV"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="Wwb-Mi-wUT"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="qCU-Ao-jU9"/>
-                    <connections>
-                        <outlet property="tableView" destination="B0b-Y6-Aci" id="mn6-UZ-875"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="m6t-gd-lgM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2140" y="-0.44977511244377816"/>
-        </scene>
         <!--Initial-->
         <scene sceneID="Y10-J7-xME">
             <objects>
@@ -76,16 +45,28 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ME4-OP-X3M">
+                                <rect key="frame" x="96" y="533" width="183" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="183" id="gYF-5g-glg"/>
+                                    <constraint firstAttribute="height" constant="28" id="tg0-z7-AeR"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="tM3-ko-2OH" firstAttribute="centerX" secondItem="mIJ-JG-d6e" secondAttribute="centerX" id="1OQ-6S-T7E"/>
                             <constraint firstItem="PWW-km-mRa" firstAttribute="centerX" secondItem="mIJ-JG-d6e" secondAttribute="centerX" id="7Sr-4w-6Il"/>
                             <constraint firstAttribute="bottomMargin" secondItem="PWW-km-mRa" secondAttribute="bottom" constant="150" id="ImH-lm-cUx"/>
+                            <constraint firstItem="ME4-OP-X3M" firstAttribute="centerX" secondItem="mIJ-JG-d6e" secondAttribute="centerX" id="ctT-mR-N2t"/>
                             <constraint firstItem="tM3-ko-2OH" firstAttribute="centerY" secondItem="mIJ-JG-d6e" secondAttribute="centerY" id="eMR-TY-9fm"/>
+                            <constraint firstItem="ME4-OP-X3M" firstAttribute="top" secondItem="PWW-km-mRa" secondAttribute="bottom" constant="16" id="tTa-jR-PMR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Heq-W6-Gc1"/>
                     </view>
+                    <connections>
+                        <outlet property="loginView" destination="ME4-OP-X3M" id="qOM-HI-a3P"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hcJ-5I-dDH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -176,12 +157,276 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="2wU-Pr-kjV" kind="relationship" relationship="rootViewController" id="ey5-pf-HQ6"/>
+                        <segue destination="Nue-cU-Hbn" kind="relationship" relationship="rootViewController" id="O1B-hZ-uvK"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f3h-Hl-aCm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1200.8" y="-0.44977511244377816"/>
+        </scene>
+        <!--Connect-->
+        <scene sceneID="jA8-WY-h75">
+            <objects>
+                <collectionViewController id="Nue-cU-Hbn" customClass="Home" customModule="Fermi" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="26T-Vc-qTk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hma-i6-FUn">
+                            <size key="itemSize" width="262" height="332"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="0ms-Bm-wgK" customClass="Card" customModule="Fermi" customModuleProvider="target">
+                                <rect key="frame" x="56.5" y="0.0" width="262" height="332"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="262" height="332"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="51w-bw-Vcz" userLabel="Content">
+                                            <rect key="frame" x="0.0" y="0.0" width="262" height="332"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z8O-9W-QYb">
+                                                    <rect key="frame" x="0.0" y="0.0" width="262" height="85"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Elliott Bolzan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EKg-03-Y98">
+                                                            <rect key="frame" x="20" y="14" width="138" height="30"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="25"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rIK-Dq-Cz0">
+                                                            <rect key="frame" x="20" y="52" width="134" height="18"/>
+                                                            <attributedString key="attributedText">
+                                                                <fragment content="Works at ">
+                                                                    <attributes>
+                                                                        <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                                                    </attributes>
+                                                                </fragment>
+                                                                <fragment content="Facebook">
+                                                                    <attributes>
+                                                                        <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                                                    </attributes>
+                                                                </fragment>
+                                                            </attributedString>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1lZ-9h-kbM" customClass="BadgeButton" customModule="Fermi" customModuleProvider="target">
+                                                            <rect key="frame" x="217" y="14" width="37" height="30"/>
+                                                            <state key="normal" title="VIEW"/>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.92156862745098034" green="0.59215686274509804" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstItem="EKg-03-Y98" firstAttribute="top" secondItem="Z8O-9W-QYb" secondAttribute="top" constant="14" id="I6V-iY-u0B"/>
+                                                        <constraint firstItem="EKg-03-Y98" firstAttribute="leading" secondItem="Z8O-9W-QYb" secondAttribute="leading" constant="20" id="XQz-W3-YhL"/>
+                                                        <constraint firstItem="rIK-Dq-Cz0" firstAttribute="top" secondItem="EKg-03-Y98" secondAttribute="bottom" constant="8" id="oO4-cr-oJN"/>
+                                                        <constraint firstItem="rIK-Dq-Cz0" firstAttribute="leading" secondItem="Z8O-9W-QYb" secondAttribute="leading" constant="20" id="pBe-cB-6M9"/>
+                                                        <constraint firstAttribute="height" constant="85" id="wKU-pa-qQc"/>
+                                                        <constraint firstAttribute="trailing" secondItem="1lZ-9h-kbM" secondAttribute="trailing" constant="8" id="xET-bX-07w"/>
+                                                        <constraint firstItem="1lZ-9h-kbM" firstAttribute="centerY" secondItem="EKg-03-Y98" secondAttribute="centerY" id="zkW-kG-a0F"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dhF-KP-yJx" customClass="PolyImageView" customModule="Fermi" customModuleProvider="target">
+                                                    <rect key="frame" x="67" y="101" width="128" height="128"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="128" id="A8i-5I-gMM"/>
+                                                        <constraint firstAttribute="width" constant="128" id="utl-9i-q3f"/>
+                                                    </constraints>
+                                                </view>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5HB-Ih-2tR">
+                                                    <rect key="frame" x="20" y="274" width="222" height="50"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="LOb-KQ-8AD"/>
+                                                    </constraints>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Elliott ">
+                                                            <attributes>
+                                                                <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                                    <tabStops>
+                                                                        <textTab alignment="left" location="28">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="56">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="84">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="112">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="140">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="168">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="196">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="224">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="252">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="280">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="308">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="336">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                    </tabStops>
+                                                                </paragraphStyle>
+                                                            </attributes>
+                                                        </fragment>
+                                                        <fragment content="refers more">
+                                                            <attributes>
+                                                                <font key="NSFont" size="14" name="HelveticaNeue-Bold"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                                    <tabStops>
+                                                                        <textTab alignment="left" location="28">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="56">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="84">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="112">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="140">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="168">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="196">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="224">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="252">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="280">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="308">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="336">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                    </tabStops>
+                                                                </paragraphStyle>
+                                                            </attributes>
+                                                        </fragment>
+                                                        <fragment content=" people than 78% of users.">
+                                                            <attributes>
+                                                                <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                                    <tabStops>
+                                                                        <textTab alignment="left" location="28">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="56">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="84">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="112">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="140">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="168">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="196">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="224">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="252">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="280">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="308">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                        <textTab alignment="left" location="336">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                    </tabStops>
+                                                                </paragraphStyle>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="dhF-KP-yJx" firstAttribute="centerX" secondItem="51w-bw-Vcz" secondAttribute="centerX" id="0E0-Mf-24T"/>
+                                                <constraint firstAttribute="bottom" secondItem="5HB-Ih-2tR" secondAttribute="bottom" constant="8" id="870-t5-Ybp"/>
+                                                <constraint firstItem="Z8O-9W-QYb" firstAttribute="top" secondItem="51w-bw-Vcz" secondAttribute="top" id="JWg-EW-K3D"/>
+                                                <constraint firstItem="Z8O-9W-QYb" firstAttribute="leading" secondItem="51w-bw-Vcz" secondAttribute="leading" id="a0t-CD-L2M"/>
+                                                <constraint firstAttribute="trailing" secondItem="Z8O-9W-QYb" secondAttribute="trailing" id="g5T-Fp-8rW"/>
+                                                <constraint firstItem="5HB-Ih-2tR" firstAttribute="leading" secondItem="51w-bw-Vcz" secondAttribute="leading" constant="20" id="iOf-BM-XKE"/>
+                                                <constraint firstAttribute="trailing" secondItem="5HB-Ih-2tR" secondAttribute="trailing" constant="20" id="jpd-Aa-QFj"/>
+                                                <constraint firstItem="dhF-KP-yJx" firstAttribute="top" secondItem="Z8O-9W-QYb" secondAttribute="bottom" constant="16" id="r4y-JM-Dvb"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="51w-bw-Vcz" firstAttribute="leading" secondItem="0ms-Bm-wgK" secondAttribute="leading" id="27Y-o8-eyO"/>
+                                    <constraint firstAttribute="trailing" secondItem="51w-bw-Vcz" secondAttribute="trailing" id="2XU-8O-j2E"/>
+                                    <constraint firstItem="51w-bw-Vcz" firstAttribute="top" secondItem="0ms-Bm-wgK" secondAttribute="top" id="7dI-S5-XDq"/>
+                                    <constraint firstAttribute="bottom" secondItem="51w-bw-Vcz" secondAttribute="bottom" id="Xuy-8A-jy0"/>
+                                </constraints>
+                                <size key="customSize" width="262" height="332"/>
+                                <connections>
+                                    <outlet property="company" destination="rIK-Dq-Cz0" id="qwe-Md-NwN"/>
+                                    <outlet property="container" destination="51w-bw-Vcz" id="hFv-85-lPy"/>
+                                    <outlet property="fact" destination="5HB-Ih-2tR" id="47T-19-wU0"/>
+                                    <outlet property="header" destination="Z8O-9W-QYb" id="fkN-QT-gvK"/>
+                                    <outlet property="name" destination="EKg-03-Y98" id="6Jn-Ai-e9n"/>
+                                    <outlet property="profilePicture" destination="dhF-KP-yJx" id="ukJ-72-WXb"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="Nue-cU-Hbn" id="ARw-uc-Mc0"/>
+                            <outlet property="delegate" destination="Nue-cU-Hbn" id="LoS-C6-ncZ"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Connect" id="3bj-Cl-Bis"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hHS-dR-urk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2140" y="-0.44977511244377816"/>
         </scene>
         <!--Me-->
         <scene sceneID="erV-em-33B">
