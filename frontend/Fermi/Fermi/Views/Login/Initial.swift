@@ -18,13 +18,13 @@ class Initial: UIViewController {
     
     func pickViewController() {
         if User.shared.loggedIn {
-            User.shared.load(completion: { person in
-                guard person != nil else {
-                    return
-                }
-                Movement(host: self).showFermi(animated: true)
-            })
-//            Movement(host: self).showLogin(animated: false)
+//            User.shared.load(completion: { person in
+//                guard person != nil else {
+//                    return
+//                }
+//                Movement(host: self).showFermi(animated: true)
+//            })
+            Movement(host: self).showLogin(animated: false)
         }
         else {
             Movement(host: self).showLogin(animated: false)
