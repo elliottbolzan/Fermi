@@ -1,7 +1,6 @@
 CREATE TABLE Person (
     id INTEGER PRIMARY KEY,
-    name VARCHAR(256) NOT NULL,
-    email VARCHAR(256) NOT NULL
+    name VARCHAR(256) NOT NULL
 );
 
 CREATE TABLE Company (

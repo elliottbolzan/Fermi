@@ -34,10 +34,9 @@ class Person:
         self.name = self.name.replace("'", "''")
         self.company = company
         self.position = position
-        self.email = first.lower() + "." + last.lower() + "@" + company.name.lower().replace("'", "").replace(" ", "") + ".com"
     
     def create(self):
-        return "INSERT INTO Person VALUES (%s, \'%s\', \'%s\');\n" % (self.identifier, self.name, self.email)
+        return "INSERT INTO Person VALUES (%s, \'%s\');\n" % (self.identifier, self.name)
 
 def generate():
 
