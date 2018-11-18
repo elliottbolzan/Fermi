@@ -15,6 +15,7 @@ class Card: UICollectionViewCell {
     @IBOutlet weak var profilePicture: PolyImageView?
     @IBOutlet weak var name: UILabel?
     @IBOutlet weak var company: UILabel?
+    @IBOutlet weak var type: BadgeButton?
     @IBOutlet weak var fact: UITextView?
     
     override func awakeFromNib() {
@@ -33,9 +34,32 @@ class Card: UICollectionViewCell {
         container!.layer.cornerRadius = 4
         container!.layer.borderColor = Constants.border.cgColor
         
-        // Setup header.
-        header!.backgroundColor = Constants.colors.randomElement()
-        
+        // Create fact.
+        self.type!.backgroundColor = UIColor.clear
+        self.type!.layer.borderWidth = 1
+        self.type!.setTitleColor(UIColor.black, for: .normal)
+        setFact()
+
+    }
+    
+    func setPerson(person: Person) {
+        self.name!.text = person.name
+        self.setTint(tint: State.shared.colorFor(id: person.id))
+        person.profilePicture(completion: { image in
+            self.profilePicture!.imageView.image = image
+        })
+    }
+    
+    func setTint(tint: UIColor) {
+        self.type!.layer.borderColor = tint.cgColor
+        self.header!.backgroundColor = tint
+    }
+    
+    func setFact() {
+        let string = "Refers more people than 78% of users."
+        let attributed = NSMutableAttributedString(string: string)
+        attributed.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "HelveticaNeue-Light", size: 18)!, range: NSRange(location: 0, length: string.count))
+        self.fact!.attributedText = attributed
     }
     
 }
