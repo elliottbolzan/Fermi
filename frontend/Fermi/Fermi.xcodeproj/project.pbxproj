@@ -13,6 +13,13 @@
 		4F6CA3A3219C8CD8004E0E11 /* Movement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6CA3A2219C8CD8004E0E11 /* Movement.swift */; };
 		4F78F8E92193E8270053636F /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F78F8E82193E8270053636F /* Person.swift */; };
 		4F78F8EB2193ECE70053636F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F78F8EA2193ECE70053636F /* Constants.swift */; };
+		4FA45EA621A1376600ECA958 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA45EA521A1376600ECA958 /* FilterView.swift */; };
+		4FA45EA821A13F2300ECA958 /* CreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA45EA721A13F2300ECA958 /* CreateController.swift */; };
+		4FA45EAA21A1D7BA00ECA958 /* EmptyCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA45EA921A1D7BA00ECA958 /* EmptyCollectionView.swift */; };
+		4FA45EAC21A1E53400ECA958 /* FilterHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA45EAB21A1E53400ECA958 /* FilterHeader.swift */; };
+		4FA45EAE21A1E6C400ECA958 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA45EAD21A1E6C400ECA958 /* Filter.swift */; };
+		4FE01C40219F5FBD00D4FAB8 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE01C3F219F5FBD00D4FAB8 /* State.swift */; };
+		4FE01C44219F6F2C00D4FAB8 /* StringSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE01C43219F6F2C00D4FAB8 /* StringSize.swift */; };
 		4FFD708C219DE9B500293E39 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD708B219DE9B500293E39 /* Server.swift */; };
 		4FFD7091219DF60C00293E39 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD7090219DF60C00293E39 /* Card.swift */; };
 		4FFD7094219E0F2800293E39 /* PolyImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD7093219E0F2800293E39 /* PolyImageView.swift */; };
@@ -36,6 +43,13 @@
 		4F6CA3A2219C8CD8004E0E11 /* Movement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movement.swift; sourceTree = "<group>"; };
 		4F78F8E82193E8270053636F /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		4F78F8EA2193ECE70053636F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4FA45EA521A1376600ECA958 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
+		4FA45EA721A13F2300ECA958 /* CreateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateController.swift; sourceTree = "<group>"; };
+		4FA45EA921A1D7BA00ECA958 /* EmptyCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCollectionView.swift; sourceTree = "<group>"; };
+		4FA45EAB21A1E53400ECA958 /* FilterHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHeader.swift; sourceTree = "<group>"; };
+		4FA45EAD21A1E6C400ECA958 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		4FE01C3F219F5FBD00D4FAB8 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		4FE01C43219F6F2C00D4FAB8 /* StringSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringSize.swift; sourceTree = "<group>"; };
 		4FFD708B219DE9B500293E39 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		4FFD7090219DF60C00293E39 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		4FFD7093219E0F2800293E39 /* PolyImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyImageView.swift; sourceTree = "<group>"; };
@@ -79,8 +93,8 @@
 		4F78F8E72193E68F0053636F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4FA45EAD21A1E6C400ECA958 /* Filter.swift */,
 				4F78F8E82193E8270053636F /* Person.swift */,
-				4F6CA39D219C86C4004E0E11 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -100,10 +114,29 @@
 		4FD2A15F2193C5AC007066D0 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				7053B21A218D4866005A12D3 /* Main.storyboard */,
 				7053B21F218D4867005A12D3 /* LaunchScreen.storyboard */,
+				7053B21A218D4866005A12D3 /* Main.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		4FE01C41219F61B200D4FAB8 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				4F6CA39D219C86C4004E0E11 /* User.swift */,
+				4FE01C3F219F5FBD00D4FAB8 /* State.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		4FE01C42219F6F1900D4FAB8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4FE01C43219F6F2C00D4FAB8 /* StringSize.swift */,
+				4FA45EA721A13F2300ECA958 /* CreateController.swift */,
+				4FA45EA921A1D7BA00ECA958 /* EmptyCollectionView.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		4FFD708A219DE98E00293E39 /* Server */ = {
@@ -118,6 +151,8 @@
 			isa = PBXGroup;
 			children = (
 				4FFD7090219DF60C00293E39 /* Card.swift */,
+				4FA45EA521A1376600ECA958 /* FilterView.swift */,
+				4FA45EAB21A1E53400ECA958 /* FilterHeader.swift */,
 				709D085C218D698500A166E6 /* Home.swift */,
 			);
 			path = Home;
@@ -158,8 +193,10 @@
 				4F78F8EA2193ECE70053636F /* Constants.swift */,
 				7053B222218D4867005A12D3 /* Info.plist */,
 				4FD2A15D2193C4A0007066D0 /* Controllers */,
+				4FE01C42219F6F1900D4FAB8 /* Extensions */,
 				4F78F8E72193E68F0053636F /* Model */,
 				4FFD708A219DE98E00293E39 /* Server */,
+				4FE01C41219F61B200D4FAB8 /* State */,
 				4FD2A15F2193C5AC007066D0 /* Storyboards */,
 				4FFD7092219E0F0800293E39 /* Views */,
 			);
@@ -262,6 +299,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
@@ -272,6 +310,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
@@ -314,14 +353,21 @@
 				4FFD7091219DF60C00293E39 /* Card.swift in Sources */,
 				4F6CA3A0219C89D4004E0E11 /* Initial.swift in Sources */,
 				7053B215218D4866005A12D3 /* AppDelegate.swift in Sources */,
+				4FE01C40219F5FBD00D4FAB8 /* State.swift in Sources */,
 				4F78F8E92193E8270053636F /* Person.swift in Sources */,
 				4FFD7094219E0F2800293E39 /* PolyImageView.swift in Sources */,
+				4FA45EAC21A1E53400ECA958 /* FilterHeader.swift in Sources */,
+				4FA45EA821A13F2300ECA958 /* CreateController.swift in Sources */,
 				4F6CA3A3219C8CD8004E0E11 /* Movement.swift in Sources */,
+				4FA45EAE21A1E6C400ECA958 /* Filter.swift in Sources */,
 				4F05DF1C2193CE5100611393 /* Fermi.swift in Sources */,
 				7053B217218D4866005A12D3 /* Referrals.swift in Sources */,
+				4FA45EAA21A1D7BA00ECA958 /* EmptyCollectionView.swift in Sources */,
+				4FA45EA621A1376600ECA958 /* FilterView.swift in Sources */,
 				4FFD7096219E1E0A00293E39 /* BadgeButton.swift in Sources */,
 				4FFD708C219DE9B500293E39 /* Server.swift in Sources */,
 				4F78F8EB2193ECE70053636F /* Constants.swift in Sources */,
+				4FE01C44219F6F2C00D4FAB8 /* StringSize.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

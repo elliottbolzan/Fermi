@@ -16,7 +16,7 @@ class BadgeButton: UIButton {
         self.setTitleColor(UIColor.white, for: .normal)
         self.titleLabel!.font = .systemFont(ofSize: 12)
         self.layer.cornerRadius = 5
-        self.widthAnchor.constraint(equalToConstant: 50.0).isActive = true
+        self.isUserInteractionEnabled = false
     }
 
 }
