@@ -97,8 +97,7 @@ def generate():
             A = randomFrom(persons)
             B = randomFrom(persons)
             if A != B:
-                success = random.randint(1, PROB_REFERRAL_SUCCESS) == 1
-                success = "TRUE" if success == 0 else "FALSE"
+                success = randomFrom(["requested", "granted", "offered", "denied", "rejected"])
                 timestamp = getTimestamp()
                 output.write("INSERT INTO Referrals VALUES (%s, %s, %s, %s, \'%s\', TIMESTAMP \'%s\');\n" % (count, A.identifier, B.identifier, A.company.identifier, success, timestamp))
                 count += 1
