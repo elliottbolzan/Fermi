@@ -37,6 +37,6 @@ CREATE TABLE Referrals (
     sender INTEGER NOT NULL REFERENCES Person(id),
     recipient INTEGER NOT NULL REFERENCES Person(id),
     company INTEGER REFERENCES Company(id),
-    status VARCHAR(256) NOT NULL CHECK (status = 'requested' or status = 'granted' or status = 'offered' or status = 'denied'),
+    status VARCHAR(256) NOT NULL CHECK (status = 'requested' or status = 'granted' or status = 'offered' or status = 'denied' or status = 'rejected'),
     timestamp TIMESTAMP NOT NULL
 );
