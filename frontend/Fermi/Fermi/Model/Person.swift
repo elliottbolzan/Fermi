@@ -7,23 +7,42 @@
 //
 
 import Foundation
+import Alamofire
+import AlamofireImage
 
 struct Person {
     
     let id: Int
     let name: String
-    let email: String
     
     init?(json: [String: Any]) {
+        print(json)
         guard let id = json["id"] as? Int,
-            let name = json["name"] as? String,
-            let email = json["email"] as? String
+            let name = json["name"] as? String
             else {
                 return nil
         }
         self.id = id
         self.name = name
-        self.email = email
+    }
+    
+    init(id: Int, name: String) {
+        self.id = id
+        self.name = name
+    }
+    
+    var profilePictureURL: String {
+        return "http://graph.facebook.com/\(id)/picture?type=large"
+    }
+    
+    func profilePicture(completion: @escaping (UIImage?) -> Void) {
+        Alamofire.request(profilePictureURL, method: .get).responseImage { response in
+            guard let image = response.result.value else {
+                completion(nil)
+                return
+            }
+            completion(image)
+        }
     }
     
 }

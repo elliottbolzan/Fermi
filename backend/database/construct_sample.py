@@ -34,10 +34,9 @@ class Person:
         self.name = self.name.replace("'", "''")
         self.company = company
         self.position = position
-        self.email = first.lower() + "." + last.lower() + "@" + company.name.lower().replace("'", "").replace(" ", "") + ".com"
     
     def create(self):
-        return "INSERT INTO Person VALUES (%s, \'%s\', \'%s\');\n" % (self.identifier, self.name, self.email)
+        return "INSERT INTO Person VALUES (%s, \'%s\');\n" % (self.identifier, self.name)
 
 def generate():
 
@@ -66,7 +65,7 @@ def generate():
         for i in range(NUMBER_OF_USERS):
             first = randomFrom(female)
             if i % 2:
-                name = randomFrom(male)
+                first = randomFrom(male)
             person = Person(i + 1, first, randomFrom(last), randomFrom(companies), randomFrom(jobs))
             output.write(person.create())
             persons.append(person)
