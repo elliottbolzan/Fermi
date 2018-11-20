@@ -1,0 +1,454 @@
+--add new referral
+INSERT INTO Referrals VALUES ('50000000', '1', '2', '1', FALSE, TIMESTAMP '2011-05-16 15:36:38');
+INSERT 0 1
+--update referral status
+UPDATE Referrals
+SET status=TRUE
+WHERE id = '3';
+UPDATE 1
+INSERT INTO Person VALUES ('40000000', 'Thardawg', 'thardawg@gmail.com');
+INSERT 0 1
+SELECT sender, Count(status) from Referrals WHERE
+	status = true GROUP BY sender  LIMIT 10;
+ sender | count 
+--------+-------
+   6114 |     1
+   4790 |     5
+    273 |     3
+   3936 |     9
+   5761 |     3
+   5468 |     3
+   7662 |     2
+   4326 |     2
+   2520 |     1
+   9038 |     5
+(10 rows)
+
+SELECT sender, Count(status) from Referrals GROUP BY sender LIMIT 10;
+ sender | count 
+--------+-------
+   6114 |     1
+   4790 |     6
+    273 |     7
+   3936 |    11
+   5761 |     4
+   5468 |     6
+   7662 |     2
+   4326 |     3
+   2520 |     1
+   9038 |     7
+(10 rows)
+
+SELECT recipient, Count(status) from Referrals WHERE
+	status = true GROUP BY recipient LIMIT 10;
+ recipient | count 
+-----------+-------
+      6114 |     3
+      4790 |     2
+       273 |     2
+      3936 |     1
+      5761 |     4
+      5468 |     3
+      7662 |     1
+      4326 |     3
+      2520 |     1
+      2466 |     2
+(10 rows)
+
+SELECT recipient, Count(status) from Referrals GROUP BY recipient LIMIT 10;
+ recipient | count 
+-----------+-------
+      6114 |     5
+      4790 |     4
+       273 |     2
+      3936 |     3
+      5761 |     6
+      5468 |     5
+      7662 |     1
+      4326 |     6
+      2520 |     3
+      9038 |     6
+(10 rows)
+
+--university filter
+SELECT Person.name
+FROM Person, Education, University
+WHERE Person.id = Education.person 
+AND Education.university = University.id
+AND University.name = 'Duke';
+ name  
+-------
+ Elgod
+(1 row)
+
+--company filter
+SELECT Person.name
+FROM Person, Experience, Company
+WHERE Person.id = Experience.person
+AND Experience.company = Company.id
+AND Company.name = 'Facebook';
+         name          
+-----------------------
+ Alfredia Bellue
+ Jessia Girst
+ Emerita Barks
+ Sofia Piekarski
+ Kali Hisman
+ Sana Dobbs
+ Joelle Dallago
+ Diana Ballantyne
+ Tomasa Mailey
+ Ronna Wauters
+ Johnny Blancett
+ Holley Balaz
+ Kaleigh Nicley
+ Jaimee Locante
+ Diedre Quintela
+ Elli Colfer
+ Danielle Izsak
+ Jae Cheeves
+ Cleora Pacey
+ Tandy Anast
+ Keiko Gowers
+ Jeanine Havermale
+ Ivette Bresko
+ Jeannine Blausey
+ Birdie Coultrap
+ Ivana Schmutz
+ Brook Tyrus
+ Marcelene Seton
+ Cecily Gastel
+ Cheryl Truchan
+ Concetta Daylong
+ Sharda Chrismon
+ Juliana Mcdougald
+ Aurea Beardsley
+ Francine Gaters
+ Bonnie Cuffe
+ Melony Shibley
+ Robin Maestre
+ Tamica Dungee
+ Trang Philpotts
+ Jasmin Frietas
+ Rowena Davino
+ Delia Breznay
+ Francene Myrlie
+ Callie Thomure
+ Sudie Spyies
+ Myrtice Pelligra
+ Eden Kaighn
+ Lolita Mcnitt
+ Joy Dague
+ Porsha Branscom
+ Janae Chandley
+ Lashaunda Langman
+ Sunni Osso
+ Yi Oatman
+ Alycia Saager
+ Michael Cannuli
+ Linda Certain
+ Barbera Theall
+ Felisha Ellenberg
+ Stasia Villecus
+ Diann Tenario
+ Lakia Paras
+ Jaimee Bendolph
+ Winona Bayly
+ Nelly Fukunaga
+ Divina Menapace
+ Tawanna Falcioni
+ Nanci Carrus
+ Alberta Groebner
+ Vikki Honeyman
+ Deanna Klarin
+ Kaci Laraia
+ Kamala Goy
+ Lydia Buttz
+ Rowena Muhs
+ Noella Rosazza
+ Gary Hughston
+ Ashleigh Beyea
+ Dulce Pfrogner
+ Vena Penwarden
+ Hedwig Murtaugh
+ Inger Must
+ Cathrine Kittell
+ Page Palacious
+ Rosann Galavis
+ Leticia Wassink
+ Prudence Gerty
+ Lajuana Guillette
+ Christel Vertiz
+ Robert Yepez
+ Karry Henein
+ Luise Chesher
+ Cecile Emrick
+ Carline Din
+ Joseph Baskett
+ Astrid Tietz
+ Anjanette Pallotto
+ Isabelle Datson
+ Glenn Fodness
+ Laurice Buckbee
+ Angelique Pagett
+ Neely Goudie
+ Ray Plues
+ Justin Pennywell
+ Sanjuana Ferrell
+ Pamula Sampaia
+ Tamica Westwood
+ Gena Raquel
+ Marguerite Trettin
+ Juan Brancato
+ Gudrun Scherz
+ Olevia Guetersloh
+ Vonnie Mikels
+ Taren Pack
+ Marilyn Hornack
+ Nelia Holzboog
+ Catherin Whiteman
+ Charisse Carte
+ Minh Stredny
+ Hyun Grumbine
+ Marlyn Sherron
+ Margarete Smithberger
+ Corey Jover
+ Diedra Traugh
+ Bobbi Krumwiede
+ Lorriane Remmele
+ Anjanette Laite
+ Judy Seaton
+ Robyn Kuch
+ Jene Frija
+ Christopher Achilles
+ Giovanna Shroff
+ Madelyn Stempel
+ Maureen Lachley
+ Pura Hosseini
+ Cherri Serramo
+ Adrienne Killer
+ Eugenie Stanczyk
+ Gale Trass
+ Margo Hamway
+ Neva Rosso
+ Louise Schlagel
+ Rena Welte
+ Cassandra Gallegly
+ Angle Stroede
+ Apryl Groce
+ Isaura Hurter
+ Hettie Shiiba
+ Meta Hissem
+ Daisy Wanta
+ Nicki Carmack
+ Mayra Bauer
+ Rayna Verdin
+ Tiffany Bonventre
+ Trinity Calleja
+ Alvera Felps
+ Daysi Coury
+ Earnestine Applegarth
+ Barbra Maglaughlin
+ Cecelia Hudler
+ Drema Chiaminto
+ Shayna Lavery
+ Lakeesha Scholze
+ January Cupit
+ Rowena Mckie
+ Shanelle Santacruz
+ Ali Atta
+ Deborah Briant
+ Sandie Kosofsky
+ Glendora Loewe
+ Jaimie Sinistore
+ Dierdre Zilk
+ Candi Bockemehl
+ Vanda Franculli
+ Liana Adamyan
+ Willene Posley
+ Beata Tacneau
+ Ayana Ploch
+ Dallas Mellard
+ Jacki Coffer
+ Stephany Deem
+ Magali Tashima
+ Florida Regn
+ Kemberly Deroeck
+ Jamika Konowal
+ Ida Didio
+ Kareen Luzar
+ Ciera Boenig
+ Joana Russek
+ Eladia Hink
+ Trish Nannen
+ Ilene Lowy
+ Gayle Hamway
+ Lavone Schrameck
+ Darlena Stillwell
+ Shawn Koren
+ Arie Wisseman
+ Diane Faerber
+ Doretha Eisermann
+ Yolando Sanghani
+ Viola Toupe
+ Kelly Exner
+ Leigh Pomainville
+ Florinda Meckley
+ Alline Rienstra
+ Su Revilla
+ Daryl Enrico
+ Jazmine Brazile
+ Cara Ozley
+ Mindy Samia
+ Amy Pitcairn
+ Colette Boccard
+ Dalila Pawlitschek
+ Madeleine Sanon
+ Dale South
+ Kyong Romriell
+ Bailey Zimmerly
+ Talia Collingsworth
+ Mellissa Kostelnik
+ Corrinne Breznak
+ Salome Mccrystal
+ Odette Mcelduff
+ Tish Rusteberg
+ Cicely Palacious
+ Lorina Wynans
+ Piedad Busman
+ Chana Hauth
+ Vinnie Binger
+ Josephine Baken
+ Sadie Zezima
+ Neva Halt
+ Joshua Cruthirds
+ Thelma Kapelke
+ Nelia Woleslagle
+ Norah Lafayette
+ Lori Stenslie
+ Melisa Lassalle
+ Britney Marionneaux
+ Rea Sensmeier
+ Claribel Daller
+ Annabel Brothern
+ Eleanore Dignan
+ Phung Gatz
+ Olevia Pappenheim
+ Karima Mancina
+ Minna Onorata
+ Chelsie Koffman
+ Madie Lain
+ Luella Demarcus
+ Julia Laconte
+ Luba Savoca
+ Corinna Amarian
+ Ara Acerra
+ Kaleigh Akes
+ Dorinda Finister
+ Kia Caminero
+ Floretta Arollo
+ Jaquelyn Vanscoter
+ Kristin Caseres
+ Aundrea Korchnak
+ Zina Yerkey
+ Catalina Andreozzi
+ Robena Streett
+ Sheron Balbin
+ Ligia Urreta
+ Chantelle Mallari
+ Arica Dyers
+ Yoshiko Vitalo
+ Mandi Rincon
+ Kesha Derrick
+ Anika Brunetto
+ Faviola Lints
+ Molly Sullens
+ Lu Pawluch
+ Sabine Vangilder
+ Clemencia Faix
+ Tatyana Shafto
+ Jae Hadwin
+ Tomeka Hemken
+ Sade Mcneil
+ Lyndia Kruebbe
+ Iona Rubendall
+ Chelsie Mathus
+ Beverley Dumais
+ Maragaret Palanza
+ Antionette Stapf
+ Enriqueta Ducayne
+ Dawn Xiong
+ Terry Lindemuth
+ Kathleen Brooms
+ Leana Zenner
+ Carma Kellerhouse
+ Mardell Kurtz
+ Janel Dedrick
+ Marilee Barber
+ Christinia Vaulx
+ Jazmine Friemering
+ Gillian Tlumacki
+ Cathey Scercy
+ Tari Belangia
+ Gricelda Haya
+ Mariann Daty
+ Eden Sasaki
+ Lady Wascher
+ Lilly Perkes
+(306 rows)
+
+--name filter
+SELECT name
+FROM Person
+WHERE name = 'ELLDOG';
+ name 
+------
+(0 rows)
+
+--6 people with same university as user
+with view1 AS (SELECT university,person
+				FROM education
+				WHERE person = '1')
+SELECT education.person
+FROM education,view1
+WHERE (education.university=view1.university AND education.person<>view1.person)
+LIMIT 6;
+ person 
+--------
+(0 rows)
+
+--update a user's company, education, experience, university
+--add row to University table if university not already in it
+INSERT INTO University (id, name)
+SELECT '20000000', 'UNC'
+WHERE NOT EXISTS (SELECT name FROM University WHERE name='UNC');
+INSERT 0 1
+--add row to Company table if company not already in it
+INSERT INTO Company (id, name)
+SELECT '20000000', 'Apple'
+WHERE NOT EXISTS (SELECT name FROM Company WHERE name='Apple');
+INSERT 0 1
+--add a new education
+INSERT INTO Education VALUES ('20000000', '20000000', '20000000', 'BA', TIMESTAMP '2011-05-16 15:36:38');
+INSERT 0 1
+--update an existing education
+UPDATE Education
+SET university='111', degree_type='BS', startdate=TIMESTAMP '2011-05-16 15:36:38', enddate=TIMESTAMP '2016-07-23 00:00:00'
+WHERE id = '1' and person='1';
+UPDATE 1
+--add a new job experience
+INSERT INTO Experience VALUES ('20000000', '20000000', '12000000', 'software engineer', TIMESTAMP '2011-05-16 15:36:38');
+--update an existing job experience
+UPDATE Experience
+SET company='1', position='Product Manager', startdate=TIMESTAMP '2011-05-16 15:36:38', enddate=TIMESTAMP '2016-07-23 00:00:00'
+WHERE id = '1' and person='1';
+UPDATE 1
+SELECT Person.name, Education.university, Education.degree_type, Education.startdate, Education.enddate,
+		Experience.company, Experience.position, Experience.startdate, Experience.enddate
+FROM Person, Education, Experience
+WHERE Person.id='1' AND Education.id='1' AND Experience.id='1';
+       name       | university | degree_type |      startdate      |       enddate       | company |    position     |      startdate      |       enddate       
+------------------+------------+-------------+---------------------+---------------------+---------+-----------------+---------------------+---------------------
+ Katheleen Deuell |        111 | BS          | 2011-05-16 15:36:38 | 2016-07-23 00:00:00 |       1 | Product Manager | 2011-05-16 15:36:38 | 2016-07-23 00:00:00
+(1 row)
+
