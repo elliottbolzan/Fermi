@@ -28,7 +28,7 @@ class PersonDAO():
                 conn.close()
 
     def selectFromPerson(self):
-        sql = "SELECT * FROM person LIMIT 10;"
+        sql = "SELECT * FROM person ORDER BY RANDOM() LIMIT 10;"
         PersonDTOList = []
         conn = None
         try:
