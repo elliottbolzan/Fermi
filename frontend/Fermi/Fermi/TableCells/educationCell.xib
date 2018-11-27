@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="educationCell" rowHeight="130" id="KGk-i7-Jjw" customClass="educationCell" customModule="Fermi" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="392" height="130"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="392" height="129.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="v8k-FX-U65">
+                        <rect key="frame" x="20" y="24.5" width="263.5" height="25.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Duke University" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Pl-hm-Cct">
+                                <rect key="frame" x="0.0" y="0.0" width="155.5" height="25.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Class of 2021" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jTk-El-XC4">
+                                <rect key="frame" x="160.5" y="0.0" width="103" height="25.5"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="B.S. Computer Science" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qac-Ug-h46">
+                        <rect key="frame" x="20" y="64.5" width="263.5" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Duke_University_Crest.svg" translatesAutoresizingMaskIntoConstraints="NO" id="dDo-7T-zlV">
+                        <rect key="frame" x="312.5" y="32.5" width="64.5" height="64.5"/>
+                        <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="dDo-7T-zlV" secondAttribute="height" multiplier="1:1" id="l4h-9s-dq9"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="dDo-7T-zlV" firstAttribute="leading" secondItem="qac-Ug-h46" secondAttribute="trailing" constant="29" id="DOz-Di-w5S"/>
+                    <constraint firstAttribute="trailing" secondItem="dDo-7T-zlV" secondAttribute="trailing" constant="15" id="IAi-TJ-f9F"/>
+                    <constraint firstItem="qac-Ug-h46" firstAttribute="leading" secondItem="5Pl-hm-Cct" secondAttribute="leading" id="NG3-bl-w2r"/>
+                    <constraint firstItem="qac-Ug-h46" firstAttribute="top" secondItem="5Pl-hm-Cct" secondAttribute="bottom" constant="14.5" id="RIG-gc-HQq"/>
+                    <constraint firstItem="qac-Ug-h46" firstAttribute="trailing" secondItem="v8k-FX-U65" secondAttribute="trailing" id="TAI-39-i4X"/>
+                    <constraint firstItem="dDo-7T-zlV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jTk-El-XC4" secondAttribute="trailing" constant="5" id="Z3s-NK-uw3"/>
+                    <constraint firstItem="dDo-7T-zlV" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.5" id="fpp-4P-7hC"/>
+                    <constraint firstItem="dDo-7T-zlV" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="j7V-5S-1u8"/>
+                    <constraint firstItem="v8k-FX-U65" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="sEk-JY-xKV"/>
+                    <constraint firstAttribute="bottom" secondItem="qac-Ug-h46" secondAttribute="bottom" constant="44.5" id="y9C-W3-eBM"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="classLabel" destination="jTk-El-XC4" id="Df5-J0-rRK"/>
+                <outlet property="majorLabel" destination="qac-Ug-h46" id="448-0h-GxV"/>
+                <outlet property="universityLabel" destination="5Pl-hm-Cct" id="ymF-WD-skG"/>
+            </connections>
+            <point key="canvasLocation" x="142.40000000000001" y="86.35682158920541"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Duke_University_Crest.svg" width="1200" height="1478"/>
+    </resources>
+</document>
