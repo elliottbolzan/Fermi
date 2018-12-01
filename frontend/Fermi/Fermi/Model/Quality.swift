@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+struct Quality: Codable {
+    let name: String
+    let order: Order
+    let percentile: Int
+}

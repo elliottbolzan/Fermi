@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+extension Encodable {
+    
+    func toJSON() -> [String: Any] {
+        let encoder = JSONEncoder()
+        let data = try! encoder.encode(self)
+        return try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+    }
+    
+}

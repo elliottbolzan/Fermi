@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+enum Order: String, Codable {
+    case Top, Bottom
+}

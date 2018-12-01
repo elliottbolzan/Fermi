@@ -38,6 +38,10 @@ class Home: UICollectionViewController {
 //        refresh()
     }
     
+    func refresh() {
+        self.people = Server.getUsersWith(filter: self.filter)
+    }
+    
 }
 
 extension Home: UISearchBarDelegate {
@@ -89,32 +93,10 @@ extension Home: UISearchBarDelegate {
         if filter == nil {
             self.searchController.isActive = false
         }
+        refresh()
         self.collectionView.reloadData()
     }
     
-}
-
-extension Home {
-    
-    func refresh() {
-        self.people = []
-        let uri = Constants.host + "example"
-        Alamofire.request(uri, method: .get, parameters: nil, headers: nil).validate().responseJSON { response in
-            guard response.result.isSuccess,
-            let response = response.result.value as? [[String: Any]] else {
-                return
-            }
-            for entry in response {
-                guard let person = Person(json: entry) else {
-                    return
-                }
-                self.people.append(person)
-            }
-            self.collectionView.reloadData()
-        }
-
-    }
-
 }
 
 extension Home {
