@@ -27,6 +27,74 @@ class PersonDAO():
                 conn.close()
         if Person:
             return Person
+    def getEdu(self, PersonDTO):
+        eduinfo = "SELECT Education.university, Education.degree_type,\
+        Education.startdate, Education.enddate,\
+        FROM Person, Education, Experience \
+        WHERE Person.id= %s AND Education.person= %s"
+        eduValues = (PersonDTO.id, PersonDTO.id)
+        try:
+            conn = Connection()
+            conn.cur.execute(eduinfo, eduValues)
+            eduList = []
+            row = self.cur.fetchone()
+            while row is not None:
+                print(row)
+                row = self.cur.fetchone()
+                obj = (row[0], row[1], row[2], row[3])
+                eduList.append(obj)
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error) 
+        finally:
+            if conn is not None:
+                conn.close()
+        
+        return eduList
+    
+    def getCompany(self, PersonDTO):
+        companyInfo = "SELECT \
+        Experience.company, Experience.position, Experience.startdate, Experience.enddate \
+        FROM Person, Experience \
+        WHERE Person.id= %s AND  Experience.id= %s"
+        compValues = (PersonDTO.id, PersonDTO.id)
+        try:
+            conn = Connection()
+            conn.cur.execute(companyInfo, compValues)
+            compList = []
+            row = self.cur.fetchone()
+            while row is not None:
+                print(row)
+                row = self.cur.fetchone()
+                obj = (row[0], row[1], row[2], row[3])
+                compList.append(obj)
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error) 
+        finally:
+            if conn is not None:
+                conn.close()
+        
+        return compList
+    
+    def getMetrics(self, PersonDTO):
+        metricsInfo = "SELECT * from qualities WHERE qualities.id = %s"
+        metValues = (PersonDTO.id)
+        try:
+            conn = Connection()
+            conn.cur.execute(metricsInfo, metValues)
+            metList = []
+            row = self.cur.fetchone()
+            while row is not None:
+                print(row)
+                row = self.cur.fetchone()
+                obj = (row[0], row[1], row[2], row[3])
+                metList.append(obj)
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error) 
+        finally:
+            if conn is not None:
+                conn.close()
+        
+        return metList
         
     def insertToPerson(self, PersonDTO):
         #sql = "SELECT * FROM person LIMIT 10;"
@@ -48,11 +116,14 @@ class PersonDAO():
             finally: 
                 if conn is not None:
                     conn.close()
-        Person = self.selectOnePerson(PersonDTO.id)
-        return Person
+        #Person = self.selectOnePerson(PersonDTO.id)
+        eduList = self.getEdu(PersonDTO)
+        compList = self.getCompany(PersonDTO)
+        metList = self.getMetrics(PersonDTO)
+        return PersonDTO.id, PersonDTO.name, compList, eduList, metList
+    
     
     def filter(self, params):
-        
         fd = open('sql_queries/filter.sql', 'r')
         sql = fd.read()
         fd.close()        
@@ -80,11 +151,6 @@ class PersonDAO():
             if conn is not None:
                 conn.close()
 
-        
-   
-        
-    
-            
 
     #tester code, works
     def selectFromPerson(self):

@@ -31,12 +31,14 @@ def selectFake():
     #print([x.serialize() for x in fakePersonList])
     return jsonify([x.serialize() for x in fakePersonList])
 
-@app.route('/')
-def insertFake():
+@app.route('/user/create', methods=['POST'])
+def userCreate():
     createUser = PersonDAO()
-    myUser = PersonDTO(1, "EllDawg Bolognese")
+    content = request.get_json(force = True)
+    myUser = PersonDTO(content['id'], content['name'])
     userInfo = createUser.insertToPerson(myUser)
-    return jsonify(userInfo.serialize())
+    print(userInfo)
+    #return jsonify(userInfo.serialize())
 
 #works
 @app.route('/filter', methods=['POST'])
@@ -46,7 +48,6 @@ def filter():
     filteredPeople = Person.filter(request.json["params"])
     #print(request.json)
     #print([x.serialize() for x in fakePersonList])
-    return "hi"
     
     return "received"
 
