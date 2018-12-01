@@ -54,10 +54,10 @@ def filter():
 
 @app.route('/createReferral', methods=['POST'])
 def createReferral():
-    Referral = ReferralDAO()
+    referral = ReferralDAO()
     content = request.get_json(force = True)
-    newReferral = ReferralDAO(content['id'], content['sender'], content['recipient'], content['company'], content['status'], content['timestamp'])
-    referralInfo = createReferral.insertToReferral(newReferral)
+    newReferral = ReferralDTO(content['id'], content['sender'], content['recipient'], content['company'], content['status'])
+    referralInfo = referral.insertToReferral(newReferral)
     return jsonify(referralInfo.serialize())
 
 if __name__ == '__main__':

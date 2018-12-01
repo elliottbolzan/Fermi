@@ -7,6 +7,7 @@ class ReferralDAO():
     def selectOneReferral(self, id):
         sql = "SELECT id FROM referrals WHERE id = %s"
         conn = None
+        Referral = None
         try:
             conn = Connection()
             conn.cur.execute(sql, (id,))
