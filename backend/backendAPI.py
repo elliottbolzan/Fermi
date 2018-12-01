@@ -52,6 +52,17 @@ def filter():
     
     return "received"
 
+<<<<<<< HEAD
+=======
+@app.route('/createReferral', methods=['POST'])
+def createReferral():
+    referral = ReferralDAO()
+    content = request.get_json(force = True)
+    newReferral = ReferralDTO(content['id'], content['sender'], content['recipient'], content['company'], content['status'])
+    referralInfo = referral.insertToReferral(newReferral)
+    return jsonify(referralInfo.serialize())
+
+>>>>>>> b21b215a50b8cf3b79ac672e71cb7199d147241d
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug = True)
     
