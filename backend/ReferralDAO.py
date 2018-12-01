@@ -21,24 +21,50 @@ class ReferralDAO():
         if Referral:
             return Referral
 
-    def insertToReferral(self, ReferralDTO):
-        Referral = self.selectOneReferral(ReferralDTO.id)
-        if Referral:
-            return Referral
-        else:
-            referralValues = (ReferralDTO.id, ReferralDTO.sender, ReferralDTO.recipient, ReferralDTO.company, ReferralDTO.status, ReferralDTO.timestamp)
-            sql = "INSTERT INTO Referrals(id, sender, recipient, company, status, timestamp) VALUES(%s)"
-            conn = None
-            try:
-                conn = Connection()
-                conn.cur.execute(sql, referralValues)
-                conn.commit()
-                conn.close()
-            except (Exception, psycopg2.DatabaseError) as error:
-                print(error)
-                Referral = None
-            finally: 
-                if conn is not None:
-                    conn.close()
-        Referral = self.selectOneReferral(ReferralDTO.id)
+    # def insertToReferral(self, ReferralDTO):
+    #     Referral = self.selectOneReferral(ReferralDTO.id)
+    #     if Referral:
+    #         return Referral
+    #     else:
+    #         referralValues = (ReferralDTO.id, ReferralDTO.sender, ReferralDTO.recipient, ReferralDTO.company, ReferralDTO.status, ReferralDTO.timestamp)
+    #         sql = "INSTERT INTO Referrals(id, sender, recipient, company, status, timestamp) VALUES(%s)"
+    #         conn = None
+    #         try:
+    #             conn = Connection()
+    #             conn.cur.execute(sql, referralValues)
+    #             conn.commit()
+    #             conn.close()
+    #         except (Exception, psycopg2.DatabaseError) as error:
+    #             print(error)
+    #             Referral = None
+    #         finally: 
+    #             if conn is not None:
+    #                 conn.close()
+    #     Referral = self.selectOneReferral(ReferralDTO.id)
         return Referral
+
+    def updateReferral(self, ReferralDTO):
+            #sql = "SELECT * FROM person LIMIT 10;"
+
+            Referral = self.selectOneReferral(ReferralDTO.id)
+
+            if Referral: 
+                referralValues = (referralDTO.status)
+                sql = "UPDATE Referrals SET (status) = referralValues(%s) WHERE id = ReferralDTO.id"
+                conn = None
+                try:
+                    conn = Connection()
+                    conn.cur.execute(sql, referralValues)
+                    conn.commit()
+                    conn.closer()
+                except (Exception, psycopg2.DatabaseError) as error:
+                    print(error)
+                    Referral = None
+                finally:
+                    if conn is not None:
+                        conn.close()
+            else:
+                return Referral
+                
+            Referral = self.selectOneReferral(ReferralDTO.id)
+            return Referral

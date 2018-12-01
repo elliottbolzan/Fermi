@@ -61,8 +61,18 @@ def createReferral():
     referralInfo = referral.insertToReferral(newReferral)
     return jsonify(referralInfo.serialize())
 
+@app.route('/updateReferral', methods=['POST'])
+def updateReferral():
+    referral = ReferralDAO()
+    content = request.get_json(force = True)
+    myReferral = (content['id'], content['status'])
+    ReferralInfo = Referral.updateReferral(myReferral)
+    return jsonify(ReferralInfo.serialize())
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug = True)
+
+
     
     
     
