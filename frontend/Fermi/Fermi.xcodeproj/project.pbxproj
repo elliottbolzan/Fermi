@@ -27,6 +27,8 @@
 		4FFD7091219DF60C00293E39 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD7090219DF60C00293E39 /* Card.swift */; };
 		4FFD7094219E0F2800293E39 /* PolyImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD7093219E0F2800293E39 /* PolyImageView.swift */; };
 		4FFD7096219E1E0A00293E39 /* BadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD7095219E1E0A00293E39 /* BadgeButton.swift */; };
+		70354C5621B1FCD700FB8662 /* referralCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70354C5421B1FCD700FB8662 /* referralCell.swift */; };
+		70354C5721B1FCD700FB8662 /* referralCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70354C5521B1FCD700FB8662 /* referralCell.xib */; };
 		7053B215218D4866005A12D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7053B214218D4866005A12D3 /* AppDelegate.swift */; };
 		7053B217218D4866005A12D3 /* Referrals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7053B216218D4866005A12D3 /* Referrals.swift */; };
 		7053B21C218D4866005A12D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7053B21A218D4866005A12D3 /* Main.storyboard */; };
@@ -35,6 +37,10 @@
 		709D085B218D697800A166E6 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709D085A218D697800A166E6 /* Profile.swift */; };
 		709D085D218D698500A166E6 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709D085C218D698500A166E6 /* Home.swift */; };
 		709D0861218D767A00A166E6 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709D0860218D767A00A166E6 /* Login.swift */; };
+		70CEE18321ADCDFA00027272 /* educationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CEE18121ADCDF900027272 /* educationCell.swift */; };
+		70CEE18421ADCDFA00027272 /* educationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70CEE18221ADCDF900027272 /* educationCell.xib */; };
+		70CEE18721ADCE0E00027272 /* experienceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CEE18521ADCE0E00027272 /* experienceCell.swift */; };
+		70CEE18821ADCE0E00027272 /* experienceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70CEE18621ADCE0E00027272 /* experienceCell.xib */; };
 		DB5B8D9F1BBB09526C09F6A2 /* Pods_Fermi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332349FBD929C0D31D84323D /* Pods_Fermi.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +66,8 @@
 		4FFD7090219DF60C00293E39 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		4FFD7093219E0F2800293E39 /* PolyImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyImageView.swift; sourceTree = "<group>"; };
 		4FFD7095219E1E0A00293E39 /* BadgeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeButton.swift; sourceTree = "<group>"; };
+		70354C5421B1FCD700FB8662 /* referralCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = referralCell.swift; sourceTree = "<group>"; };
+		70354C5521B1FCD700FB8662 /* referralCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = referralCell.xib; sourceTree = "<group>"; };
 		7053B211218D4866005A12D3 /* Fermi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fermi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7053B214218D4866005A12D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7053B216218D4866005A12D3 /* Referrals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Referrals.swift; sourceTree = "<group>"; };
@@ -70,6 +78,10 @@
 		709D085A218D697800A166E6 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		709D085C218D698500A166E6 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		709D0860218D767A00A166E6 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		70CEE18121ADCDF900027272 /* educationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = educationCell.swift; sourceTree = "<group>"; };
+		70CEE18221ADCDF900027272 /* educationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = educationCell.xib; sourceTree = "<group>"; };
+		70CEE18521ADCE0E00027272 /* experienceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = experienceCell.swift; sourceTree = "<group>"; };
+		70CEE18621ADCE0E00027272 /* experienceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = experienceCell.xib; sourceTree = "<group>"; };
 		924C474CB9FA35B4855E9024 /* Pods-Fermi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fermi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fermi/Pods-Fermi.debug.xcconfig"; sourceTree = "<group>"; };
 		B3584B38386FD010A01F5E4E /* Pods-Fermi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fermi.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fermi/Pods-Fermi.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -207,9 +219,23 @@
 				4FFD708A219DE98E00293E39 /* Server */,
 				4FE01C41219F61B200D4FAB8 /* State */,
 				4FD2A15F2193C5AC007066D0 /* Storyboards */,
+				70CEE18021ADCDE100027272 /* TableCells */,
 				4FFD7092219E0F0800293E39 /* Views */,
 			);
 			path = Fermi;
+			sourceTree = "<group>";
+		};
+		70CEE18021ADCDE100027272 /* TableCells */ = {
+			isa = PBXGroup;
+			children = (
+				70CEE18121ADCDF900027272 /* educationCell.swift */,
+				70CEE18221ADCDF900027272 /* educationCell.xib */,
+				70CEE18521ADCE0E00027272 /* experienceCell.swift */,
+				70CEE18621ADCE0E00027272 /* experienceCell.xib */,
+				70354C5421B1FCD700FB8662 /* referralCell.swift */,
+				70354C5521B1FCD700FB8662 /* referralCell.xib */,
+			);
+			path = TableCells;
 			sourceTree = "<group>";
 		};
 		73CA4D6B1775AE0F919E11A4 /* Frameworks */ = {
@@ -289,8 +315,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70354C5721B1FCD700FB8662 /* referralCell.xib in Resources */,
 				7053B221218D4867005A12D3 /* LaunchScreen.storyboard in Resources */,
 				7053B21E218D4867005A12D3 /* Assets.xcassets in Resources */,
+				70CEE18421ADCDFA00027272 /* educationCell.xib in Resources */,
+				70CEE18821ADCE0E00027272 /* experienceCell.xib in Resources */,
 				7053B21C218D4866005A12D3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,9 +388,11 @@
 				4F53E28421A5F1CD00D96011 /* Quality.swift in Sources */,
 				4F6CA39E219C86C4004E0E11 /* User.swift in Sources */,
 				709D085D218D698500A166E6 /* Home.swift in Sources */,
+				70CEE18321ADCDFA00027272 /* educationCell.swift in Sources */,
 				709D0861218D767A00A166E6 /* Login.swift in Sources */,
 				4FFD7091219DF60C00293E39 /* Card.swift in Sources */,
 				4F6CA3A0219C89D4004E0E11 /* Initial.swift in Sources */,
+				70CEE18721ADCE0E00027272 /* experienceCell.swift in Sources */,
 				7053B215218D4866005A12D3 /* AppDelegate.swift in Sources */,
 				4FE01C40219F5FBD00D4FAB8 /* State.swift in Sources */,
 				4F78F8E92193E8270053636F /* Person.swift in Sources */,
@@ -376,6 +407,7 @@
 				4F34F7BA21A71D04003FFA61 /* ToJSON.swift in Sources */,
 				4FA45EA621A1376600ECA958 /* FilterView.swift in Sources */,
 				4FFD7096219E1E0A00293E39 /* BadgeButton.swift in Sources */,
+				70354C5621B1FCD700FB8662 /* referralCell.swift in Sources */,
 				4FFD708C219DE9B500293E39 /* Server.swift in Sources */,
 				4F53E28221A5F1C500D96011 /* Order.swift in Sources */,
 				4F78F8EB2193ECE70053636F /* Constants.swift in Sources */,
