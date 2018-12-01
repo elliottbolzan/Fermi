@@ -29,4 +29,5 @@ AND EXISTS (SELECT University.name
 				AND Person.name = '%s'
 				AND University.name = '%s')
 %s
-ORDER BY activity DESC;
+ORDER BY activity DESC
+LIMIT 100;
