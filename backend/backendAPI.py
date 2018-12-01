@@ -9,8 +9,8 @@ import json
 from flask import Flask, request, jsonify
 from PersonDAO import PersonDAO
 from PersonDAO import PersonDTO
-from ReferralsDAO import ReferralsDAO
-from ReferralsDAO import ReferralDTO
+from ReferralDAO import ReferralDAO
+from ReferralDAO import ReferralDTO
 
 app = Flask(__name__)
 app.secret_key = 'mongoose69'
@@ -54,10 +54,6 @@ def filter():
     
     return "received"
 
-<<<<<<< HEAD
-
-=======
->>>>>>> c6f0c69adbb6e10e4cb02493d20a6534f6d46331
 @app.route('/createReferral', methods=['POST'])
 def createReferral():
     referral = ReferralDAO()
