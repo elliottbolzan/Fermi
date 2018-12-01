@@ -1,11 +1,14 @@
+import datetime
+
 class ReferralsDTO():
-    def __init__(self, id, sender, recipient, company, status, timestamp):
+    def __init__(self, id, sender, recipient, company, status):
         self.id = id
         self.sender = sender
         self.recipient = recipient
         self.company = company
         self.status = status
-        self.timestamp = timestamp
+        st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+        self.timestamp = st
     
     def serialize(self):
         return
