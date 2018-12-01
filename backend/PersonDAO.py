@@ -123,15 +123,13 @@ class PersonDAO():
         return PersonDTO.id, PersonDTO.name, compList, eduList, metList
     
     
-<<<<<<< HEAD
+
     def filter(self, parameters):
-=======
-    def filter(self, params):
         fd = open('sql_queries/filter.sql', 'r')
         sql = fd.read()
         fd.close()        
     
->>>>>>> thara
+
         qualities = ""
         for quality in parameters["qualities"]:
            qualities += "AND qualities." + quality["name"].lower() + " >= " + str(quality["percentile"]) + "\n"
@@ -158,14 +156,11 @@ class PersonDAO():
             if conn is not None:
                 conn.close()
 
-<<<<<<< HEAD
     def queryFromFile(self, filename):
         fd = open("queries/" + filename, "r")
         sql = fd.read()
         fd.close()  
         return sql      
-=======
->>>>>>> thara
 
     #tester code, works
     def selectFromPerson(self):
