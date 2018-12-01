@@ -18,6 +18,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var receivedLabel: UILabel!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     // person variable
     var person: Person?
