@@ -54,7 +54,10 @@ def filter():
     
     return "received"
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c6f0c69adbb6e10e4cb02493d20a6534f6d46331
 @app.route('/createReferral', methods=['POST'])
 def createReferral():
     referral = ReferralDAO()
