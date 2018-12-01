@@ -7,20 +7,20 @@ class ReferralDAO():
     def selectOneReferral(self, id):
         sql = "SELECT id FROM referrals WHERE id = %s"
         conn = None
-            try:
-                conn = Connection()
-                conn.cur.execute(sql, (id,))
-                row = conn.cur.fetchone()
-                Referral = ReferralDTO(row[0], row[1])
-            except (Exception, psycopg2.DatabaseError) as error:
-                print(error) 
-            finally:
-                if conn is not None:
-                    conn.close()
-            if Referral:
-                return Referral
+        try:
+            conn = Connection()
+            conn.cur.execute(sql, (id,))
+            row = conn.cur.fetchone()
+            Referral = ReferralDTO(row[0], row[1], row[2], row[3], row[4])
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error) 
+        finally:
+            if conn is not None:
+                conn.close()
+        if Referral:
+            return Referral
 
-    def createReferral():
+    def insertToReferral(self, ReferralDTO):
         Referral = self.selectOneReferral(ReferralDTO.id)
         if Referral:
             return Referral
