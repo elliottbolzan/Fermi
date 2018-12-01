@@ -51,28 +51,26 @@ class PersonDAO():
         Person = self.selectOnePerson(PersonDTO.id)
         return Person
     
-    def filter(self, params):
-        
-        fd = open('sql_queries/filter.sql', 'r')
-        sql = fd.read()
-        fd.close()        
-    
+    def filter(self, parameters):
         qualities = ""
-        for quality in params["qualities"]:
-           qualities += "AND quality." + quality["name"].lower() + " >= " + str(quality["percentile"]) + "\n"
-        
-        print(params)
-        
-        name, company, university = params["name"], params["company"], params["university"]
-        
-        values = (name, name, company, name, university, qualities)
-        
+        for quality in parameters["qualities"]:
+           qualities += "AND qualities." + quality["name"].lower() + " >= " + str(quality["percentile"]) + "\n"
+        sql = self.queryFromFile("filter_start.sql") + qualities + self.queryFromFile("filter_end.sql")
+        name, company, university = "%" + parameters["name"] + "%", "%" + parameters["company"] + "%", "%" + parameters["university"] + "%"
+        values = (name, name, company, name, university)
         conn = None
         try:
             conn = Connection()
             conn.cur.execute(sql, values)
-            conn.commit()
+            rows = conn.cur.fetchall()
+            people = []
+            for row in rows:
+                # make a new Person object with all this info
+                # get accurate job and education information for this person (maybe do the latter using a separate query)
+                # people.append(Person)
+                print(row)
             conn.close()
+            return people
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
             Person = None
@@ -80,11 +78,11 @@ class PersonDAO():
             if conn is not None:
                 conn.close()
 
-        
-   
-        
-    
-            
+    def queryFromFile(self, filename):
+        fd = open("queries/" + filename, "r")
+        sql = fd.read()
+        fd.close()  
+        return sql      
 
     #tester code, works
     def selectFromPerson(self):
