@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4F05DF1C2193CE5100611393 /* Fermi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F05DF1B2193CE5100611393 /* Fermi.swift */; };
+		4F34F7BA21A71D04003FFA61 /* ToJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F34F7B921A71D04003FFA61 /* ToJSON.swift */; };
+		4F53E28221A5F1C500D96011 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F53E28121A5F1C500D96011 /* Order.swift */; };
+		4F53E28421A5F1CD00D96011 /* Quality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F53E28321A5F1CD00D96011 /* Quality.swift */; };
 		4F6CA39E219C86C4004E0E11 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6CA39D219C86C4004E0E11 /* User.swift */; };
 		4F6CA3A0219C89D4004E0E11 /* Initial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6CA39F219C89D4004E0E11 /* Initial.swift */; };
 		4F6CA3A3219C8CD8004E0E11 /* Movement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6CA3A2219C8CD8004E0E11 /* Movement.swift */; };
@@ -44,6 +47,9 @@
 /* Begin PBXFileReference section */
 		332349FBD929C0D31D84323D /* Pods_Fermi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fermi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F05DF1B2193CE5100611393 /* Fermi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fermi.swift; sourceTree = "<group>"; };
+		4F34F7B921A71D04003FFA61 /* ToJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToJSON.swift; sourceTree = "<group>"; };
+		4F53E28121A5F1C500D96011 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		4F53E28321A5F1CD00D96011 /* Quality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quality.swift; sourceTree = "<group>"; };
 		4F6CA39D219C86C4004E0E11 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4F6CA39F219C89D4004E0E11 /* Initial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Initial.swift; sourceTree = "<group>"; };
 		4F6CA3A2219C8CD8004E0E11 /* Movement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movement.swift; sourceTree = "<group>"; };
@@ -106,7 +112,9 @@
 			isa = PBXGroup;
 			children = (
 				4FA45EAD21A1E6C400ECA958 /* Filter.swift */,
+				4F53E28121A5F1C500D96011 /* Order.swift */,
 				4F78F8E82193E8270053636F /* Person.swift */,
+				4F53E28321A5F1CD00D96011 /* Quality.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -144,9 +152,10 @@
 		4FE01C42219F6F1900D4FAB8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				4FE01C43219F6F2C00D4FAB8 /* StringSize.swift */,
 				4FA45EA721A13F2300ECA958 /* CreateController.swift */,
 				4FA45EA921A1D7BA00ECA958 /* EmptyCollectionView.swift */,
+				4FE01C43219F6F2C00D4FAB8 /* StringSize.swift */,
+				4F34F7B921A71D04003FFA61 /* ToJSON.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -376,6 +385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				709D085B218D697800A166E6 /* Profile.swift in Sources */,
+				4F53E28421A5F1CD00D96011 /* Quality.swift in Sources */,
 				4F6CA39E219C86C4004E0E11 /* User.swift in Sources */,
 				709D085D218D698500A166E6 /* Home.swift in Sources */,
 				70CEE18321ADCDFA00027272 /* educationCell.swift in Sources */,
@@ -394,10 +404,12 @@
 				4F05DF1C2193CE5100611393 /* Fermi.swift in Sources */,
 				7053B217218D4866005A12D3 /* Referrals.swift in Sources */,
 				4FA45EAA21A1D7BA00ECA958 /* EmptyCollectionView.swift in Sources */,
+				4F34F7BA21A71D04003FFA61 /* ToJSON.swift in Sources */,
 				4FA45EA621A1376600ECA958 /* FilterView.swift in Sources */,
 				4FFD7096219E1E0A00293E39 /* BadgeButton.swift in Sources */,
 				70354C5621B1FCD700FB8662 /* referralCell.swift in Sources */,
 				4FFD708C219DE9B500293E39 /* Server.swift in Sources */,
+				4F53E28221A5F1C500D96011 /* Order.swift in Sources */,
 				4F78F8EB2193ECE70053636F /* Constants.swift in Sources */,
 				4FE01C44219F6F2C00D4FAB8 /* StringSize.swift in Sources */,
 			);
