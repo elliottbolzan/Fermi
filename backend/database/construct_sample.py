@@ -16,8 +16,7 @@ class Company:
         self.name = name.replace("'", "''")
     
     def create(self):
-        return "INSERT INTO Company VALUES (%d, \'%s\');\n" % (self.identifier, self.name)
-
+        return "INSERT INTO Company VALUES (DEFAULT, \'%s\');\n" % (self.name)
 
 class University:
     def __init__(self, identifier, name):
@@ -25,7 +24,7 @@ class University:
         self.name = name.replace("'", "''")
 
     def create(self):
-        return "INSERT INTO University VALUES (%d, \'%s\');\n" % (self.identifier, self.name)
+        return "INSERT INTO University VALUES (DEFAULT, \'%s\');\n" % (self.name)
 
 class Person:
     def __init__(self, identifier, first, last, company, position):
@@ -36,7 +35,7 @@ class Person:
         self.position = position
     
     def create(self):
-        return "INSERT INTO Person VALUES (%s, \'%s\');\n" % (self.identifier, self.name)
+        return "INSERT INTO Person VALUES (%d, \'%s\');\n" % (self.identifier, self.name)
 
 def generate():
 
@@ -72,35 +71,29 @@ def generate():
                 
         for i in range(len(persons)):
             person = persons[i]
-            output.write("INSERT INTO Experience VALUES (%s, %s, %s, \'%s\', TIMESTAMP \'%s\', NULL);\n" % (i + 1, person.identifier, person.company.identifier, person.position, getTimestamp()))
+            output.write("INSERT INTO Experience VALUES (DEFAULT, %s, %s, \'%s\', TIMESTAMP \'%s\', NULL);\n" % (person.identifier, person.company.identifier, person.position, getTimestamp()))
 
-        count = 1
         for person in persons:
             if random.randint(1, 100) >= 15:
                 start = getTimestamp()
                 end = getTimestamp(start)
-                output.write("INSERT INTO Education VALUES (%s, %s, %s, \'Bachelors\', TIMESTAMP \'%s\', TIMESTAMP \'%s\');\n" % (count, person.identifier, randomFrom(universities).identifier, start, end))
-                count += 1
+                output.write("INSERT INTO Education VALUES (DEFAULT, %s, %s, \'Bachelors\', TIMESTAMP \'%s\', TIMESTAMP \'%s\');\n" % (person.identifier, randomFrom(universities).identifier, start, end))
                 if random.randint(1, 100) >= 50:
                     start = getTimestamp(end)
                     end = getTimestamp(start)
-                    output.write("INSERT INTO Education VALUES (%s, %s, %s, \'Masters\', TIMESTAMP \'%s\', TIMESTAMP \'%s\');\n" % (count, person.identifier, randomFrom(universities).identifier, start, end))
-                    count += 1
+                    output.write("INSERT INTO Education VALUES (DEFAULT, %s, %s, \'Masters\', TIMESTAMP \'%s\', TIMESTAMP \'%s\');\n" % (person.identifier, randomFrom(universities).identifier, start, end))
                     if random.randint(1, 100) >= 50:
                         start = getTimestamp(end)
                         end = getTimestamp(start)
-                        output.write("INSERT INTO Education VALUES (%s, %s, %s, \'Doctorate\', TIMESTAMP \'%s\', TIMESTAMP \'%s\');\n" % (count, person.identifier, randomFrom(universities).identifier, start, end))
-                        count += 1
+                        output.write("INSERT INTO Education VALUES (DEFAULT, %s, %s, \'Doctorate\', TIMESTAMP \'%s\', TIMESTAMP \'%s\');\n" % (person.identifier, randomFrom(universities).identifier, start, end))
 
-        count = 1
         for i in range(NUMBER_OF_REFERRALS):
             A = randomFrom(persons)
             B = randomFrom(persons)
             if A != B:
                 success = randomFrom(["requested", "granted", "offered", "denied", "rejected"])
                 timestamp = getTimestamp()
-                output.write("INSERT INTO Referrals VALUES (%s, %s, %s, %s, \'%s\', TIMESTAMP \'%s\');\n" % (count, A.identifier, B.identifier, A.company.identifier, success, timestamp))
-                count += 1
+                output.write("INSERT INTO Referrals VALUES (DEFAULT, %s, %s, %s, \'%s\', TIMESTAMP \'%s\');\n" % (A.identifier, B.identifier, A.company.identifier, success, timestamp))
 
 def load(filename):
     output = []

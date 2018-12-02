@@ -1,0 +1,1 @@
+INSERT INTO Person VALUES(%s, %s);

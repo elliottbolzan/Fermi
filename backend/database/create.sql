@@ -4,17 +4,17 @@ CREATE TABLE Person (
 );
 
 CREATE TABLE Company (
-    id INTEGER PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     name VARCHAR(256) NOT NULL
 );
 
 CREATE TABLE University (
-    id INTEGER PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     name VARCHAR(256) NOT NULL
 );
 
 CREATE TABLE Education (
-    id INTEGER PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     person INTEGER NOT NULL REFERENCES Person(id),
     university INTEGER NOT NULL REFERENCES University(id),
     degree_type VARCHAR(256) NOT NULL,
@@ -23,7 +23,7 @@ CREATE TABLE Education (
 );
 
 CREATE TABLE Experience (
-    id INTEGER PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     person INTEGER NOT NULL REFERENCES Person(id),
     company INTEGER NOT NULL REFERENCES Company(id),
     position VARCHAR(256) NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE Experience (
 );
 
 CREATE TABLE Referrals (
-    id INTEGER NOT NULL PRIMARY KEY,
+    id SERIAL NOT NULL PRIMARY KEY,
     sender INTEGER NOT NULL REFERENCES Person(id),
     recipient INTEGER NOT NULL REFERENCES Person(id),
     company INTEGER REFERENCES Company(id),
