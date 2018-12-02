@@ -25,18 +25,9 @@ class experienceCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func fullInit(_ company: NSMutableAttributedString, date: [String], position: NSMutableAttributedString) {
-        position.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.black, range: NSRange(location:0,length:position.string.count))
-        position.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.bold), range: NSRange(location:0,length:position.string.count))
-        
-        company.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.darkGray, range: NSRange(location:0,length: company.string.count))
-        company.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 19, weight: UIFont.Weight.medium), range: NSRange(location:0,length: company.string.count))
-        
-        let result = NSMutableAttributedString()
-        result.append(position)
-        result.append(NSMutableAttributedString(string: "\n"))
-        result.append(company)
-        companyLabel.attributedText = result
+    func fullInit(_ company: String, date: [String], position: String) {
+        companyLabel.text = position + "\n" + company
+        companyLabel.textColor = UIColor.white
         dateLabel.text = date[0] + "-" + date[1]
     }
     

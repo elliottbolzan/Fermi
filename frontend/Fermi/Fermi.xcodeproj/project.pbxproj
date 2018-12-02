@@ -24,8 +24,9 @@
 		4FFD7091219DF60C00293E39 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD7090219DF60C00293E39 /* Card.swift */; };
 		4FFD7094219E0F2800293E39 /* PolyImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD7093219E0F2800293E39 /* PolyImageView.swift */; };
 		4FFD7096219E1E0A00293E39 /* BadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD7095219E1E0A00293E39 /* BadgeButton.swift */; };
-		70354C5621B1FCD700FB8662 /* referralCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70354C5421B1FCD700FB8662 /* referralCell.swift */; };
-		70354C5721B1FCD700FB8662 /* referralCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70354C5521B1FCD700FB8662 /* referralCell.xib */; };
+		700C14CD21B3702100A024D7 /* referralCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700C14CB21B3702100A024D7 /* referralCell.swift */; };
+		700C14CE21B3702100A024D7 /* referralCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 700C14CC21B3702100A024D7 /* referralCell.xib */; };
+		70466F9121B20DA9005FDDB3 /* statsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70466F9021B20DA8005FDDB3 /* statsCell.swift */; };
 		7053B215218D4866005A12D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7053B214218D4866005A12D3 /* AppDelegate.swift */; };
 		7053B217218D4866005A12D3 /* Referrals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7053B216218D4866005A12D3 /* Referrals.swift */; };
 		7053B21C218D4866005A12D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7053B21A218D4866005A12D3 /* Main.storyboard */; };
@@ -60,8 +61,9 @@
 		4FFD7090219DF60C00293E39 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		4FFD7093219E0F2800293E39 /* PolyImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyImageView.swift; sourceTree = "<group>"; };
 		4FFD7095219E1E0A00293E39 /* BadgeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeButton.swift; sourceTree = "<group>"; };
-		70354C5421B1FCD700FB8662 /* referralCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = referralCell.swift; sourceTree = "<group>"; };
-		70354C5521B1FCD700FB8662 /* referralCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = referralCell.xib; sourceTree = "<group>"; };
+		700C14CB21B3702100A024D7 /* referralCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = referralCell.swift; sourceTree = "<group>"; };
+		700C14CC21B3702100A024D7 /* referralCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = referralCell.xib; sourceTree = "<group>"; };
+		70466F9021B20DA8005FDDB3 /* statsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = statsCell.swift; sourceTree = "<group>"; };
 		7053B211218D4866005A12D3 /* Fermi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fermi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7053B214218D4866005A12D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7053B216218D4866005A12D3 /* Referrals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Referrals.swift; sourceTree = "<group>"; };
@@ -223,8 +225,9 @@
 				70CEE18221ADCDF900027272 /* educationCell.xib */,
 				70CEE18521ADCE0E00027272 /* experienceCell.swift */,
 				70CEE18621ADCE0E00027272 /* experienceCell.xib */,
-				70354C5421B1FCD700FB8662 /* referralCell.swift */,
-				70354C5521B1FCD700FB8662 /* referralCell.xib */,
+				70466F9021B20DA8005FDDB3 /* statsCell.swift */,
+				700C14CB21B3702100A024D7 /* referralCell.swift */,
+				700C14CC21B3702100A024D7 /* referralCell.xib */,
 			);
 			path = TableCells;
 			sourceTree = "<group>";
@@ -306,7 +309,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70354C5721B1FCD700FB8662 /* referralCell.xib in Resources */,
+				700C14CE21B3702100A024D7 /* referralCell.xib in Resources */,
 				7053B221218D4867005A12D3 /* LaunchScreen.storyboard in Resources */,
 				7053B21E218D4867005A12D3 /* Assets.xcassets in Resources */,
 				70CEE18421ADCDFA00027272 /* educationCell.xib in Resources */,
@@ -375,6 +378,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				700C14CD21B3702100A024D7 /* referralCell.swift in Sources */,
 				709D085B218D697800A166E6 /* Profile.swift in Sources */,
 				4F6CA39E219C86C4004E0E11 /* User.swift in Sources */,
 				709D085D218D698500A166E6 /* Home.swift in Sources */,
@@ -388,6 +392,7 @@
 				4F78F8E92193E8270053636F /* Person.swift in Sources */,
 				4FFD7094219E0F2800293E39 /* PolyImageView.swift in Sources */,
 				4FA45EAC21A1E53400ECA958 /* FilterHeader.swift in Sources */,
+				70466F9121B20DA9005FDDB3 /* statsCell.swift in Sources */,
 				4FA45EA821A13F2300ECA958 /* CreateController.swift in Sources */,
 				4F6CA3A3219C8CD8004E0E11 /* Movement.swift in Sources */,
 				4FA45EAE21A1E6C400ECA958 /* Filter.swift in Sources */,
@@ -396,7 +401,6 @@
 				4FA45EAA21A1D7BA00ECA958 /* EmptyCollectionView.swift in Sources */,
 				4FA45EA621A1376600ECA958 /* FilterView.swift in Sources */,
 				4FFD7096219E1E0A00293E39 /* BadgeButton.swift in Sources */,
-				70354C5621B1FCD700FB8662 /* referralCell.swift in Sources */,
 				4FFD708C219DE9B500293E39 /* Server.swift in Sources */,
 				4F78F8EB2193ECE70053636F /* Constants.swift in Sources */,
 				4FE01C44219F6F2C00D4FAB8 /* StringSize.swift in Sources */,
