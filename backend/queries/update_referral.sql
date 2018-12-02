@@ -1,0 +1,1 @@
+UPDATE Referrals SET status = %s, timestamp = %s WHERE id = %s;

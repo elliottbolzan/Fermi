@@ -2,21 +2,24 @@ import datetime
 import time
 
 class ReferralDTO():
-    def __init__(self, id, sender, recipient, company, status):
-        self.id = id
+    def __init__(self, identifier, sender, recipient, company, status):
+        self.identifier = identifier
         self.sender = sender
         self.recipient = recipient
         self.company = company
         self.status = status
-        ts = time.time()
-        st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-        self.timestamp = st
+        self.timestamp = self.currentTime()
+
+    @staticmethod
+    def currentTime():
+        return datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
     
     def serialize(self):
         return {
-            'id': self.id,
+            'id': self.identifier,
             'sender': self.sender,
             'recipient': self.recipient,
             'company': self.company,
             'status': self.status,
-            'timestamp': self.timestamp}
+            'timestamp': self.timestamp
+        }
