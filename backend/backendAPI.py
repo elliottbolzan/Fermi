@@ -9,6 +9,8 @@ import json
 from flask import Flask, request, jsonify
 from PersonDAO import PersonDAO
 from PersonDAO import PersonDTO
+from ReferralDAO import ReferralDAO
+from ReferralDAO import ReferralDTO
 
 app = Flask(__name__)
 app.secret_key = 'mongoose69'
@@ -31,22 +33,37 @@ def selectFake():
     #print([x.serialize() for x in fakePersonList])
     return jsonify([x.serialize() for x in fakePersonList])
 
-@app.route('/')
-def insertFake():
+@app.route('/user/create', methods=['POST'])
+def userCreate():
     createUser = PersonDAO()
-    myUser = PersonDTO(1, "EllDawg Bolognese")
+    content = request.get_json(force = True)
+    myUser = PersonDTO(content['id'], content['name'])
     userInfo = createUser.insertToPerson(myUser)
-    return jsonify(userInfo.serialize())
+    print(userInfo)
+    return "hi"
+    #return jsonify(userInfo.serialize())
 
 #works
 @app.route('/filter', methods=['POST'])
 def filter():
     Person = PersonDAO()
-    parameters = request.get_json()
-    filtered = Person.filter(parameters)
-    print(filtered)
-    return jsonify(filtered)
+    print(request.json)
+    filteredPeople = Person.filter(request.json["params"])
+    #print(request.json)
     #print([x.serialize() for x in fakePersonList])
+    
+    return "received"
+
+@app.route('/createReferral', methods=['POST'])
+def createReferral():
+    referral = ReferralDAO()
+    content = request.get_json(force = True)
+    newReferral = ReferralDTO(content['id'], content['sender'], content['recipient'], content['company'], content['status'])
+    referralInfo = referral.insertToReferral(newReferral)
+    return jsonify(referralInfo.serialize())
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug = True)
+    
+    
+    

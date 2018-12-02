@@ -8,19 +8,9 @@
 
 import Foundation
 
-struct Filter {
+struct Filter: Codable {
     let name: String
     let company: String
     let university: String
     let qualities: [Quality]
-}
-
-struct Quality {
-    let name: String
-    let order: Order
-    let percentile: Int
-}
-
-enum Order: String {
-    case Top, Bottom
 }
