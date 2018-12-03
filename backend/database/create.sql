@@ -1,6 +1,10 @@
+-- Create tables.
+
 CREATE TABLE Person (
-    id INTEGER PRIMARY KEY,
-    name VARCHAR(256) NOT NULL
+    id BIGINT PRIMARY KEY,
+    name VARCHAR(256) NOT NULL,
+    token VARCHAR(256),
+    last_active TIMESTAMP
 );
 
 CREATE TABLE Company (
@@ -40,6 +44,25 @@ CREATE TABLE Referrals (
     timestamp TIMESTAMP NOT NULL
 );
 
+-- Create triggers and indexes for Person and Referrals.
+-- Considerably speeds up filter query.
+
+CREATE OR REPLACE FUNCTION process_update_last_active() RETURNS TRIGGER AS $update_last_active$
+    BEGIN
+        UPDATE Person SET last_active = CURRENT_TIMESTAMP WHERE id = NEW.sender;
+		UPDATE Person SET last_active = CURRENT_TIMESTAMP WHERE id = NEW.recipient;
+        RETURN NULL;
+    END;
+$update_last_active$ LANGUAGE plpgsql;
+
+CREATE TRIGGER update_last_active
+	AFTER INSERT OR UPDATE ON Referrals
+	    FOR EACH ROW
+    	EXECUTE PROCEDURE process_update_last_active();
+
+CREATE INDEX activity ON Person (last_active NULLS LAST);
+
+-- Create views.
 -- Generosity: how often a user refers people.
 
 CREATE OR REPLACE VIEW generosity AS

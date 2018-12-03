@@ -1,0 +1,1 @@
+UPDATE Person SET token = %s WHERE id = %s;

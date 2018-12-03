@@ -1,2 +1,0 @@
-ORDER BY activity DESC
-LIMIT 100;

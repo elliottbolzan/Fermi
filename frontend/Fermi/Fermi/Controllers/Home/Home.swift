@@ -25,21 +25,20 @@ class Home: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        people.append(Person(id: 1995325, name: "Elliott Bolzan"))
-        people.append(Person(id: 253223, name: "Thara Veera"))
-        people.append(Person(id: 34352, name: "Jamie Palka"))
-        people.append(Person(id: 4, name: "Davis Booth"))
-        people.append(Person(id: 5, name: "Emily Mi"))
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         self.filterView = UIViewController.createWith(identifier: "filter", type: FilterView.self)
         self.filterView.searchBar = searchController.searchBar
+        self.filter = Filter(name: "", company: "", university: "", qualities: [])
         configureSearchController()
-//        refresh()
+        refresh()
     }
     
     func refresh() {
-        self.people = Server.getUsersWith(filter: self.filter)
+        Server.getUsersWith(filter: self.filter, completion: { users in
+            self.people = users
+            self.collectionView.reloadData()
+        })
     }
     
 }
@@ -62,9 +61,8 @@ extension Home: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        filter = nil
-        filterView!.reset()
-        self.collectionView.reloadData()
+        filter.clear()
+        refresh()
         removeFilter(searchBar: searchBar)
     }
     
@@ -90,11 +88,10 @@ extension Home: UISearchBarDelegate {
     
     func updateFilter() {
         self.filter = self.filterView.filter()
-        if filter == nil {
+        if !filter.active() {
             self.searchController.isActive = false
         }
         refresh()
-        self.collectionView.reloadData()
     }
     
 }
@@ -155,10 +152,10 @@ extension Home : UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        if filter == nil {
-            return CGSize(width: 0, height: 0)
+        if filter.active() {
+            return CGSize(width: self.view.frame.size.width, height: 40)
         }
-        return CGSize(width: self.view.frame.size.width, height: 40)
+        return CGSize(width: 0, height: 0)
     }
     
 }
