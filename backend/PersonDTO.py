@@ -21,6 +21,6 @@ class PersonDTO():
             'name': self.name,
             'education': [x.serialize() for x in self.education],
             'experience': [x.serialize() for x in self.experience],
-            'qualities': self.qualities.serialize() if self.qualities else None,
+            'qualities': [x.serialize() for x in self.qualities],
             'last_active': self.lastActive
         }	

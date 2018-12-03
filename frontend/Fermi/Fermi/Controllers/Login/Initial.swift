@@ -17,20 +17,19 @@ class Initial: UIViewController {
     }
     
     func pickViewController() {
-        Movement(host: self).showFermi(animated: true)
-//        if User.shared.loggedIn {
-//            User.shared.load(completion: { person in
-//                guard person != nil else {
-//                    return
-//                }
-//                Movement(host: self).showFermi(animated: true)
-//            })
-//            // Uncomment and comment previous block to prevent movement to main tab view.
-//            // Movement(host: self).showLogin(animated: false)
-//        }
-//        else {
-//            Movement(host: self).showLogin(animated: false)
-//        }
+        if User.shared.loggedIn {
+            User.shared.load(completion: { person in
+                guard person != nil else {
+                    return
+                }
+                Movement(host: self).showFermi(animated: true)
+            })
+            // Uncomment and comment previous block to prevent movement to main tab view.
+            // Movement(host: self).showLogin(animated: false)
+        }
+        else {
+            Movement(host: self).showLogin(animated: false)
+        }
     }
 
 }

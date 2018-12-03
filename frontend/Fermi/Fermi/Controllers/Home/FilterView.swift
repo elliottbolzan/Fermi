@@ -90,11 +90,6 @@ class FilterView: FormViewController {
         let id = self.form.endIndex - 2
         return
             Section(header: "Is in the", footer: self.descriptions["Generosity"]!)
-                <<< SegmentedRow<String>(){ row in
-                    row.tag = "\(id):order"
-                    row.options = ["Top", "Bottom"]
-                    row.value = "Top"
-                }
                 <<< StepperRow(){ row in
                     row.tag = "\(id):percentile"
                     row.title = "Percentile"
@@ -143,12 +138,8 @@ class FilterView: FormViewController {
         var qualities = [Quality]()
         for i in 1 ..< (self.form.endIndex - 2) {
             let quality = (self.form.rowBy(tag: "\(i):quality") as! PushRow<String>).value!
-            let order = Order(rawValue: (self.form.rowBy(tag: "\(i):order") as! SegmentedRow<String>).value!)!
             let percentile = Int((self.form.rowBy(tag: "\(i):percentile") as! StepperRow).value!)
-            qualities.append(Quality(name: quality, order: order, percentile: percentile))
-        }
-        if name == "" && company == "" && university == "" && qualities.count == 0 {
-            return nil
+            qualities.append(Quality(name: quality, percentile: percentile))
         }
         return Filter(name: name, company: company, university: university, qualities: qualities)
     }

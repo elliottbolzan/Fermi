@@ -1,0 +1,1 @@
+(Bachelors.name LIKE %s OR Masters.name LIKE %s AND Doctorate.name LIKE %s)

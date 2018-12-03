@@ -10,7 +10,9 @@ import UIKit
 
 struct Constants {
     
-    static let host = "http://35.196.36.216:5000/"
+//    static let host = "http://35.196.36.216:5000/"
+    static let host = "http://localhost:5000/"
+    
     static let tint = UIColor(red: 235.0 / 256, green: 151.0 / 256, blue: 62.0 / 256, alpha: 1.0)
     static let dark = UIColor(red: 50.0 / 256, green: 50.0 / 256, blue: 50.0 / 256, alpha: 1.0)
     static let border = UIColor(red: 200.0 / 256, green: 200.0 / 256, blue: 200.0 / 256, alpha: 1.0)
@@ -28,5 +30,19 @@ struct Constants {
         UIColor(red:0.98, green:0.60, blue:0.23, alpha:1.0),
         UIColor(red:0.24, green:0.39, blue:0.51, alpha:1.0)
     ].shuffled()
+    
+    static let facts = [
+        "generosity": "Refers %@ people than %d%% of users.",
+        "impact": "Referrals lead to %@ offers than %d%% of users.",
+        "popularity": "Is referred %@ often than %d%% of users.",
+        "success": "Gets offers %@ often than %d%% of users."
+    ]
+    
+    static let factAdjectives = [
+        "generosity": "Generous",
+        "impact": "Impactful",
+        "popularity": "Popular",
+        "success": "Successful"
+    ]
     
 }
