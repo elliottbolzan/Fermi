@@ -42,6 +42,8 @@ class PersonDAO():
         return person
     
     def filter(self, parameters):
+        limit = parameters["limit"] if "limit" in parameters else 20
+        offset = parameters["offset"] if "offset" in parameters else 0
         name = "%" + parameters["name"] + "%" if parameters["name"] else None
         company = "%" + parameters["company"] + "%" if parameters["company"] else None
         university = "%" + parameters["university"] + "%" if parameters["university"] else None
@@ -61,6 +63,7 @@ class PersonDAO():
             addition = "Qualities." + quality["name"].lower() + " >= " + str(quality["percentile"])
             sql, constraints = self.appendToSQL(sql, addition, constraints)
         sql += self.queryFromFile("filter/order.sql")
+        sql += "\nLIMIT " + str(limit) + " OFFSET " + str(offset) + ";"
         values = tuple(values)
         conn = None
         people = []
@@ -74,7 +77,7 @@ class PersonDAO():
                 masters = EducationDTO(row[7], identifier, *row[8:12]) if row[7] else None
                 doctorate = EducationDTO(row[12], identifier, *row[13:17]) if row[12] else None
                 education = [x for x in [undergraduate, masters, doctorate] if x]
-                experience = [ExperienceDTO(identifier, *row[17:22])]
+                experience = [x for x in [ExperienceDTO(identifier, *row[17:22]) if row[17] else None] if x]
                 qualities = [QualityDTO("generosity", row[22]), QualityDTO("impact", row[23]), QualityDTO("popularity", row[24]), QualityDTO("success", row[25])]
                 lastActive = row[26]
                 person = PersonDTO(identifier, name, education, experience, qualities, lastActive)

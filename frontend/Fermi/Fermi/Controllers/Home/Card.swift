@@ -54,10 +54,18 @@ class Card: UICollectionViewCell {
     }
     
     func setOccupation(person: Person) {
-        let value = "Works at " + person.experience.first!.company
-        let attributed = NSMutableAttributedString(string: value)
+        var value = ""
+        var attributed: NSMutableAttributedString
+        if person.experience.count > 0 {
+            value = "Works at " + person.experience.first!.company
+            attributed = NSMutableAttributedString(string: value)
+            attributed.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "HelveticaNeue-Bold", size: 18)!, range: NSRange(location: 9, length: value.count - 9))
+        }
+        else {
+            value = "Seeking Employment"
+            attributed = NSMutableAttributedString(string: value)
+        }
         attributed.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "HelveticaNeue", size: 18)!, range: NSRange(location: 0, length: value.count))
-        attributed.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "HelveticaNeue-Bold", size: 18)!, range: NSRange(location: 9, length: value.count - 9))
         self.occupation!.attributedText = attributed
     }
     

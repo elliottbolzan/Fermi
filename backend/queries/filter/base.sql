@@ -59,6 +59,6 @@ FROM
 		WHERE Company.id = Experience.company
 	)  AS Work
 	ON Work.person = Person.id
-	JOIN
+	LEFT OUTER JOIN
 	Qualities
 	ON Qualities.id = Person.id

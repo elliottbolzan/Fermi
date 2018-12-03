@@ -1,2 +1,1 @@
 ORDER BY last_active DESC NULLS LAST
-LIMIT 20;
