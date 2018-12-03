@@ -41,6 +41,13 @@ class Home: UICollectionViewController {
         })
     }
     
+    func getMore() {
+        Server.getUsersWith(filter: self.filter, completion: { users in
+            self.people.append(contentsOf: users)
+            self.collectionView.reloadData()
+        })
+    }
+    
 }
 
 extension Home: UISearchBarDelegate {
@@ -63,6 +70,7 @@ extension Home: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         filter.clear()
         refresh()
+        filterView.reset()
         removeFilter(searchBar: searchBar)
     }
     
@@ -112,6 +120,10 @@ extension Home {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if indexPath.row == self.people.count - 5 {
+            self.filter.offset += self.filter.limit
+            getMore()
+        }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! Card
         let person = people[indexPath.row]
         cell.setPerson(person: person)

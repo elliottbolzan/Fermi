@@ -9,10 +9,13 @@
 import Foundation
 
 class Filter: Codable {
+    
     var name: String
     var company: String
     var university: String
     var qualities: [Quality]
+    var limit: Int = 20
+    var offset: Int = 0
     
     init(name: String, company: String, university: String, qualities: [Quality]) {
         self.name = name
@@ -30,6 +33,7 @@ class Filter: Codable {
         company = ""
         university = ""
         qualities = []
+        offset = 0
     }
     
 }
