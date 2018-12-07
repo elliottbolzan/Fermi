@@ -7,3 +7,12 @@
 //
 
 import Foundation
+
+struct Referral: Codable {
+    let id: Int
+    let sender: Int
+    let recipient: Int
+    let company: String
+    let status: Status
+    let timestamp: String
+}
