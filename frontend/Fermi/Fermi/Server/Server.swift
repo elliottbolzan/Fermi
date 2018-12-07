@@ -19,6 +19,11 @@ class Server {
         ]
     }
     
+}
+
+// User-related.
+extension Server {
+    
     public class func createUser(id: Int, name: String, token: String, completion: @escaping (Person) -> Void) {
         let uri = Constants.host + "user/create"
         let parameters: [String: Any] = [
@@ -37,6 +42,10 @@ class Server {
         }
     }
     
+    public class func updateUser(person: Person, completion: @escaping () -> Void) {
+        
+    }
+    
     public class func getUsersWith(filter: Filter, completion: @escaping ([Person]) -> Void) {
         let uri = Constants.host + "user/filter"
         var users = [Person]()
@@ -53,6 +62,23 @@ class Server {
             }
             completion(users)
         }
+    }
+    
+}
+
+// Referral-related.
+extension Server {
+    
+    public class func createReferral(referral: Referral, completion: @escaping (Referral) -> Void) {
+        
+    }
+    
+    public class func updateReferral(referral: Referral, completion: @escaping () -> Void) {
+        
+    }
+    
+    public class func getReferralsFor(id: Int, completion: @escaping ([Referral], [Referral]) -> Void) {
+    
     }
     
 }

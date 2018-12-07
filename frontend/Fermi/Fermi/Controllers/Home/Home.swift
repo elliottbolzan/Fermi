@@ -35,14 +35,18 @@ class Home: UICollectionViewController {
     }
     
     func refresh() {
+        print("Refresh")
         Server.getUsersWith(filter: self.filter, completion: { users in
+            print("Refereshed")
             self.people = users
             self.collectionView.reloadData()
         })
     }
     
     func getMore() {
+        print("Get More")
         Server.getUsersWith(filter: self.filter, completion: { users in
+            print("Got more")
             self.people.append(contentsOf: users)
             self.collectionView.reloadData()
         })
