@@ -19,7 +19,7 @@ CREATE TABLE University (
 
 CREATE TABLE Education (
     id SERIAL PRIMARY KEY,
-    person INTEGER NOT NULL REFERENCES Person(id),
+    person BIGINT NOT NULL REFERENCES Person(id),
     university INTEGER NOT NULL REFERENCES University(id),
     degree_type VARCHAR(256) NOT NULL,
     startdate TIMESTAMP NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE Education (
 
 CREATE TABLE Experience (
     id SERIAL PRIMARY KEY,
-    person INTEGER NOT NULL REFERENCES Person(id),
+    person BIGINT NOT NULL REFERENCES Person(id),
     company INTEGER NOT NULL REFERENCES Company(id),
     position VARCHAR(256) NOT NULL,
     startdate TIMESTAMP NOT NULL,
@@ -37,8 +37,8 @@ CREATE TABLE Experience (
 
 CREATE TABLE Referrals (
     id SERIAL NOT NULL PRIMARY KEY,
-    sender INTEGER NOT NULL REFERENCES Person(id),
-    recipient INTEGER NOT NULL REFERENCES Person(id),
+    sender BIGINT NOT NULL REFERENCES Person(id),
+    recipient BIGINT NOT NULL REFERENCES Person(id),
     company INTEGER REFERENCES Company(id),
     status VARCHAR(256) NOT NULL CHECK (status = 'requested' or status = 'granted' or status = 'offered' or status = 'denied' or status = 'rejected'),
     timestamp TIMESTAMP NOT NULL

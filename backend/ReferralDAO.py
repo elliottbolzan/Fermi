@@ -5,14 +5,16 @@ from Connection import Connection
 class ReferralDAO():
 
     def createReferral(self, referral):
-        values = (referral.sender, referral.recipient, referral.company, referral.status, referral.timestamp)
+        if referral.sender == referral.recipient:
+            return None
+        values = (referral.sender, referral.recipient, referral.sender, referral.status, referral.timestamp)
         sql = self.queryFromFile("create_referral.sql")
         conn = None
         try:
             conn = Connection()
             conn.cur.execute(sql, values)
             conn.commit()
-            referral.identifier = conn.cur.fetchone()[0]
+            referral.identifier, referral.company = conn.cur.fetchone()
             conn.close()
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
@@ -23,7 +25,6 @@ class ReferralDAO():
         return referral
     
     def updateReferral(self, referral):
-        print(referral.serialize())
         values = (referral.status, referral.timestamp, referral.identifier)
         sql = self.queryFromFile("update_referral.sql")
         conn = None

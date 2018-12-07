@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4F05DF1C2193CE5100611393 /* Fermi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F05DF1B2193CE5100611393 /* Fermi.swift */; };
 		4F10842E21B495A0002F458A /* Education.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F10842D21B495A0002F458A /* Education.swift */; };
 		4F10843021B495A9002F458A /* Experience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F10842F21B495A9002F458A /* Experience.swift */; };
 		4F10843221B495BB002F458A /* Referral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F10843121B495BB002F458A /* Referral.swift */; };
@@ -24,6 +23,7 @@
 		4FA45EAC21A1E53400ECA958 /* FilterHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA45EAB21A1E53400ECA958 /* FilterHeader.swift */; };
 		4FA45EAE21A1E6C400ECA958 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA45EAD21A1E6C400ECA958 /* Filter.swift */; };
 		4FC274DC21BB118E00D5C698 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC274DB21BB118E00D5C698 /* Status.swift */; };
+		4FC274DE21BB228900D5C698 /* Fermi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC274DD21BB228900D5C698 /* Fermi.swift */; };
 		4FE01C40219F5FBD00D4FAB8 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE01C3F219F5FBD00D4FAB8 /* State.swift */; };
 		4FE01C44219F6F2C00D4FAB8 /* StringSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE01C43219F6F2C00D4FAB8 /* StringSize.swift */; };
 		4FFD708C219DE9B500293E39 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD708B219DE9B500293E39 /* Server.swift */; };
@@ -50,7 +50,6 @@
 
 /* Begin PBXFileReference section */
 		332349FBD929C0D31D84323D /* Pods_Fermi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fermi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F05DF1B2193CE5100611393 /* Fermi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fermi.swift; sourceTree = "<group>"; };
 		4F10842D21B495A0002F458A /* Education.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Education.swift; sourceTree = "<group>"; };
 		4F10842F21B495A9002F458A /* Experience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Experience.swift; sourceTree = "<group>"; };
 		4F10843121B495BB002F458A /* Referral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Referral.swift; sourceTree = "<group>"; };
@@ -67,6 +66,7 @@
 		4FA45EAB21A1E53400ECA958 /* FilterHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHeader.swift; sourceTree = "<group>"; };
 		4FA45EAD21A1E6C400ECA958 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		4FC274DB21BB118E00D5C698 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		4FC274DD21BB228900D5C698 /* Fermi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Fermi.swift; path = Fermi/Controllers/Fermi.swift; sourceTree = SOURCE_ROOT; };
 		4FE01C3F219F5FBD00D4FAB8 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		4FE01C43219F6F2C00D4FAB8 /* StringSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringSize.swift; sourceTree = "<group>"; };
 		4FFD708B219DE9B500293E39 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
@@ -135,9 +135,9 @@
 			children = (
 				4F6CA3A1219C8C9B004E0E11 /* Login */,
 				4FFD708F219DF5F100293E39 /* Home */,
-				7053B216218D4866005A12D3 /* Referrals.swift */,
+				4FC274DD21BB228900D5C698 /* Fermi.swift */,
 				709D085A218D697800A166E6 /* Profile.swift */,
-				4F05DF1B2193CE5100611393 /* Fermi.swift */,
+				7053B216218D4866005A12D3 /* Referrals.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -417,11 +417,11 @@
 				4FA45EA821A13F2300ECA958 /* CreateController.swift in Sources */,
 				4F6CA3A3219C8CD8004E0E11 /* Movement.swift in Sources */,
 				4FA45EAE21A1E6C400ECA958 /* Filter.swift in Sources */,
-				4F05DF1C2193CE5100611393 /* Fermi.swift in Sources */,
 				7053B217218D4866005A12D3 /* Referrals.swift in Sources */,
 				4FA45EAA21A1D7BA00ECA958 /* EmptyCollectionView.swift in Sources */,
 				4F10843021B495A9002F458A /* Experience.swift in Sources */,
 				4F34F7BA21A71D04003FFA61 /* JSON.swift in Sources */,
+				4FC274DE21BB228900D5C698 /* Fermi.swift in Sources */,
 				4FA45EA621A1376600ECA958 /* FilterView.swift in Sources */,
 				4FFD7096219E1E0A00293E39 /* BadgeButton.swift in Sources */,
 				4FFD708C219DE9B500293E39 /* Server.swift in Sources */,
