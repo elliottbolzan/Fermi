@@ -12,31 +12,29 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, UIC
     
     
     // Outlets
-    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var profilePic: PolyImageView!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    // person variable
-    var person: Person?
+    // person variable -- stores data arrays necessary for cell population.
+    var person: Person = User.shared.person!
     
-    // Data arrays
-    var educationArray: [String] = ["someValue"] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
-    var experienceArray: [String] = ["someValue"] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
-    
+    var personIsUser = true
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // determines if person variable is the user themself.
+        if !person.equals(Person2: User.shared.person!) {
+            personIsUser = false
+        }
+        else {
+            navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: UIBarButtonItem.Style.plain, target: self, action: #selector(editButtonPressed(_:)))
+        }
+        profilePic.imageView.image = #imageLiteral(resourceName: "wallpaper.wiki-Free-Download-Fruit-Background-PIC-WPD004648")
         
         // Set selected index to 0
         segmentedControl.selectedSegmentIndex = 0
@@ -45,7 +43,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, UIC
         setupProfileImage()
         
         
-        profileName.text = "Davis Booth"
+        profileName.text = person.name
         
         // Initialize Views for segmented control
         initializeTableView()
@@ -60,6 +58,10 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, UIC
         collectionView.reloadData()
         tableView.reloadData()
         
+    }
+    
+    @objc func editButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "editProfile", sender: self)
     }
     
     func initializeTableView() {
@@ -93,9 +95,9 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, UIC
     
     
     func setupProfileImage() {
-        profileImage.layer.cornerRadius = profileImage.frame.size.width/1.7
-        profileImage.contentMode = .scaleAspectFill
-        profileImage.clipsToBounds = true
+//        profileImage.layer.cornerRadius = profileImage.frame.size.width/2
+//        profileImage.contentMode = .scaleAspectFill
+//        profileImage.clipsToBounds = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -107,7 +109,6 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, UIC
     
     // Segmented Control configuration
     @IBAction func indexChanged(_ sender: Any) {
-        
         if segmentedControl.selectedSegmentIndex == 0 {
             collectionView.isHidden = false
             collectionView.reloadData()
@@ -118,6 +119,10 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, UIC
             tableView.isHidden = false
             tableView.reloadData()
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        navigationController?.navigationBar.topItem?.rightBarButtonItem = nil
     }
 
 }
@@ -130,24 +135,28 @@ extension Profile {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if segmentedControl.selectedSegmentIndex == 0 {
-            return educationArray.count
+        if segmentedControl.selectedSegmentIndex == 1 {
+            return person.education.count
         }
-        else {
-            return experienceArray.count
+        else if segmentedControl.selectedSegmentIndex == 2 {
+            return person.experience.count
         }
+        else {return 0}
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if segmentedControl.selectedSegmentIndex == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "educationCell", for: indexPath) as! educationCell
-            cell.fullInit("Duke University", year: 2021, major: "Computer Science", majorType: "B.S.")
+            let currentEducation = person.education[indexPath.item]
+            cell.fullInit(currentEducation.university, year: 2021, majorType: currentEducation.degreeType)
             cell.backgroundColor = self.view.backgroundColor
             return cell
         }
         else if segmentedControl.selectedSegmentIndex == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "experienceCell", for: indexPath) as! experienceCell
-            cell.fullInit("SubPar Company", date: ["February 2018", "present"], position: "VP of Being a Douche")
+            let currentEducation = person.experience[indexPath.item]
+            cell.fullInit(currentEducation.company, date: [currentEducation.startdate, currentEducation.enddate as? String ?? "present"], position: currentEducation.position)
             cell.backgroundColor = self.view.backgroundColor
             return cell
         }

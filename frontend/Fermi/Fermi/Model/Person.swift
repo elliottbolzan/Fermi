@@ -33,6 +33,13 @@ struct Person: Codable {
         }
     }
     
+    func equals(Person2: Person) -> Bool {
+        if self.id == Person2.id {
+            return true
+        }
+        return false
+    }
+    
     func fact() -> String {
         let interesting = mostInterestingQuality()
         let result = Constants.facts[interesting.name]

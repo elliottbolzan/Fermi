@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OIe-Na-JyX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OIe-Na-JyX">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -387,14 +387,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wallpaper.wiki-Free-Download-Fruit-Background-PIC-WPD004648" translatesAutoresizingMaskIntoConstraints="NO" id="mak-UF-yfh">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mak-UF-yfh">
                                 <rect key="frame" x="112.5" y="53" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="mak-UF-yfh" secondAttribute="height" multiplier="1:1" id="p1E-oa-fHt"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Last" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4b-CI-X1b">
-                                <rect key="frame" x="112.5" y="211" width="150" height="26.5"/>
+                                <rect key="frame" x="9.5" y="211" width="356" height="26.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -482,21 +482,29 @@
                                 <rect key="frame" x="0.0" y="309.5" width="375" height="332"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UbZ-Nh-Mcc" customClass="PolyImageView" customModule="Fermi" customModuleProvider="target">
+                                <rect key="frame" x="112.5" y="53" width="150" height="150"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.42675507068634033" green="0.61347126960754395" blue="0.70589727163314819" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="5q4-5B-SZU" firstAttribute="width" secondItem="9h1-ew-Uzt" secondAttribute="width" id="4JM-aV-Bj3"/>
-                            <constraint firstItem="C4b-CI-X1b" firstAttribute="width" secondItem="mak-UF-yfh" secondAttribute="width" id="Eor-Sx-9xH"/>
+                            <constraint firstItem="UbZ-Nh-Mcc" firstAttribute="centerY" secondItem="mak-UF-yfh" secondAttribute="centerY" id="Dcl-nK-qgQ"/>
+                            <constraint firstItem="C4b-CI-X1b" firstAttribute="width" secondItem="xKZ-GQ-9gc" secondAttribute="width" multiplier="0.95" id="Eor-Sx-9xH"/>
                             <constraint firstItem="5q4-5B-SZU" firstAttribute="centerY" secondItem="9h1-ew-Uzt" secondAttribute="centerY" id="G0j-sg-sOq"/>
                             <constraint firstItem="I0G-jE-VFf" firstAttribute="width" secondItem="ZFj-sn-a0K" secondAttribute="width" multiplier="0.9" id="M0g-j3-fnc"/>
                             <constraint firstItem="C4b-CI-X1b" firstAttribute="top" secondItem="mak-UF-yfh" secondAttribute="bottom" constant="8" id="M4I-uU-OeM"/>
                             <constraint firstItem="I0G-jE-VFf" firstAttribute="centerX" secondItem="xKZ-GQ-9gc" secondAttribute="centerX" id="Mzm-7u-DLP"/>
                             <constraint firstItem="5q4-5B-SZU" firstAttribute="height" secondItem="9h1-ew-Uzt" secondAttribute="height" id="ORh-bA-9Up"/>
                             <constraint firstItem="xKZ-GQ-9gc" firstAttribute="bottom" secondItem="9h1-ew-Uzt" secondAttribute="bottom" multiplier="1.04" id="Pjo-ed-s4q"/>
+                            <constraint firstItem="UbZ-Nh-Mcc" firstAttribute="width" secondItem="mak-UF-yfh" secondAttribute="width" id="W4j-rZ-Acn"/>
                             <constraint firstItem="9h1-ew-Uzt" firstAttribute="width" secondItem="ZFj-sn-a0K" secondAttribute="width" id="Xcw-yN-qFL"/>
+                            <constraint firstItem="UbZ-Nh-Mcc" firstAttribute="height" secondItem="mak-UF-yfh" secondAttribute="height" id="ZUL-r0-94D"/>
                             <constraint firstItem="mak-UF-yfh" firstAttribute="top" secondItem="xKZ-GQ-9gc" secondAttribute="top" constant="33" id="cXV-tm-2AR"/>
                             <constraint firstItem="5q4-5B-SZU" firstAttribute="centerX" secondItem="9h1-ew-Uzt" secondAttribute="centerX" id="eNB-nG-TU2"/>
+                            <constraint firstItem="UbZ-Nh-Mcc" firstAttribute="centerX" secondItem="mak-UF-yfh" secondAttribute="centerX" id="f2U-Ds-E8Q"/>
                             <constraint firstItem="I0G-jE-VFf" firstAttribute="top" secondItem="C4b-CI-X1b" secondAttribute="bottom" constant="20" id="fZI-ct-F7t"/>
                             <constraint firstItem="mak-UF-yfh" firstAttribute="width" secondItem="ZFj-sn-a0K" secondAttribute="width" multiplier="0.4" id="l2R-Y4-Xf9"/>
                             <constraint firstItem="C4b-CI-X1b" firstAttribute="centerX" secondItem="xKZ-GQ-9gc" secondAttribute="centerX" id="qVi-72-o5z"/>
@@ -509,15 +517,57 @@
                     <navigationItem key="navigationItem" id="24T-7P-tLk"/>
                     <connections>
                         <outlet property="collectionView" destination="5q4-5B-SZU" id="5mZ-xA-pcG"/>
-                        <outlet property="profileImage" destination="mak-UF-yfh" id="d1B-v5-XUg"/>
                         <outlet property="profileName" destination="C4b-CI-X1b" id="Afx-b6-dR3"/>
+                        <outlet property="profilePic" destination="UbZ-Nh-Mcc" id="sID-z8-4I2"/>
                         <outlet property="segmentedControl" destination="I0G-jE-VFf" id="c4i-oE-Guf"/>
                         <outlet property="tableView" destination="9h1-ew-Uzt" id="uHV-rP-p3M"/>
+                        <segue destination="Huy-C9-DrM" kind="presentation" identifier="editProfile" id="tZi-if-sX5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ELI-HY-sxb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3261.5999999999999" y="-0.44977511244377816"/>
+        </scene>
+        <!--Edit Profile-->
+        <scene sceneID="gzk-Uf-zDV">
+            <objects>
+                <viewController id="Huy-C9-DrM" customClass="EditProfile" customModule="Fermi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="L7r-Cg-D7V">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Success!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xyt-C0-Dnt">
+                                <rect key="frame" x="144" y="254" width="70" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jQr-tJ-1VX">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem id="sDd-i3-HhI">
+                                        <barButtonItem key="rightBarButtonItem" title="Done" id="Pd3-pW-Kpe">
+                                            <connections>
+                                                <action selector="doneButton:" destination="Huy-C9-DrM" id="2Ce-zu-FgU"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="jQr-tJ-1VX" firstAttribute="top" secondItem="zhb-HN-7Lk" secondAttribute="top" id="NZx-KX-5ru"/>
+                            <constraint firstItem="jQr-tJ-1VX" firstAttribute="width" secondItem="L7r-Cg-D7V" secondAttribute="width" id="OHX-Nc-m2K"/>
+                            <constraint firstItem="jQr-tJ-1VX" firstAttribute="centerX" secondItem="zhb-HN-7Lk" secondAttribute="centerX" id="mZ2-ns-XEK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zhb-HN-7Lk"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CZc-2C-343" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4364" y="0.0"/>
         </scene>
         <!--Filter View-->
         <scene sceneID="2eA-pl-h3U">
@@ -559,7 +609,6 @@
         <image name="logo" width="48" height="48"/>
         <image name="me" width="30" height="30"/>
         <image name="referrals" width="30" height="30"/>
-        <image name="wallpaper.wiki-Free-Download-Fruit-Background-PIC-WPD004648" width="2560" height="1600"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="4JL-hh-uZ1"/>

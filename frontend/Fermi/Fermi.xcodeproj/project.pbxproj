@@ -44,6 +44,7 @@
 		70CEE18421ADCDFA00027272 /* educationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70CEE18221ADCDF900027272 /* educationCell.xib */; };
 		70CEE18721ADCE0E00027272 /* experienceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CEE18521ADCE0E00027272 /* experienceCell.swift */; };
 		70CEE18821ADCE0E00027272 /* experienceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70CEE18621ADCE0E00027272 /* experienceCell.xib */; };
+		70E1BF8E21B6F6A7006DB04B /* EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E1BF8D21B6F6A7006DB04B /* EditProfile.swift */; };
 		DB5B8D9F1BBB09526C09F6A2 /* Pods_Fermi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332349FBD929C0D31D84323D /* Pods_Fermi.framework */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +89,7 @@
 		70CEE18221ADCDF900027272 /* educationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = educationCell.xib; sourceTree = "<group>"; };
 		70CEE18521ADCE0E00027272 /* experienceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = experienceCell.swift; sourceTree = "<group>"; };
 		70CEE18621ADCE0E00027272 /* experienceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = experienceCell.xib; sourceTree = "<group>"; };
+		70E1BF8D21B6F6A7006DB04B /* EditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfile.swift; sourceTree = "<group>"; };
 		924C474CB9FA35B4855E9024 /* Pods-Fermi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fermi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fermi/Pods-Fermi.debug.xcconfig"; sourceTree = "<group>"; };
 		B3584B38386FD010A01F5E4E /* Pods-Fermi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fermi.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fermi/Pods-Fermi.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,6 +137,7 @@
 				7053B216218D4866005A12D3 /* Referrals.swift */,
 				709D085A218D697800A166E6 /* Profile.swift */,
 				4F05DF1B2193CE5100611393 /* Fermi.swift */,
+				70E1BF8D21B6F6A7006DB04B /* EditProfile.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				700C14CD21B3702100A024D7 /* referralCell.swift in Sources */,
 				709D085B218D697800A166E6 /* Profile.swift in Sources */,
 				4F10842E21B495A0002F458A /* Education.swift in Sources */,
+				70E1BF8E21B6F6A7006DB04B /* EditProfile.swift in Sources */,
 				4F53E28421A5F1CD00D96011 /* Quality.swift in Sources */,
 				4F6CA39E219C86C4004E0E11 /* User.swift in Sources */,
 				709D085D218D698500A166E6 /* Home.swift in Sources */,
@@ -571,7 +575,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9F3LM2W356;
+				DEVELOPMENT_TEAM = TL9BB86JQV;
 				INFOPLIST_FILE = Fermi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -606,7 +610,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9F3LM2W356;
+				DEVELOPMENT_TEAM = TL9BB86JQV;
 				INFOPLIST_FILE = Fermi/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

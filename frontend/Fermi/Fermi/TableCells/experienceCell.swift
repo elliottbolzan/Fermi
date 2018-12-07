@@ -17,6 +17,8 @@ class experienceCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        companyLabel.textColor = UIColor.white
+        dateLabel.textColor = UIColor.white
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -27,7 +29,6 @@ class experienceCell: UITableViewCell {
     
     func fullInit(_ company: String, date: [String], position: String) {
         companyLabel.text = position + "\n" + company
-        companyLabel.textColor = UIColor.white
         dateLabel.text = date[0] + "-" + date[1]
     }
     
