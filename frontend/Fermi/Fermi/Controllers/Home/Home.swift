@@ -13,6 +13,7 @@ class Home: UICollectionViewController {
 
     var people = [Person]()
     let server = Server()
+    var recordsLeft = true
     
     let reuseIdentifier = "Cell"
     let insets = UIEdgeInsets(top: 40.0, left: 40.0, bottom: 40.0, right: 40.0)
@@ -35,6 +36,8 @@ class Home: UICollectionViewController {
     }
     
     func refresh() {
+        self.people = []
+        self.collectionView.reloadData()
         Server.getUsersWith(filter: self.filter, completion: { users in
             self.people = users
             self.collectionView.reloadData()
@@ -43,8 +46,13 @@ class Home: UICollectionViewController {
     
     func getMore() {
         Server.getUsersWith(filter: self.filter, completion: { users in
-            self.people.append(contentsOf: users)
-            self.collectionView.reloadData()
+            if users.count != 0 {
+                self.people.append(contentsOf: users)
+                self.collectionView.reloadData()
+            }
+            else {
+                self.recordsLeft = false
+            }
         })
     }
     
@@ -68,6 +76,7 @@ extension Home: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        recordsLeft = true
         filter.clear()
         refresh()
         filterView.reset()
@@ -95,6 +104,7 @@ extension Home: UISearchBarDelegate {
     }
     
     func updateFilter() {
+        recordsLeft = true
         self.filter = self.filterView.filter()
         if !filter.active() {
             self.searchController.isActive = false
@@ -111,16 +121,12 @@ extension Home {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if (self.people.count == 0) {
-            self.collectionView.setEmptyMessage("No results found.")
-        } else {
-            self.collectionView.restore()
-        }
         return self.people.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.row == self.people.count - 5 {
+        if recordsLeft && indexPath.row == self.people.count - 5 {
+            print("5th from last")
             self.filter.offset += self.filter.limit
             getMore()
         }
