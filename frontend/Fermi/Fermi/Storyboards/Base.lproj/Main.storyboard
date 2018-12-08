@@ -81,48 +81,57 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zv3-E2-HhE">
-                                <rect key="frame" x="0.0" y="119.5" width="375" height="547.5"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="N16-uu-rZW">
-                                <rect key="frame" x="56.5" y="77" width="262.5" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="aTU-Zk-biy"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="I Referred"/>
-                                    <segment title="Referred Me"/>
-                                </segments>
-                                <connections>
-                                    <action selector="indexChanged:" destination="DHJ-lT-rxB" eventType="valueChanged" id="vq7-Il-F0g"/>
-                                </connections>
-                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tHG-EO-CwF">
-                                <rect key="frame" x="0.0" y="119.5" width="375" height="547.5"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dgw-Mk-onB">
+                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" id="sIt-mT-YYJ">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="N16-uu-rZW">
+                                            <rect key="frame" x="16" y="7.5" width="343" height="29"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="28" id="aTU-Zk-biy"/>
+                                            </constraints>
+                                            <segments>
+                                                <segment title="For Me"/>
+                                                <segment title="For Them"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="indexChanged:" destination="DHJ-lT-rxB" eventType="valueChanged" id="vq7-Il-F0g"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="N16-uu-rZW" firstAttribute="width" secondItem="U5P-iB-LFX" secondAttribute="width" multiplier="0.7" id="4iY-FG-DTE"/>
-                            <constraint firstItem="zv3-E2-HhE" firstAttribute="top" secondItem="N16-uu-rZW" secondAttribute="bottom" constant="14.5" id="4ph-NQ-H6o"/>
-                            <constraint firstItem="zv3-E2-HhE" firstAttribute="width" secondItem="U5P-iB-LFX" secondAttribute="width" id="DcQ-ca-pcg"/>
-                            <constraint firstItem="ksI-gr-76D" firstAttribute="bottom" secondItem="zv3-E2-HhE" secondAttribute="bottom" id="OTm-zV-B0A"/>
-                            <constraint firstItem="tHG-EO-CwF" firstAttribute="width" secondItem="zv3-E2-HhE" secondAttribute="width" id="SvH-FS-2Ln"/>
-                            <constraint firstItem="zv3-E2-HhE" firstAttribute="centerX" secondItem="ksI-gr-76D" secondAttribute="centerX" id="TaR-vh-qr3"/>
-                            <constraint firstItem="N16-uu-rZW" firstAttribute="top" secondItem="ksI-gr-76D" secondAttribute="top" constant="13" id="UZS-ce-AIX"/>
-                            <constraint firstItem="tHG-EO-CwF" firstAttribute="centerX" secondItem="zv3-E2-HhE" secondAttribute="centerX" id="emr-NZ-sMZ"/>
-                            <constraint firstItem="tHG-EO-CwF" firstAttribute="centerY" secondItem="zv3-E2-HhE" secondAttribute="centerY" id="lIc-W9-LJC"/>
-                            <constraint firstItem="tHG-EO-CwF" firstAttribute="height" secondItem="zv3-E2-HhE" secondAttribute="height" id="lL0-9V-Qao"/>
-                            <constraint firstItem="N16-uu-rZW" firstAttribute="centerX" secondItem="ksI-gr-76D" secondAttribute="centerX" id="mZr-Lo-Qnr"/>
+                            <constraint firstItem="tHG-EO-CwF" firstAttribute="top" secondItem="Dgw-Mk-onB" secondAttribute="bottom" id="0xj-00-HUZ"/>
+                            <constraint firstItem="tHG-EO-CwF" firstAttribute="leading" secondItem="ksI-gr-76D" secondAttribute="leading" id="3JC-vk-uOu"/>
+                            <constraint firstItem="Dgw-Mk-onB" firstAttribute="trailing" secondItem="ksI-gr-76D" secondAttribute="trailing" id="BQM-Gx-4lZ"/>
+                            <constraint firstItem="zv3-E2-HhE" firstAttribute="top" secondItem="Dgw-Mk-onB" secondAttribute="bottom" id="BkT-kx-xcM"/>
+                            <constraint firstItem="Dgw-Mk-onB" firstAttribute="leading" secondItem="ksI-gr-76D" secondAttribute="leading" id="N2p-7G-hY3"/>
+                            <constraint firstItem="zv3-E2-HhE" firstAttribute="leading" secondItem="ksI-gr-76D" secondAttribute="leading" id="Zdx-ti-nAR"/>
+                            <constraint firstItem="tHG-EO-CwF" firstAttribute="bottom" secondItem="ksI-gr-76D" secondAttribute="bottom" id="aAu-1B-Ffw"/>
+                            <constraint firstItem="zv3-E2-HhE" firstAttribute="bottom" secondItem="ksI-gr-76D" secondAttribute="bottom" id="iQx-A7-FVw"/>
+                            <constraint firstItem="Dgw-Mk-onB" firstAttribute="top" secondItem="ksI-gr-76D" secondAttribute="top" id="ju8-rv-miK"/>
+                            <constraint firstItem="tHG-EO-CwF" firstAttribute="trailing" secondItem="ksI-gr-76D" secondAttribute="trailing" id="n0O-R7-1gF"/>
+                            <constraint firstItem="zv3-E2-HhE" firstAttribute="trailing" secondItem="ksI-gr-76D" secondAttribute="trailing" id="xfo-e5-AXE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ksI-gr-76D"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Referrals" id="Rxu-3p-tBY"/>
+                    <navigationItem key="navigationItem" title="Referrals" largeTitleDisplayMode="always" id="Rxu-3p-tBY"/>
                     <connections>
                         <outlet property="segmentedControl" destination="N16-uu-rZW" id="TNO-jx-udy"/>
                         <outlet property="tableView" destination="zv3-E2-HhE" id="jGc-sq-fmm"/>
                         <outlet property="tableViewReferredMe" destination="tHG-EO-CwF" id="0uk-XD-sST"/>
+                        <outlet property="toolbar" destination="Dgw-Mk-onB" id="Hqz-5I-y2B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZKE-fQ-acg" userLabel="First Responder" sceneMemberID="firstResponder"/>
