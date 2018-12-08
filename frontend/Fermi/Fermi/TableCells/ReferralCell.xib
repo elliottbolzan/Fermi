@@ -37,17 +37,17 @@
                         </constraints>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="CSd-5U-NbS">
-                        <rect key="frame" x="118" y="28" width="98" height="44"/>
+                        <rect key="frame" x="118" y="28" width="148" height="44"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Davis Booth" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEf-4f-eKZ">
-                                <rect key="frame" x="0.0" y="0.0" width="98" height="20.5"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Davis Booth" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEf-4f-eKZ">
+                                <rect key="frame" x="0.0" y="0.0" width="148" height="20.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text=" » Facebook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Scu-jB-ff8">
-                                <rect key="frame" x="0.0" y="22.5" width="98" height="21.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text=" » Facebook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Scu-jB-ff8">
+                                <rect key="frame" x="0.0" y="22.5" width="148" height="21.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -55,6 +55,7 @@
                         <constraints>
                             <constraint firstItem="Scu-jB-ff8" firstAttribute="top" secondItem="DEf-4f-eKZ" secondAttribute="bottom" constant="2" id="XBc-qr-upc"/>
                             <constraint firstAttribute="height" constant="44" id="aRb-1s-PjE"/>
+                            <constraint firstAttribute="trailing" secondItem="DEf-4f-eKZ" secondAttribute="trailing" id="kDU-BU-4Qf"/>
                         </constraints>
                     </stackView>
                 </subviews>
@@ -63,6 +64,7 @@
                     <constraint firstAttribute="bottom" secondItem="OAb-2K-ZMm" secondAttribute="bottom" constant="5" id="5tC-hh-Hxm"/>
                     <constraint firstItem="bts-c2-BKz" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="5tC-mk-BW7"/>
                     <constraint firstItem="OAb-2K-ZMm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="6Mh-Oo-Gcc"/>
+                    <constraint firstItem="bts-c2-BKz" firstAttribute="leading" secondItem="CSd-5U-NbS" secondAttribute="trailing" constant="20" id="Diz-Qj-Oxt"/>
                     <constraint firstItem="CSd-5U-NbS" firstAttribute="leading" secondItem="OAb-2K-ZMm" secondAttribute="trailing" constant="8" id="LBj-3T-22k"/>
                     <constraint firstItem="bts-c2-BKz" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Mh5-IW-lg1"/>
                     <constraint firstItem="CSd-5U-NbS" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Ms3-pD-OR7"/>

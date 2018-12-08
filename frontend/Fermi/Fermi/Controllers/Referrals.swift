@@ -18,22 +18,6 @@ class Referrals: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     var forMe = [Referral]()
     var forThem = [Referral]()
     
-    lazy var firstRefreshControl: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action:
-            #selector(Referrals.handleRefresh(_:)), for: UIControl.Event.valueChanged)
-        refreshControl.tintColor = Constants.tint
-        return refreshControl
-    }()
-    
-    lazy var secondRefreshControl: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action:
-            #selector(Referrals.handleRefresh(_:)), for: UIControl.Event.valueChanged)
-        refreshControl.tintColor = Constants.tint
-        return refreshControl
-    }()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         toolbar.delegate = self
@@ -48,8 +32,8 @@ class Referrals: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         referredMe.dataSource = self
         referredThem.delegate = self
         referredThem.dataSource = self
-        referredMe.refreshControl = firstRefreshControl
-        referredThem.refreshControl = secondRefreshControl
+        referredMe.refreshControl = createRefreshControl()
+        referredThem.refreshControl = createRefreshControl()
         let referralCell = UINib(nibName: "ReferralCell", bundle: nil)
         referredMe.register(referralCell, forCellReuseIdentifier: "ReferralCell")
         referredThem.register(referralCell, forCellReuseIdentifier: "ReferralCell")
@@ -68,6 +52,13 @@ class Referrals: UIViewController, UITableViewDelegate, UITableViewDataSource  {
 }
 
 extension Referrals {
+    
+    func createRefreshControl() -> UIRefreshControl {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(Referrals.handleRefresh(_:)), for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = Constants.tint
+        return refreshControl
+    }
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         refresh()
