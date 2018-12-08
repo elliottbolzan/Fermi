@@ -31,7 +31,7 @@
 		4FFD7091219DF60C00293E39 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD7090219DF60C00293E39 /* Card.swift */; };
 		4FFD7094219E0F2800293E39 /* PolyImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD7093219E0F2800293E39 /* PolyImageView.swift */; };
 		4FFD7096219E1E0A00293E39 /* BadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD7095219E1E0A00293E39 /* BadgeButton.swift */; };
-		700C14CD21B3702100A024D7 /* referralCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700C14CB21B3702100A024D7 /* referralCell.swift */; };
+		700C14CD21B3702100A024D7 /* ReferralCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700C14CB21B3702100A024D7 /* ReferralCell.swift */; };
 		700C14CE21B3702100A024D7 /* referralCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 700C14CC21B3702100A024D7 /* referralCell.xib */; };
 		70466F9121B20DA9005FDDB3 /* statsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70466F9021B20DA8005FDDB3 /* statsCell.swift */; };
 		7053B215218D4866005A12D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7053B214218D4866005A12D3 /* AppDelegate.swift */; };
@@ -75,7 +75,7 @@
 		4FFD7090219DF60C00293E39 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		4FFD7093219E0F2800293E39 /* PolyImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyImageView.swift; sourceTree = "<group>"; };
 		4FFD7095219E1E0A00293E39 /* BadgeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeButton.swift; sourceTree = "<group>"; };
-		700C14CB21B3702100A024D7 /* referralCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = referralCell.swift; sourceTree = "<group>"; };
+		700C14CB21B3702100A024D7 /* ReferralCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferralCell.swift; sourceTree = "<group>"; };
 		700C14CC21B3702100A024D7 /* referralCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = referralCell.xib; sourceTree = "<group>"; };
 		70466F9021B20DA8005FDDB3 /* statsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = statsCell.swift; sourceTree = "<group>"; };
 		7053B211218D4866005A12D3 /* Fermi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fermi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -247,7 +247,7 @@
 				70CEE18521ADCE0E00027272 /* experienceCell.swift */,
 				70CEE18621ADCE0E00027272 /* experienceCell.xib */,
 				70466F9021B20DA8005FDDB3 /* statsCell.swift */,
-				700C14CB21B3702100A024D7 /* referralCell.swift */,
+				700C14CB21B3702100A024D7 /* ReferralCell.swift */,
 				700C14CC21B3702100A024D7 /* referralCell.xib */,
 			);
 			path = TableCells;
@@ -399,7 +399,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				700C14CD21B3702100A024D7 /* referralCell.swift in Sources */,
+				700C14CD21B3702100A024D7 /* ReferralCell.swift in Sources */,
 				709D085B218D697800A166E6 /* Profile.swift in Sources */,
 				4F10842E21B495A0002F458A /* Education.swift in Sources */,
 				4F53E28421A5F1CD00D96011 /* Quality.swift in Sources */,

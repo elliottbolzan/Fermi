@@ -14,7 +14,9 @@ class Referrals: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewReferredMe: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    
+
+    var forMe = [Referral]()
+    var forThem = [Referral]()
 
     // variables to populate table views
     var dataArray: [[String]] = [
@@ -27,31 +29,23 @@ class Referrals: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //Set up Table View Controllers
+        toolbar.delegate = self
+        setupTableViews()
+        segmentedControl.selectedSegmentIndex = 0
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        refresh()
+    }
+    
+    func setupTableViews() {
         tableView.delegate = self
         tableView.dataSource = self
         tableViewReferredMe.delegate = self
         tableViewReferredMe.dataSource = self
-        
-        toolbar.delegate = self
-        
-        // Creates the nib for the table views to reference
-        let nibName1 = UINib(nibName: "referralCell", bundle: nil)
-        
-        //registers the nib for use with the table views
-        tableView.register(nibName1, forCellReuseIdentifier: "referralCell")
-        tableViewReferredMe.register(nibName1, forCellReuseIdentifier: "referralCell")
-        
-        
-        // Sets up the initial view by hiding and unhiding table views
+        let referralCell = UINib(nibName: "referralCell", bundle: nil)
+        tableView.register(referralCell, forCellReuseIdentifier: "referralCell")
+        tableViewReferredMe.register(referralCell, forCellReuseIdentifier: "referralCell")
         tableViewReferredMe.isHidden = true
         tableView.isHidden = false
-        
-        // Defaults the segmented control to the first index
-        segmentedControl.selectedSegmentIndex = 0
-        
-        self.navigationController?.navigationBar.prefersLargeTitles = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -62,10 +56,24 @@ class Referrals: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         showHairline()
     }
     
-    // Every time the index is changed
+}
+
+extension Referrals {
+    
+    func refresh() {
+        Server.getReferralsFor(id: User.shared.person!.id, completion: { a, b in
+            self.forMe = a
+            self.forThem = b
+            self.tableView.reloadData()
+            self.tableViewReferredMe.reloadData()
+        })
+    }
+    
+}
+
+extension Referrals {
+    
     @IBAction func indexChanged(_ sender: Any) {
-        
-        // Hide and unhide tables upon switching indices of the segmented control.
         if segmentedControl.selectedSegmentIndex == 0 {
             tableView.isHidden = false
             tableViewReferredMe.isHidden = true
@@ -78,37 +86,29 @@ class Referrals: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         }
     }
     
-
 }
 
-
-
-// Handle all table view delegate
 extension Referrals {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == self.tableView {
-            return dataArray.count
+            return forMe.count
         }
         else {
-            return dataArray2.count
+            return forThem.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        // Populate info based on which table we are using
-        var info: [String] = []
+        var referral: Referral
         if tableView == self.tableView {
-            info = dataArray[indexPath.item]
+            referral = forMe[indexPath.item]
         }
         else {
-            info = dataArray2[indexPath.item]
+            referral = forThem[indexPath.item]
         }
-        
-        // Configure the cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "referralCell", for: indexPath) as! referralCell
-        cell.fullInit(info[0], company: info[1], status: info[2])
+        let cell = tableView.dequeueReusableCell(withIdentifier: "referralCell", for: indexPath) as! ReferralCell
+        cell.setup(referral: referral)
         cell.selectionStyle = .none
         return cell
     }

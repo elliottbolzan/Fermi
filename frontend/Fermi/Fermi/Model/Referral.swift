@@ -10,8 +10,8 @@ import Foundation
 
 struct Referral: Codable {
     let id: Int
-    let sender: Int
-    let recipient: Int
+    let sender: String
+    let recipient: String
     let company: String
     let status: Status
     let timestamp: String

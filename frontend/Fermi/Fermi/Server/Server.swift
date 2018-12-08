@@ -114,7 +114,27 @@ extension Server {
     }
     
     public class func getReferralsFor(id: Int, completion: @escaping ([Referral], [Referral]) -> Void) {
-    
+        let uri = Constants.host + "referrals/forUser/" + String(25)
+        Alamofire.request(uri, method: HTTPMethod.get, parameters: nil, encoding: JSONEncoding.default, headers: headers()).validate().responseJSON { response in
+            guard response.result.isSuccess,
+                let response = response.result.value as? [[String: Any]] else {
+                    return
+            }
+            var forMe = [Referral]()
+            var forThem = [Referral]()
+            for entry in response {
+                let data = try! JSONSerialization.data(withJSONObject: entry, options: [])
+                let decoded = String(data: data, encoding: .utf8)!
+                let referral = Referral.from(json: decoded)
+                if referral.sender == User.shared.person!.name {
+                    forMe.append(referral)
+                }
+                else {
+                    forThem.append(referral)
+                }
+            }
+            completion(forMe, forThem)
+        }
     }
     
 }
