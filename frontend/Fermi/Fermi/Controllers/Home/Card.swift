@@ -14,7 +14,7 @@ class Card: UICollectionViewCell {
     @IBOutlet weak var header: UIView?
     @IBOutlet weak var profilePicture: PolyImageView?
     @IBOutlet weak var name: UILabel?
-    @IBOutlet weak var company: UILabel?
+    @IBOutlet weak var occupation: UILabel?
     @IBOutlet weak var type: BadgeButton?
     @IBOutlet weak var fact: UITextView?
     
@@ -38,16 +38,35 @@ class Card: UICollectionViewCell {
         self.type!.backgroundColor = UIColor.clear
         self.type!.layer.borderWidth = 1
         self.type!.setTitleColor(UIColor.black, for: .normal)
-        setFact()
 
     }
     
     func setPerson(person: Person) {
+        let tint = State.shared.colorFor(id: person.id)
         self.name!.text = person.name
-        self.setTint(tint: State.shared.colorFor(id: person.id))
+        self.setOccupation(person: person)
+        self.setTint(tint: tint)
+        self.setType(person: person, tint: tint)
+        self.setFact(person: person)
         person.profilePicture(completion: { image in
             self.profilePicture!.imageView.image = image
         })
+    }
+    
+    func setOccupation(person: Person) {
+        var value = ""
+        var attributed: NSMutableAttributedString
+        if person.experience.count > 0 {
+            value = "Works at " + person.experience.first!.company
+            attributed = NSMutableAttributedString(string: value)
+            attributed.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "HelveticaNeue-Bold", size: 18)!, range: NSRange(location: 9, length: value.count - 9))
+        }
+        else {
+            value = "Seeking Employment"
+            attributed = NSMutableAttributedString(string: value)
+        }
+        attributed.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "HelveticaNeue", size: 18)!, range: NSRange(location: 0, length: value.count))
+        self.occupation!.attributedText = attributed
     }
     
     func setTint(tint: UIColor) {
@@ -55,10 +74,23 @@ class Card: UICollectionViewCell {
         self.header!.backgroundColor = tint
     }
     
-    func setFact() {
-        let string = "Refers more people than 78% of users."
-        let attributed = NSMutableAttributedString(string: string)
-        attributed.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "HelveticaNeue-Light", size: 18)!, range: NSRange(location: 0, length: string.count))
+    func setType(person: Person, tint: UIColor) {
+        let quality = person.mostInterestingQuality()
+        let adjective = Constants.factAdjectives[quality.name]!
+        let attributed = NSMutableAttributedString(string: adjective)
+        if quality.percentile < 50 {
+            attributed.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSRange(location: 0, length: adjective.count))
+        }
+        attributed.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.black, range: NSRange(location: 0, length: adjective.count))
+        attributed.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "HelveticaNeue-Light", size: 14)!, range: NSRange(location: 0, length: adjective.count))
+        self.type!.setAttributedTitle(attributed, for: .normal)
+        self.type!.setAttributedTitle(attributed, for: .highlighted)
+    }
+    
+    func setFact(person: Person) {
+        let fact = person.fact()
+        let attributed = NSMutableAttributedString(string: fact)
+        attributed.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "HelveticaNeue-Light", size: 18)!, range: NSRange(location: 0, length: fact.count))
         self.fact!.attributedText = attributed
     }
     

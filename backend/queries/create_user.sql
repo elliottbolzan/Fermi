@@ -1,0 +1,1 @@
+INSERT INTO Person (id, name, token) VALUES(%s, %s, %s);

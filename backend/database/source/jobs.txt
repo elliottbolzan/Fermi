@@ -18,7 +18,7 @@ Manager
 Data Quality Manager
 Administrator
 Operations
-Appliation Developer
+Application Developer
 Computer Programmer
 Java Developer
 Senior Programmer

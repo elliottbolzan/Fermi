@@ -4,41 +4,44 @@ from Connection import Connection
 
 class ReferralDAO():
 
-    def selectOneReferral(self, id):
-        sql = "SELECT id FROM referrals WHERE id = %s"
+    def createReferral(self, referral):
+        if referral.sender == referral.recipient:
+            return None
+        values = (referral.sender, referral.recipient, referral.sender, referral.status, referral.timestamp)
+        sql = self.queryFromFile("create_referral.sql")
         conn = None
-        Referral = None
         try:
             conn = Connection()
-            conn.cur.execute(sql, (id,))
-            row = conn.cur.fetchone()
-            Referral = ReferralDTO(row[0], row[1], row[2], row[3], row[4])
+            conn.cur.execute(sql, values)
+            conn.commit()
+            referral.identifier, referral.company = conn.cur.fetchone()
+            conn.close()
         except (Exception, psycopg2.DatabaseError) as error:
-            print(error) 
+            print(error)
+            Referral = None
+        finally: 
+            if conn is not None:
+                conn.close()
+        return referral
+    
+    def updateReferral(self, referral):
+        values = (referral.status, referral.timestamp, referral.identifier)
+        sql = self.queryFromFile("update_referral.sql")
+        conn = None
+        try:
+            conn = Connection()
+            conn.cur.execute(sql, values)
+            conn.commit()
+            conn.close()
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error)
         finally:
             if conn is not None:
                 conn.close()
-        if Referral:
-            return Referral
+        return referral
 
-    def insertToReferral(self, ReferralDTO):
-        Referral = self.selectOneReferral(ReferralDTO.id)
-        if Referral:
-            return Referral
-        else:
-            referralValues = (ReferralDTO.id, ReferralDTO.sender, ReferralDTO.recipient, ReferralDTO.company, ReferralDTO.status, ReferralDTO.timestamp)
-            sql = "INSERT INTO Referrals(id, sender, recipient, company, status, timestamp) VALUES(%s)"
-            conn = None
-            try:
-                conn = Connection()
-                conn.cur.execute(sql, referralValues)
-                conn.commit()
-                conn.close()
-            except (Exception, psycopg2.DatabaseError) as error:
-                print(error)
-                Referral = None
-            finally: 
-                if conn is not None:
-                    conn.close()
-        Referral = self.selectOneReferral(ReferralDTO.id)
-        return Referral
+    def queryFromFile(self, filename):
+        fd = open("queries/" + filename, "r")
+        sql = fd.read()
+        fd.close()  
+        return sql

@@ -37,12 +37,10 @@ class User {
                         completion(nil)
                         return
                 }
-                // Make call to server, sending id and name.
-                // Either create user or retrieve the user's info.
-                // In either case, return the material to create a Person object.
-                // Then, call completion with that person.
-                self.person = Person(id: Int(id)!, name: name)
-                completion(self.person)
+                Server.createUser(id: Int(id)!, name: name, token: AccessToken.current!.authenticationToken, completion: { person in
+                    self.person = person
+                    completion(person)
+                })
             case .failed(_):
                 completion(nil)
             }

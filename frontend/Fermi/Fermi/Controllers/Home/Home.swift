@@ -13,6 +13,7 @@ class Home: UICollectionViewController {
 
     var people = [Person]()
     let server = Server()
+    var recordsLeft = true
     
     let reuseIdentifier = "Cell"
     let insets = UIEdgeInsets(top: 40.0, left: 40.0, bottom: 40.0, right: 40.0)
@@ -25,21 +26,34 @@ class Home: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        people.append(Person(id: 1995325, name: "Elliott Bolzan"))
-        people.append(Person(id: 253223, name: "Thara Veera"))
-        people.append(Person(id: 34352, name: "Jamie Palka"))
-        people.append(Person(id: 4, name: "Davis Booth"))
-        people.append(Person(id: 5, name: "Emily Mi"))
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         self.filterView = UIViewController.createWith(identifier: "filter", type: FilterView.self)
         self.filterView.searchBar = searchController.searchBar
+        self.filter = Filter(name: "", company: "", university: "", qualities: [])
         configureSearchController()
-//        refresh()
+        refresh()
     }
     
     func refresh() {
-        self.people = Server.getUsersWith(filter: self.filter)
+        self.people = []
+        self.collectionView.reloadData()
+        Server.getUsersWith(filter: self.filter, completion: { users in
+            self.people = users
+            self.collectionView.reloadData()
+        })
+    }
+    
+    func getMore() {
+        Server.getUsersWith(filter: self.filter, completion: { users in
+            if users.count != 0 {
+                self.people.append(contentsOf: users)
+                self.collectionView.reloadData()
+            }
+            else {
+                self.recordsLeft = false
+            }
+        })
     }
     
 }
@@ -62,9 +76,10 @@ extension Home: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        filter = nil
-        filterView!.reset()
-        self.collectionView.reloadData()
+        recordsLeft = true
+        filter.clear()
+        refresh()
+        filterView.reset()
         removeFilter(searchBar: searchBar)
     }
     
@@ -89,12 +104,12 @@ extension Home: UISearchBarDelegate {
     }
     
     func updateFilter() {
+        recordsLeft = true
         self.filter = self.filterView.filter()
-        if filter == nil {
+        if !filter.active() {
             self.searchController.isActive = false
         }
         refresh()
-        self.collectionView.reloadData()
     }
     
 }
@@ -106,15 +121,15 @@ extension Home {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if (self.people.count == 0) {
-            self.collectionView.setEmptyMessage("No results found.")
-        } else {
-            self.collectionView.restore()
-        }
         return self.people.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if recordsLeft && indexPath.row == self.people.count - 5 {
+            print("5th from last")
+            self.filter.offset += self.filter.limit
+            getMore()
+        }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! Card
         let person = people[indexPath.row]
         cell.setPerson(person: person)
@@ -155,10 +170,10 @@ extension Home : UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        if filter == nil {
-            return CGSize(width: 0, height: 0)
+        if filter.active() {
+            return CGSize(width: self.view.frame.size.width, height: 40)
         }
-        return CGSize(width: self.view.frame.size.width, height: 40)
+        return CGSize(width: 0, height: 0)
     }
     
 }

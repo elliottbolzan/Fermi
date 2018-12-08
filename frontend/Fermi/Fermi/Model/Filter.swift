@@ -8,9 +8,32 @@
 
 import Foundation
 
-struct Filter: Codable {
-    let name: String
-    let company: String
-    let university: String
-    let qualities: [Quality]
+class Filter: Codable {
+    
+    var name: String
+    var company: String
+    var university: String
+    var qualities: [Quality]
+    var limit: Int = 20
+    var offset: Int = 0
+    
+    init(name: String, company: String, university: String, qualities: [Quality]) {
+        self.name = name
+        self.company = company
+        self.university = university
+        self.qualities = qualities
+    }
+    
+    func active() -> Bool {
+        return name != "" || company != "" || university != "" || qualities.count > 0
+    }
+    
+    func clear() {
+        name = ""
+        company = ""
+        university = ""
+        qualities = []
+        offset = 0
+    }
+    
 }

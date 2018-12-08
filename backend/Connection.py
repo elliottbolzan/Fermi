@@ -16,11 +16,8 @@ class Connection():
             print(row)
             row = self.cur.fetchone()
             obj = DTO(row[0], row[1])
-            DTOList.append(obj)
-            
+            DTOList.append(obj)  
         return DTOList
-
-        
         
     def commit(self):
         self.conn.commit()

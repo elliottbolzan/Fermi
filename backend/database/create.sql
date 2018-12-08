@@ -1,21 +1,25 @@
+-- Create tables.
+
 CREATE TABLE Person (
-    id INTEGER PRIMARY KEY,
-    name VARCHAR(256) NOT NULL
+    id BIGINT PRIMARY KEY,
+    name VARCHAR(256) NOT NULL,
+    token VARCHAR(256),
+    last_active TIMESTAMP
 );
 
 CREATE TABLE Company (
-    id INTEGER PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     name VARCHAR(256) NOT NULL
 );
 
 CREATE TABLE University (
-    id INTEGER PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     name VARCHAR(256) NOT NULL
 );
 
 CREATE TABLE Education (
-    id INTEGER PRIMARY KEY,
-    person INTEGER NOT NULL REFERENCES Person(id),
+    id SERIAL PRIMARY KEY,
+    person BIGINT NOT NULL REFERENCES Person(id),
     university INTEGER NOT NULL REFERENCES University(id),
     degree_type VARCHAR(256) NOT NULL,
     startdate TIMESTAMP NOT NULL,
@@ -23,8 +27,8 @@ CREATE TABLE Education (
 );
 
 CREATE TABLE Experience (
-    id INTEGER PRIMARY KEY,
-    person INTEGER NOT NULL REFERENCES Person(id),
+    id SERIAL PRIMARY KEY,
+    person BIGINT NOT NULL REFERENCES Person(id),
     company INTEGER NOT NULL REFERENCES Company(id),
     position VARCHAR(256) NOT NULL,
     startdate TIMESTAMP NOT NULL,
@@ -32,14 +36,33 @@ CREATE TABLE Experience (
 );
 
 CREATE TABLE Referrals (
-    id INTEGER NOT NULL PRIMARY KEY,
-    sender INTEGER NOT NULL REFERENCES Person(id),
-    recipient INTEGER NOT NULL REFERENCES Person(id),
+    id SERIAL NOT NULL PRIMARY KEY,
+    sender BIGINT NOT NULL REFERENCES Person(id),
+    recipient BIGINT NOT NULL REFERENCES Person(id),
     company INTEGER REFERENCES Company(id),
     status VARCHAR(256) NOT NULL CHECK (status = 'requested' or status = 'granted' or status = 'offered' or status = 'denied' or status = 'rejected'),
     timestamp TIMESTAMP NOT NULL
 );
 
+-- Create triggers and indexes for Person and Referrals.
+-- Considerably speeds up filter query.
+
+CREATE OR REPLACE FUNCTION process_update_last_active() RETURNS TRIGGER AS $update_last_active$
+    BEGIN
+        UPDATE Person SET last_active = CURRENT_TIMESTAMP WHERE id = NEW.sender;
+		UPDATE Person SET last_active = CURRENT_TIMESTAMP WHERE id = NEW.recipient;
+        RETURN NULL;
+    END;
+$update_last_active$ LANGUAGE plpgsql;
+
+CREATE TRIGGER update_last_active
+	AFTER INSERT OR UPDATE ON Referrals
+	    FOR EACH ROW
+    	EXECUTE PROCEDURE process_update_last_active();
+
+CREATE INDEX activity ON Person (last_active NULLS LAST);
+
+-- Create views.
 -- Generosity: how often a user refers people.
 
 CREATE OR REPLACE VIEW generosity AS
