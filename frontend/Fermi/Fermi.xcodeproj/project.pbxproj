@@ -10,6 +10,8 @@
 		4F10842E21B495A0002F458A /* Education.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F10842D21B495A0002F458A /* Education.swift */; };
 		4F10843021B495A9002F458A /* Experience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F10842F21B495A9002F458A /* Experience.swift */; };
 		4F10843221B495BB002F458A /* Referral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F10843121B495BB002F458A /* Referral.swift */; };
+		4F2BAB3F21BC86F00022FB19 /* DraftExperience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2BAB3E21BC86F00022FB19 /* DraftExperience.swift */; };
+		4F2BAB4121BC87020022FB19 /* DraftEducation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2BAB4021BC87020022FB19 /* DraftEducation.swift */; };
 		4F34F7BA21A71D04003FFA61 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F34F7B921A71D04003FFA61 /* JSON.swift */; };
 		4F53E28421A5F1CD00D96011 /* Quality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F53E28321A5F1CD00D96011 /* Quality.swift */; };
 		4F6CA39E219C86C4004E0E11 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6CA39D219C86C4004E0E11 /* User.swift */; };
@@ -54,6 +56,8 @@
 		4F10842D21B495A0002F458A /* Education.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Education.swift; sourceTree = "<group>"; };
 		4F10842F21B495A9002F458A /* Experience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Experience.swift; sourceTree = "<group>"; };
 		4F10843121B495BB002F458A /* Referral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Referral.swift; sourceTree = "<group>"; };
+		4F2BAB3E21BC86F00022FB19 /* DraftExperience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftExperience.swift; sourceTree = "<group>"; };
+		4F2BAB4021BC87020022FB19 /* DraftEducation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftEducation.swift; sourceTree = "<group>"; };
 		4F34F7B921A71D04003FFA61 /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		4F53E28321A5F1CD00D96011 /* Quality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quality.swift; sourceTree = "<group>"; };
 		4F6CA39D219C86C4004E0E11 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -108,6 +112,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F2BAB3D21BC86B60022FB19 /* Draft */ = {
+			isa = PBXGroup;
+			children = (
+				4F2BAB4021BC87020022FB19 /* DraftEducation.swift */,
+				4F2BAB3E21BC86F00022FB19 /* DraftExperience.swift */,
+			);
+			path = Draft;
+			sourceTree = "<group>";
+		};
 		4F6CA3A1219C8C9B004E0E11 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +148,7 @@
 		4FD2A15D2193C4A0007066D0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4F2BAB3D21BC86B60022FB19 /* Draft */,
 				4F6CA3A1219C8C9B004E0E11 /* Login */,
 				4FFD708F219DF5F100293E39 /* Home */,
 				4FC274DD21BB228900D5C698 /* Fermi.swift */,
@@ -420,7 +434,9 @@
 				4FA45EA821A13F2300ECA958 /* CreateController.swift in Sources */,
 				4F6CA3A3219C8CD8004E0E11 /* Movement.swift in Sources */,
 				4FA45EAE21A1E6C400ECA958 /* Filter.swift in Sources */,
+				4F2BAB3F21BC86F00022FB19 /* DraftExperience.swift in Sources */,
 				7053B217218D4866005A12D3 /* Referrals.swift in Sources */,
+				4F2BAB4121BC87020022FB19 /* DraftEducation.swift in Sources */,
 				4FA45EAA21A1D7BA00ECA958 /* EmptyCollectionView.swift in Sources */,
 				4F10843021B495A9002F458A /* Experience.swift in Sources */,
 				4F34F7BA21A71D04003FFA61 /* JSON.swift in Sources */,
