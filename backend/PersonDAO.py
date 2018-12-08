@@ -154,7 +154,9 @@ class PersonDAO():
             row = conn.cur.fetchone()
             if row is not None:
                 qualities = [QualityDTO("generosity", row[0]), QualityDTO("impact", row[1]), QualityDTO("popularity", row[2]), QualityDTO("success", row[3])]
-        except (Exception, psycopg2.DatabaseError) as error:
+            else:
+                qualities = [QualityDTO("generosity", None), QualityDTO("impact", None), QualityDTO("popularity", None), QualityDTO("success", None)]
+       except (Exception, psycopg2.DatabaseError) as error:
             print(error) 
         finally:
             if conn is not None:
