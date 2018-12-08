@@ -21,7 +21,12 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, UIC
     // person variable -- stores data arrays necessary for cell population.
     var person: Person = User.shared.person!
     
+    @IBOutlet weak var requestButton: UIButton!
+    @IBOutlet weak var sendButton: UIButton!
+    
     var personIsUser = true
+    
+    var isInEditMode = false
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,9 +35,10 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, UIC
         // determines if person variable is the user themself.
         if !person.equals(Person2: User.shared.person!) {
             personIsUser = false
+            setUpExternal()
         }
         else {
-            navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: UIBarButtonItem.Style.plain, target: self, action: #selector(editButtonPressed(_:)))
+            setUpInternal()
         }
         profilePic.imageView.image = #imageLiteral(resourceName: "wallpaper.wiki-Free-Download-Fruit-Background-PIC-WPD004648")
         
@@ -60,8 +66,29 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, UIC
         
     }
     
+    func setUpExternal() {
+        requestButton.isHidden = false
+        sendButton.isHidden = false
+    }
+    
+    func setUpInternal() {
+        requestButton.isHidden = true
+        sendButton.isHidden = true
+        
+        navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: UIBarButtonItem.Style.plain, target: self, action: #selector(editButtonPressed(_:)))
+    }
+    
     @objc func editButtonPressed(_ sender: Any) {
-        self.performSegue(withIdentifier: "editProfile", sender: self)
+        if !self.isInEditMode {
+            self.isInEditMode = true
+            navigationController?.navigationBar.topItem?.rightBarButtonItem?.title = "Done"
+            tableView.reloadData()
+        }
+        else {
+            self.isInEditMode = false
+            navigationController?.navigationBar.topItem?.rightBarButtonItem?.title = "Edit"
+            tableView.reloadData()
+        }
     }
     
     func initializeTableView() {
@@ -121,6 +148,18 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, UIC
         }
     }
     
+    @IBAction func sendButton(_ sender: Any) {
+        print("send referral")
+    }
+    
+    @IBAction func requestButton(_ sender: Any) {
+        print("send referral request")
+    }
+    
+    
+    
+    
+    
     override func viewDidDisappear(_ animated: Bool) {
         navigationController?.navigationBar.topItem?.rightBarButtonItem = nil
     }
@@ -130,7 +169,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, UIC
 // Handles all Table View stuff.
 extension Profile {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 130
+        return 150
     }
     
     
@@ -155,6 +194,7 @@ extension Profile {
         }
         else if segmentedControl.selectedSegmentIndex == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "experienceCell", for: indexPath) as! experienceCell
+            cell.isInEditMode = self.isInEditMode
             let currentEducation = person.experience[indexPath.item]
             cell.fullInit(currentEducation.company, date: [currentEducation.startdate, currentEducation.enddate as? String ?? "present"], position: currentEducation.position)
             cell.backgroundColor = self.view.backgroundColor
@@ -174,7 +214,10 @@ extension Profile {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "statsCell", for: indexPath) as! statsCell
-        cell.fullInit(90, description: "Generosity")
+        //print(indexPath.item)
+        print(person)
+        //cell.fullInit(person.qualities[indexPath.item].percentile, description: person.qualities[indexPath.item].name)
+        cell.fullInit(90, description: "Blah")
         cell.backgroundColor = self.view.backgroundColor
         return cell
     }
