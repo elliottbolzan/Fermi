@@ -39,7 +39,7 @@ class ReferralDAO():
                 conn.close()
         return referral
 
-     def getReferral(self, identifier):
+    def getReferral(self, identifier):
         sql = self.queryFromFile("get_referral.sql")
         values = (identifier, )
         result = []
