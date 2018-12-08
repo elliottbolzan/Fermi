@@ -41,6 +41,15 @@ def filter():
     filtered = dao.filter(request.get_json())
     return jsonify([x.serialize() for x in filtered])
 
+@app.route('/referrals/forUser/<userId>', methods=['GET'])
+def getReferral(userId = None):
+    dao = ReferralDAO()
+    # if not Authorization().authorized(request.headers):
+    #     return unauthorized
+    user = dao.getReferral(userId)
+    return jsonify(user.serialize())
+
+
 @app.route('/referrals/create', methods=['POST'])
 def createReferral():
     dao = ReferralDAO()
