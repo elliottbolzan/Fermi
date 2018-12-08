@@ -10,10 +10,12 @@ import UIKit
 
 class ReferralCell: UITableViewCell {
     
+    var controller: Referrals!
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var companyLabel: UILabel!
     @IBOutlet weak var statusButton: UIButton!
-    @IBOutlet weak var profPic: UIImageView!
+    @IBOutlet weak var profilePicture: PolyImageView!
     
     var referral: Referral!
     
@@ -21,52 +23,94 @@ class ReferralCell: UITableViewCell {
         super.awakeFromNib()
         statusButton.isEnabled = false
         statusButton.layer.cornerRadius = 5
-        profPic.layer.cornerRadius = profPic.frame.size.height / 1.7
-        profPic.contentMode = .scaleToFill
-        profPic.clipsToBounds = true
     }
     
-    func setup(referral: Referral) {
+    func setup(controller: Referrals, referral: Referral) {
+        self.controller = controller
         self.referral = referral
         self.companyLabel.text = " » " + referral.company
-        if referral.sender == User.shared.person!.name {
-            setupMyReferral()
-        }
-        else {
+        if referral.iAmSender() {
+            // I sent it.
             setupTheirReferral()
         }
-    }
-    
-    func setupMyReferral() {
-        self.nameLabel.text = referral.recipient
+        else {
+            // They sent it.
+            setupMyReferral()
+        }
     }
     
     func setupTheirReferral() {
-        self.nameLabel.text = referral.sender
+        self.nameLabel.text = referral.recipient
+        Server.profilePicture(id: referral.recipientId, completion: { image in
+            self.profilePicture.imageView.image = image
+        })
         if referral.status == .requested {
             statusButton.isEnabled = true
-            statusButton.backgroundColor = Constants.tint
-            statusButton.tintColor = UIColor.white
             statusButton.setTitle("GRANT", for: .normal)
+            statusButton.setTitleColor(UIColor.white, for: .normal)
+            statusButton.backgroundColor = Constants.tint
         }
         else {
             self.statusButton.setTitle(referral.status.rawValue.uppercased(), for: .normal)
             statusButton.setTitleColor(Constants.tint, for: .normal)
+            statusButton.backgroundColor = UIColor.clear
+        }
+    }
+    
+    func setupMyReferral() {
+        self.nameLabel.text = referral.sender
+        Server.profilePicture(id: referral.senderId, completion: { image in
+            self.profilePicture.imageView.image = image
+        })
+        if referral.status == .granted {
+            statusButton.isEnabled = true
+            statusButton.setTitle("UPDATE", for: .normal)
+            statusButton.setTitleColor(UIColor.white, for: .normal)
+            statusButton.backgroundColor = Constants.tint
+        }
+        else {
+            self.statusButton.setTitle(referral.status.rawValue.uppercased(), for: .normal)
+            statusButton.setTitleColor(Constants.tint, for: .normal)
+            statusButton.backgroundColor = UIColor.clear
         }
     }
     
     @IBAction func statusButton(_ sender: Any) {
+        if referral.iAmSender() {
+            grantedReferral()
+        }
+        else {
+            updatingStatus()
+        }
+    }
+    
+    func grantedReferral() {
+        referral.status = Status.granted
+        changeStatus()
+    }
+    
+    func updatingStatus() {
+        let alert = UIAlertController(title: "Did you get an offer from " + referral.company + "?", message: "Let " + referral.sender + " know by updating this referral's status.", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+            self.referral.status = Status.offered
+            self.changeStatus()
+
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: { action in
+            self.referral.status = Status.rejected
+            self.changeStatus()
+
+        }))
+        alert.addAction(UIAlertAction(title: "Don't Know Yet", style: .cancel, handler: nil))
+        self.controller.present(alert, animated: true)
+    }
+    
+    func changeStatus() {
+        Server.updateReferral(referral: referral, completion: { referral in })
         statusButton.isEnabled = false
         statusButton.backgroundColor = UIColor.clear
         statusButton.setTitleColor(Constants.tint, for: .normal)
-        statusButton.layer.borderColor = Constants.tint.cgColor
-        statusButton.layer.borderWidth = 1
-        statusButton.setTitle("GRANTED", for: .normal)
-        // Accept response on Server.
+        statusButton.setTitle(referral.status.rawValue.uppercased(), for: .normal)
     }
-    
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//    }
-    
+        
 }

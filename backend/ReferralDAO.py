@@ -23,7 +23,6 @@ class ReferralDAO():
         return referral
     
     def updateReferral(self, referral):
-        print(referral.serialize())
         values = (referral.status, referral.timestamp, referral.identifier)
         sql = self.queryFromFile("update_referral.sql")
         conn = None

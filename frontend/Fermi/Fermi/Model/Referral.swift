@@ -9,10 +9,18 @@
 import Foundation
 
 struct Referral: Codable {
+    
     let id: Int
+    let senderId: Int
     let sender: String
+    let recipientId: Int
     let recipient: String
     let company: String
-    let status: Status
+    var status: Status
     let timestamp: String
+    
+    func iAmSender() -> Bool {
+        return senderId == /*User.shared.person!.id*/ 27
+    }
+    
 }

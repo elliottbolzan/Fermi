@@ -8,7 +8,8 @@
 
 import Foundation
 
-class Filter: Codable {
+class Filter: Codable, Equatable {
+    
     
     var name: String
     var company: String
@@ -22,6 +23,22 @@ class Filter: Codable {
         self.company = company
         self.university = university
         self.qualities = qualities
+    }
+    
+    static func == (lhs: Filter, rhs: Filter) -> Bool {
+        var qualitiesEqual = true
+        if lhs.qualities.count != rhs.qualities.count {
+            qualitiesEqual = false
+        }
+        else {
+            for i in 0..<lhs.qualities.count {
+                if lhs.qualities[i].percentile != rhs.qualities[i].percentile ||
+                    lhs.qualities[i].name != rhs.qualities[i].name {
+                    qualitiesEqual = false
+                }
+            }
+        }
+        return lhs.name == rhs.name && lhs.company == rhs.company && lhs.university == rhs.university && qualitiesEqual
     }
     
     func active() -> Bool {

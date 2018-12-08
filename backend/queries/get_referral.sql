@@ -1,9 +1,12 @@
 SELECT 
-    r.id, (
+    r.id,
+    r.sender,
+    (
     SELECT name
     FROM Person AS p
     WHERE p.id = r.sender
     ),
+    r.recipient,
     (
         SELECT name
         FROM Person AS p
@@ -17,4 +20,5 @@ SELECT
     r.status,
     r.timestamp
 FROM Referrals AS r
-WHERE sender = %s OR recipient = %s;
+WHERE sender = %s OR recipient = %s
+ORDER BY timestamp DESC;
