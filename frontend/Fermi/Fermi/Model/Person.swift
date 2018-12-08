@@ -19,19 +19,7 @@ struct Person: Codable {
     let qualities: [Quality]
     let lastActive: String?
     
-    var profilePictureURL: String {
-        return "http://graph.facebook.com/\(id)/picture?type=large"
-    }
-    
-    func profilePicture(completion: @escaping (UIImage?) -> Void) {
-        Alamofire.request(profilePictureURL, method: .get).responseImage { response in
-            guard let image = response.result.value else {
-                completion(nil)
-                return
-            }
-            completion(image)
-        }
-    }
+
     
     func fact() -> String {
         let interesting = mostInterestingQuality()

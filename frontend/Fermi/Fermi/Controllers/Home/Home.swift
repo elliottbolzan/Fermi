@@ -24,10 +24,19 @@ class Home: UICollectionViewController {
     var filterView: FilterView!
     var searchController = UISearchController(searchResultsController: nil)
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:
+            #selector(Home.handleRefresh(_:)), for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = Constants.tint
+        return refreshControl
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.collectionView.refreshControl = refreshControl
         self.filterView = UIViewController.createWith(identifier: "filter", type: FilterView.self)
         self.filterView.searchBar = searchController.searchBar
         self.filter = Filter(name: "", company: "", university: "", qualities: [])
@@ -35,9 +44,16 @@ class Home: UICollectionViewController {
         refresh()
     }
     
-    func refresh() {
-        self.people = []
-        self.collectionView.reloadData()
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        refresh()
+        refreshControl.endRefreshing()
+    }
+    
+    func refresh(clear: Bool = false) {
+        if clear {
+            self.people = []
+            self.collectionView.reloadData()
+        }
         Server.getUsersWith(filter: self.filter, completion: { users in
             self.people = users
             self.collectionView.reloadData()
@@ -78,7 +94,7 @@ extension Home: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         recordsLeft = true
         filter.clear()
-        refresh()
+        refresh(clear: filter != filterView.filter())
         filterView.reset()
         removeFilter(searchBar: searchBar)
     }
@@ -105,11 +121,13 @@ extension Home: UISearchBarDelegate {
     
     func updateFilter() {
         recordsLeft = true
-        self.filter = self.filterView.filter()
+        let newFilter = filterView.filter()
+        let filterUpdated = filter != newFilter
+        filter = newFilter
         if !filter.active() {
-            self.searchController.isActive = false
+            searchController.isActive = false
         }
-        refresh()
+        refresh(clear: filterUpdated)
     }
     
 }

@@ -128,9 +128,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="Referrals" largeTitleDisplayMode="always" id="Rxu-3p-tBY"/>
                     <connections>
+                        <outlet property="referredMe" destination="zv3-E2-HhE" id="jGc-sq-fmm"/>
+                        <outlet property="referredThem" destination="tHG-EO-CwF" id="0uk-XD-sST"/>
                         <outlet property="segmentedControl" destination="N16-uu-rZW" id="TNO-jx-udy"/>
-                        <outlet property="tableView" destination="zv3-E2-HhE" id="jGc-sq-fmm"/>
-                        <outlet property="tableViewReferredMe" destination="tHG-EO-CwF" id="0uk-XD-sST"/>
                         <outlet property="toolbar" destination="Dgw-Mk-onB" id="Hqz-5I-y2B"/>
                     </connections>
                 </viewController>
