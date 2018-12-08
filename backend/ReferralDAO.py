@@ -39,22 +39,24 @@ class ReferralDAO():
                 conn.close()
         return referral
 
-    def getReferral(self, identifier):
+    def getReferrals(self, identifier):
         sql = self.queryFromFile("get_referral.sql")
-        values = (identifier, )
-        result = []
+        values = (identifier, identifier)
+        conn = None
+        referrals = []
         try:
             conn = Connection()
             conn.cur.execute(sql, values)
-            rows = conn.cur.fetchall()
-            for row in rows:
-                result.append(ReferralDTO(*row))
+            result = conn.cur.fetchall()
+            for row in result:
+                referrals.append(ReferralDTO(*row))
         except (Exception, psycopg2.DatabaseError) as error:
             print(error) 
         finally:
             if conn is not None:
                 conn.close()
-        return result
+        return referrals
+
 
     def queryFromFile(self, filename):
         fd = open("queries/" + filename, "r")
