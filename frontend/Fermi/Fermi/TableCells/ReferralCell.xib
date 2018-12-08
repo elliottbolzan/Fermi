@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReferralCell" rowHeight="100" id="KGk-i7-Jjw" userLabel="ReferralCell" customClass="ReferralCell" customModule="Fermi" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="396" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="396" height="99.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bts-c2-BKz">
+                        <rect key="frame" x="286" y="35" width="90" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="90" id="8Ot-fj-O7I"/>
+                        </constraints>
+                        <color key="tintColor" red="0.42675507070000002" green="0.61347126959999998" blue="0.70589727160000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <state key="normal" title="REFERRED"/>
+                        <connections>
+                            <action selector="statusButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="4oD-gf-XZY"/>
+                        </connections>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OAb-2K-ZMm" customClass="PolyImageView" customModule="Fermi" customModuleProvider="target">
+                        <rect key="frame" x="20" y="5" width="90" height="89.5"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="90" id="zqD-Xb-I8v"/>
+                        </constraints>
+                    </view>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="CSd-5U-NbS">
+                        <rect key="frame" x="118" y="28" width="98" height="44"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Davis Booth" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEf-4f-eKZ">
+                                <rect key="frame" x="0.0" y="0.0" width="98" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text=" » Facebook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Scu-jB-ff8">
+                                <rect key="frame" x="0.0" y="22.5" width="98" height="21.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Scu-jB-ff8" firstAttribute="top" secondItem="DEf-4f-eKZ" secondAttribute="bottom" constant="2" id="XBc-qr-upc"/>
+                            <constraint firstAttribute="height" constant="44" id="aRb-1s-PjE"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="OAb-2K-ZMm" secondAttribute="bottom" constant="5" id="5tC-hh-Hxm"/>
+                    <constraint firstItem="bts-c2-BKz" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="5tC-mk-BW7"/>
+                    <constraint firstItem="OAb-2K-ZMm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="6Mh-Oo-Gcc"/>
+                    <constraint firstItem="CSd-5U-NbS" firstAttribute="leading" secondItem="OAb-2K-ZMm" secondAttribute="trailing" constant="8" id="LBj-3T-22k"/>
+                    <constraint firstItem="bts-c2-BKz" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Mh5-IW-lg1"/>
+                    <constraint firstItem="CSd-5U-NbS" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Ms3-pD-OR7"/>
+                    <constraint firstItem="OAb-2K-ZMm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="QUI-yr-hbe"/>
+                    <constraint firstItem="OAb-2K-ZMm" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="VRe-tV-bNh"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="companyLabel" destination="Scu-jB-ff8" id="kwH-IU-9OL"/>
+                <outlet property="nameLabel" destination="DEf-4f-eKZ" id="foE-Ra-keY"/>
+                <outlet property="profilePicture" destination="OAb-2K-ZMm" id="WfF-E5-oA3"/>
+                <outlet property="statusButton" destination="bts-c2-BKz" id="fxf-NB-tJU"/>
+            </connections>
+            <point key="canvasLocation" x="76.799999999999997" y="177.66116941529236"/>
+        </tableViewCell>
+    </objects>
+</document>

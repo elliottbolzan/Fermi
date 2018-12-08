@@ -21,6 +21,22 @@ class Server {
     
 }
 
+// Profile-related.
+extension Server {
+    
+    class func profilePicture(id: Int, completion: @escaping (UIImage?) -> Void) {
+        let profilePictureURL = "http://graph.facebook.com/\(id)/picture?type=large"
+        Alamofire.request(profilePictureURL, method: .get).responseImage { response in
+            guard let image = response.result.value else {
+                completion(nil)
+                return
+            }
+            completion(image)
+        }
+    }
+    
+}
+
 // User-related.
 extension Server {
     
@@ -114,7 +130,27 @@ extension Server {
     }
     
     public class func getReferralsFor(id: Int, completion: @escaping ([Referral], [Referral]) -> Void) {
-    
+        let uri = Constants.host + "referrals/forUser/" + String(27)
+        Alamofire.request(uri, method: HTTPMethod.get, parameters: nil, encoding: JSONEncoding.default, headers: headers()).validate().responseJSON { response in
+            guard response.result.isSuccess,
+                let response = response.result.value as? [[String: Any]] else {
+                    return
+            }
+            var referredMe = [Referral]()
+            var referredThem = [Referral]()
+            for entry in response {
+                let data = try! JSONSerialization.data(withJSONObject: entry, options: [])
+                let decoded = String(data: data, encoding: .utf8)!
+                let referral = Referral.from(json: decoded)
+                if referral.iAmSender() {
+                    referredThem.append(referral)
+                }
+                else {
+                    referredMe.append(referral)
+                }
+            }
+            completion(referredMe, referredThem)
+        }
     }
     
 }

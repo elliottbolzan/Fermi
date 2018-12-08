@@ -48,7 +48,7 @@ class Card: UICollectionViewCell {
         self.setTint(tint: tint)
         self.setType(person: person, tint: tint)
         self.setFact(person: person)
-        person.profilePicture(completion: { image in
+        Server.profilePicture(id: person.id, completion: { image in
             self.profilePicture!.imageView.image = image
         })
     }
