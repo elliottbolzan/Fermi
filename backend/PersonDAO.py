@@ -49,20 +49,146 @@ class PersonDAO():
         person = self.getPerson(identifier)
         return person
     
-    def updatePerson(self, identifier, name, education, experience, qualities, lastActive):
+    def refreshEducation(self, identifier):
+        sql = self.queryFromFile("queries/user_update/deleteEducation.sql")
+        conn = None
+        #check university exists
+        try:
+            conn = Connection()
+            conn.cur.execute(sql)
+            conn.commit()
+            conn.close()
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error)
+        finally: 
+            if conn is not None:
+                conn.close()
         
-        for eduID in education: 
-            updateEducation(self, eduID)
+        
+    def refreshExperience(self, identifier):
+        sql = self.queryFromFile("queries/user_update/deleteExperience.sql")
+        conn = None
+        #check university exists
+        try:
+            conn = Connection()
+            conn.cur.execute(sql)
+            conn.commit()
+            conn.close()
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error)
+        finally: 
+            if conn is not None:
+                conn.close()
+                
+                
+    def getUniversity(self, name):
+        sql = self.queryFromFile("queries/user_update/getUniverisity.sql")
+        values = (name, )
+        result = []
+        try:
+            conn = Connection()
+            conn.cur.execute(sql, values)
+            rows = conn.cur.fetchall()
+            for row in rows:
+                result.append(EducationDTO(*row))
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error) 
+        finally:
+            if conn is not None:
+                conn.close()
+        return result
     
-    def updateEducation(self, educationID): #id - which is either none or exists
-        #if there even is a education id
-        #assume that enddate may or may not be there, but everything else will be
-        if not education:
-            values = (education.person, education.university, education.degree_type,education. startdate, 
-education.enddate)
-            sql = self.queryFromFile("token/insertEducation.sql")
-            
+    def insertUniversity(self, name):
+    
+        values = (name) 
+        sql = self.queryFromFile("queries/user_update/insertUniversity.sql")        
+        conn = None
+        #check university exists
+        try:
+            conn = Connection()
+            conn.cur.execute(sql, values)
+            conn.commit()
+            conn.close()
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error)
+        finally: 
+            if conn is not None:
+                conn.close()
         
+    def insertCompany(self, name):
+    
+        values = (name) 
+        sql = self.queryFromFile("queries/user_update/insertCompany.sql")        
+        conn = None
+        #check university exists
+        try:
+            conn = Connection()
+            conn.cur.execute(sql, values)
+            conn.commit()
+            conn.close()
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error)
+        finally: 
+            if conn is not None:
+                conn.close()
+            
+    def updateEducation(self, education): #id - which is either none or exists
+        university = self.getUniversity(education.university)
+        if not university:
+            self.insertUniversity(education.name)
+            #assuming that education.university = name
+        values = (education.person, education.university, education.degree_type, education.startdate, 
+education.enddate)
+        sql = self.queryFromFile("queries/user_update/insertEducation.sql")
+        conn = None
+        #check university exists
+        try:
+            conn = Connection()
+            conn.cur.execute(sql, values)
+            conn.commit()
+            conn.close()
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error)
+        finally: 
+            if conn is not None:
+                conn.close()
+        
+        
+    def updateExperience(self, experience): 
+        company = self.getUniversity(experience.company)
+        if not company:
+            self.insertCompany(experience.company)
+            #assuming that education.university = name
+        values = (experience.person, experience.company, experience.position, experience.startdate, 
+experience.enddate)
+        sql = self.queryFromFile("queries/user_update/insertExperience.sql")
+        conn = None
+        #check university exists
+        try:
+            conn = Connection()
+            conn.cur.execute(sql, values)
+            conn.commit()
+            conn.close()
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error)
+        finally: 
+            if conn is not None:
+                conn.close()
+                
+                
+    def updatePerson(self, identifier, person):
+        
+        self.refreshEducation(identifier)
+        self.refreshExperience(identifier)
+        
+        for education in person.education:
+            self.updateEducation(education)
+        
+        for experience in person.experience:
+            self.updateExperience(experience)
+        
+        person = self.getPerson(identifier)
+        return person
     
     def filter(self, parameters):
         limit = parameters["limit"] if "limit" in parameters else 20

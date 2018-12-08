@@ -1,0 +1,1 @@
+DELETE FROM experience WHERE experience.person = $s

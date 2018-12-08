@@ -1,0 +1,1 @@
+INSERT INTO company VALUES(DEFAULT, $s)
