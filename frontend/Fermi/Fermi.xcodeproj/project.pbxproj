@@ -24,6 +24,7 @@
 		4FA45EAE21A1E6C400ECA958 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA45EAD21A1E6C400ECA958 /* Filter.swift */; };
 		4FC274DC21BB118E00D5C698 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC274DB21BB118E00D5C698 /* Status.swift */; };
 		4FC274DE21BB228900D5C698 /* Fermi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC274DD21BB228900D5C698 /* Fermi.swift */; };
+		4FC274E021BB3FD400D5C698 /* Hairline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC274DF21BB3FD400D5C698 /* Hairline.swift */; };
 		4FE01C40219F5FBD00D4FAB8 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE01C3F219F5FBD00D4FAB8 /* State.swift */; };
 		4FE01C44219F6F2C00D4FAB8 /* StringSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE01C43219F6F2C00D4FAB8 /* StringSize.swift */; };
 		4FFD708C219DE9B500293E39 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD708B219DE9B500293E39 /* Server.swift */; };
@@ -67,6 +68,7 @@
 		4FA45EAD21A1E6C400ECA958 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		4FC274DB21BB118E00D5C698 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		4FC274DD21BB228900D5C698 /* Fermi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Fermi.swift; path = Fermi/Controllers/Fermi.swift; sourceTree = SOURCE_ROOT; };
+		4FC274DF21BB3FD400D5C698 /* Hairline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hairline.swift; sourceTree = "<group>"; };
 		4FE01C3F219F5FBD00D4FAB8 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		4FE01C43219F6F2C00D4FAB8 /* StringSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringSize.swift; sourceTree = "<group>"; };
 		4FFD708B219DE9B500293E39 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				4FA45EA921A1D7BA00ECA958 /* EmptyCollectionView.swift */,
 				4FE01C43219F6F2C00D4FAB8 /* StringSize.swift */,
 				4F34F7B921A71D04003FFA61 /* JSON.swift */,
+				4FC274DF21BB3FD400D5C698 /* Hairline.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				4FA45EAA21A1D7BA00ECA958 /* EmptyCollectionView.swift in Sources */,
 				4F10843021B495A9002F458A /* Experience.swift in Sources */,
 				4F34F7BA21A71D04003FFA61 /* JSON.swift in Sources */,
+				4FC274E021BB3FD400D5C698 /* Hairline.swift in Sources */,
 				4FC274DE21BB228900D5C698 /* Fermi.swift in Sources */,
 				4FA45EA621A1376600ECA958 /* FilterView.swift in Sources */,
 				4FFD7096219E1E0A00293E39 /* BadgeButton.swift in Sources */,

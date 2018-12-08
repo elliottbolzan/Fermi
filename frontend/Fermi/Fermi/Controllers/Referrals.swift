@@ -10,13 +10,12 @@ import UIKit
 
 class Referrals: UIViewController, UITableViewDelegate, UITableViewDataSource  {
 
-    
-    // outlets
+    @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewReferredMe: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-    
+
     // variables to populate table views
     var dataArray: [[String]] = [
         ["Emily Mi", "Microsoft", "Waiting for response"], ["Davis Booth", "Facebook", "Referred"], ["Jamie Palka", "Google", "Offered"]
@@ -35,6 +34,8 @@ class Referrals: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         tableViewReferredMe.delegate = self
         tableViewReferredMe.dataSource = self
         
+        toolbar.delegate = self
+        
         // Creates the nib for the table views to reference
         let nibName1 = UINib(nibName: "referralCell", bundle: nil)
         
@@ -50,8 +51,16 @@ class Referrals: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         // Defaults the segmented control to the first index
         segmentedControl.selectedSegmentIndex = 0
         
+        self.navigationController?.navigationBar.prefersLargeTitles = true
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        hideHairline()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        showHairline()
+    }
     
     // Every time the index is changed
     @IBAction func indexChanged(_ sender: Any) {
@@ -109,3 +118,10 @@ extension Referrals {
     }
 }
 
+extension Referrals: UIToolbarDelegate {
+    
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.topAttached
+    }
+    
+}

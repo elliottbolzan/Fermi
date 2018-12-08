@@ -65,6 +65,7 @@ class FilterView: FormViewController {
                 }.cellUpdate { cell, row in
                     cell.textLabel!.textColor = UIColor.red
                 }.onCellSelection({ cell, row in
+                    self.searchBar.text = ""
                     let company = self.form.rowBy(tag: "company") as! TextRow
                     company.value = ""
                     company.updateCell()
