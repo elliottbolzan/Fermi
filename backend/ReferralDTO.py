@@ -2,13 +2,15 @@ import datetime
 import time
 
 class ReferralDTO():
-    def __init__(self, identifier, sender, recipient, company, status, timestamp = self.currentTime()):
+    def __init__(self, identifier, sender, recipient, company, status, timestamp = -1):
         self.identifier = identifier
         self.sender = sender
         self.recipient = recipient
         self.company = company
         self.status = status
         self.timestamp = timestamp
+        if self.timestamp == -1:
+            self.timestamp = self.currentTime()
 
     @staticmethod
     def currentTime():
