@@ -10,7 +10,6 @@ import UIKit
 
 class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    
     // Outlets
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var profileName: UILabel!
@@ -169,4 +168,10 @@ extension Profile {
         cell.backgroundColor = self.view.backgroundColor
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let education = UIViewController.createWith(identifier: "experience", type: UINavigationController.self)
+        self.present(education, animated: true, completion: nil)
+    }
+    
 }

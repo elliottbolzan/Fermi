@@ -10,8 +10,8 @@ import Foundation
 
 struct Experience: Codable {
     let id: Int
-    let company: String
-    let position: String
-    let startdate: String
-    let enddate: String?
+    var company: String
+    var position: String
+    var startdate: String
+    var enddate: String?
 }
