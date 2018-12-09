@@ -26,7 +26,9 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, UIC
         segmentedControl.selectedSegmentIndex = 0
     }
     
-    func setup() {
+    func setup(person: Person) {
+        self.person = person
+        sortEducation()
         self.view.backgroundColor = State.shared.colorFor(id: person.id)
         setupName()
         setupProfilePicture()
@@ -44,7 +46,9 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, UIC
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
-        setup()
+        if thisIsMe() {
+            self.person = User.shared.person!
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -138,7 +142,6 @@ extension Profile {
     
     @IBAction func contact(sender: UIButton) {
         let alert = UIAlertController(title: "Contacting " + person.name, message: "The following options are available.", preferredStyle: .actionSheet)
-        print(User.shared.person!.experience.count)
         if User.shared.person!.experience.count > 0 {
             alert.addAction(UIAlertAction(title: "Refer", style: .default, handler: { action in
                 Server.createReferral(sender: User.shared.person!.id, recipient: self.person.id, status: Status.granted, completion: { referral in })
@@ -284,7 +287,7 @@ extension Profile: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let yourWidth = collectionView.bounds.width / 2.0
-        let yourHeight = CGFloat(140)
+        let yourHeight = CGFloat(150)
         return CGSize(width: yourWidth, height: yourHeight)
     }
     
@@ -316,19 +319,13 @@ extension Profile {
     
     func addedEducation(education: Education) {
         self.person.education.append(education)
-        self.person.education = self.person.education.sorted(by: { Constants.degrees.firstIndex(of: $0.degreeType)! < Constants.degrees.firstIndex(of: $1.degreeType)! })
-        educationView.reloadData()
+        sortEducation()
         update()
+        educationView.reloadData()
     }
     
     func updatedEducation(education: Education) {
-        for i in 0..<self.person.education.count {
-            let entry = self.person.education[i]
-            if entry.id == education.id {
-                self.person.education.remove(at: i)
-                break
-            }
-        }
+        self.person.education = self.person.education.filter { $0.id != education.id }
         addedEducation(education: education)
     }
     
@@ -339,13 +336,7 @@ extension Profile {
     }
     
     func updatedExperience(experience: Experience) {
-        for i in 0..<self.person.experience.count {
-            let entry = self.person.experience[i]
-            if entry.id == experience.id {
-                self.person.experience.remove(at: i)
-                break
-            }
-        }
+        self.person.experience = self.person.experience.filter { $0.id != experience.id }
         addedExperience(experience: experience)
     }
     
@@ -353,6 +344,14 @@ extension Profile {
         User.shared.person = person
         Server.updateUser(person: person, completion: { person in
             self.person = person
+            self.sortEducation()
+            User.shared.person = person
+        })
+    }
+    
+    func sortEducation() {
+        self.person.education = self.person.education.sorted(by: {
+            Constants.degrees.firstIndex(of: $0.degreeType)! < Constants.degrees.firstIndex(of: $1.degreeType)!
         })
     }
     

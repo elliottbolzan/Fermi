@@ -439,19 +439,15 @@
                                                             </constraints>
                                                             <viewLayoutGuide key="safeArea" id="YWT-yn-wu4"/>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m4a-ZN-x9B">
-                                                            <rect key="frame" x="0.0" y="114" width="150" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Bi-Bz-Vpv" customClass="BadgeButton" customModule="Fermi" customModuleProvider="target">
+                                                            <rect key="frame" x="71" y="118" width="8" height="26"/>
+                                                            <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstItem="m4a-ZN-x9B" firstAttribute="top" secondItem="RSN-6e-RqR" secondAttribute="bottom" constant="-26" id="2Vd-bT-p1u"/>
-                                                        <constraint firstAttribute="trailing" secondItem="m4a-ZN-x9B" secondAttribute="trailing" id="87A-En-YP9"/>
-                                                        <constraint firstItem="m4a-ZN-x9B" firstAttribute="centerX" secondItem="6S0-af-wO5" secondAttribute="centerX" id="HrK-Nh-QYB"/>
-                                                        <constraint firstItem="m4a-ZN-x9B" firstAttribute="leading" secondItem="6S0-af-wO5" secondAttribute="leading" id="QUl-YJ-2Ml"/>
+                                                        <constraint firstItem="0Bi-Bz-Vpv" firstAttribute="centerX" secondItem="6S0-af-wO5" secondAttribute="centerX" id="1Gw-46-DKr"/>
+                                                        <constraint firstItem="0Bi-Bz-Vpv" firstAttribute="top" secondItem="RSN-6e-RqR" secondAttribute="bottom" constant="-22" id="5bT-h6-VIV"/>
                                                         <constraint firstItem="RSN-6e-RqR" firstAttribute="centerX" secondItem="6S0-af-wO5" secondAttribute="centerX" id="nDL-MQ-0ac"/>
                                                         <constraint firstItem="RSN-6e-RqR" firstAttribute="top" secondItem="6S0-af-wO5" secondAttribute="top" id="owV-b9-xTr"/>
                                                     </constraints>
@@ -459,6 +455,7 @@
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="6S0-af-wO5" secondAttribute="trailing" id="1Ka-FZ-229"/>
                                             <constraint firstItem="6S0-af-wO5" firstAttribute="top" secondItem="BwV-KN-AbI" secondAttribute="top" id="8M0-iA-P4t"/>
@@ -468,7 +465,7 @@
                                             <constraint firstAttribute="bottom" secondItem="6S0-af-wO5" secondAttribute="bottom" id="cFx-ko-ih5"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="descriptionLabel" destination="m4a-ZN-x9B" id="a4G-nn-NpM"/>
+                                            <outlet property="descriptionLabel" destination="0Bi-Bz-Vpv" id="GDN-f7-IoB"/>
                                             <outlet property="visualPercentageView" destination="RSN-6e-RqR" id="eMc-4R-8TC"/>
                                         </connections>
                                     </collectionViewCell>

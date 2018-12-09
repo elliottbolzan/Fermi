@@ -157,7 +157,7 @@ extension Home {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let controller = UIViewController.createWith(identifier: "profile", type: Profile.self)
         controller.view.backgroundColor = State.shared.colorFor(id: people[indexPath.row].id)
-        controller.person = people[indexPath.row]
+        controller.setup(person: people[indexPath.row])
         controller.showBackButton()
         self.present(controller, animated: true, completion: nil)
     }
