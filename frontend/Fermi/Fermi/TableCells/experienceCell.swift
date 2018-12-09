@@ -14,36 +14,12 @@ class experienceCell: UITableViewCell {
     @IBOutlet weak var companyLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
-    @IBOutlet weak var editingStack: UIStackView!
-    @IBOutlet weak var companyTextField: UITextField!
-    @IBOutlet weak var positionTextField: UITextField!
-    @IBOutlet weak var dateTextField: UITextField!
-    @IBOutlet weak var endDateTextField: UITextField!
-    
-    var isInEditMode: Bool = false
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         companyLabel.textColor = UIColor.white
         dateLabel.textColor = UIColor.white
-        
-        if isInEditMode {
-            setUpEditing()
-        }
-        else {
-            setUpViewing()
-        }
-    }
-    
-    func setUpEditing() {
-        editingStack.isHidden = false
-        viewingStack.isHidden = true
-    }
-    
-    func setUpViewing() {
-        editingStack.isHidden = true
-        viewingStack.isHidden = false
+        self.selectionStyle = UITableViewCell.SelectionStyle.none
     }
     
 
@@ -55,12 +31,22 @@ class experienceCell: UITableViewCell {
     
     func fullInit(_ company: String, date: [String], position: String) {
         companyLabel.text = position + "\n" + company
-        dateLabel.text = date[0] + "-" + date[1]
         
-        dateTextField.text = date[0]
-        endDateTextField.text = date[1]
-        companyTextField.text = company
-        positionTextField.text = position
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "E, dd MMM yyyy HH:mm:ss zzz"
+        let date1 = dateFormatter.date(from: date[0])
+        if date[1] == "present" {
+            dateFormatter.dateFormat = "MMM y"
+            let dateFinal1 = dateFormatter.string(from: date1!)
+            dateLabel.text = dateFinal1 + "-present"
+        }
+        else {
+            let date2 = dateFormatter.date(from: date[1])
+            dateFormatter.dateFormat = "MMM y"
+            let dateFinal1 = dateFormatter.string(from: date1!)
+            let dateFinal2 = dateFormatter.string(from: date2!)
+            dateLabel.text = dateFinal1 + "-" + dateFinal2
+        }
     }
     
 }

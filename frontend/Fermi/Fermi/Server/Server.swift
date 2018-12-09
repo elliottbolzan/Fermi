@@ -21,8 +21,37 @@ class Server {
     
 }
 
+// Profile-related.
+extension Server {
+    
+    class func profilePicture(id: Int, completion: @escaping (UIImage?) -> Void) {
+        let profilePictureURL = "http://graph.facebook.com/\(id)/picture?type=large"
+        Alamofire.request(profilePictureURL, method: .get).responseImage { response in
+            guard let image = response.result.value else {
+                completion(nil)
+                return
+            }
+            completion(image)
+        }
+    }
+    
+}
+
 // User-related.
 extension Server {
+    
+    public class func getUser(id: Int, completion: @escaping (Person) -> Void) {
+        let uri = Constants.host + "user/" + String(id)
+        Alamofire.request(uri, method: HTTPMethod.get, parameters: nil, encoding: JSONEncoding.default, headers: headers()).validate().responseJSON { response in
+            guard response.result.isSuccess,
+                let response = response.result.value as? [String: Any] else {
+                    return
+            }
+            let data = try! JSONSerialization.data(withJSONObject: response, options: [])
+            let decoded = String(data: data, encoding: .utf8)!
+            completion(Person.from(json: decoded))
+        }
+    }
     
     public class func createUser(id: Int, name: String, token: String, completion: @escaping (Person) -> Void) {
         let uri = Constants.host + "user/create"
@@ -69,16 +98,59 @@ extension Server {
 // Referral-related.
 extension Server {
     
-    public class func createReferral(referral: Referral, completion: @escaping (Referral) -> Void) {
-        
+    public class func createReferral(sender: Int, recipient: Int, status: Status, completion: @escaping (Referral) -> Void) {
+        let uri = Constants.host + "referrals/create"
+        let parameters: [String: Any] = [
+            "sender": sender,
+            "recipient": recipient,
+            "status": status.rawValue
+        ]
+        Alamofire.request(uri, method: HTTPMethod.post, parameters: parameters, encoding: JSONEncoding.default, headers: headers()).validate().responseJSON { response in
+            guard response.result.isSuccess,
+                let response = response.result.value as? [String: Any] else {
+                    return
+            }
+            let data = try! JSONSerialization.data(withJSONObject: response, options: [])
+            let decoded = String(data: data, encoding: .utf8)!
+            completion(Referral.from(json: decoded))
+        }
     }
     
-    public class func updateReferral(referral: Referral, completion: @escaping () -> Void) {
-        
+    public class func updateReferral(referral: Referral, completion: @escaping (Referral) -> Void) {
+        let uri = Constants.host + "referrals/update"
+        Alamofire.request(uri, method: HTTPMethod.post, parameters: referral.toJSON(), encoding: JSONEncoding.default, headers: headers()).validate().responseJSON { response in
+            guard response.result.isSuccess,
+                let response = response.result.value as? [String: Any] else {
+                    return
+            }
+            let data = try! JSONSerialization.data(withJSONObject: response, options: [])
+            let decoded = String(data: data, encoding: .utf8)!
+            completion(Referral.from(json: decoded))
+        }
     }
     
     public class func getReferralsFor(id: Int, completion: @escaping ([Referral], [Referral]) -> Void) {
-    
+        let uri = Constants.host + "referrals/forUser/" + String(28)
+        Alamofire.request(uri, method: HTTPMethod.get, parameters: nil, encoding: JSONEncoding.default, headers: headers()).validate().responseJSON { response in
+            guard response.result.isSuccess,
+                let response = response.result.value as? [[String: Any]] else {
+                    return
+            }
+            var referredMe = [Referral]()
+            var referredThem = [Referral]()
+            for entry in response {
+                let data = try! JSONSerialization.data(withJSONObject: entry, options: [])
+                let decoded = String(data: data, encoding: .utf8)!
+                let referral = Referral.from(json: decoded)
+                if referral.iAmSender() {
+                    referredThem.append(referral)
+                }
+                else {
+                    referredMe.append(referral)
+                }
+            }
+            completion(referredMe, referredThem)
+        }
     }
     
 }

@@ -22,35 +22,6 @@
                         <rect key="frame" x="417" y="38.5" width="51.5" height="51.5"/>
                         <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </imageView>
-                    <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillProportionally" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="wjF-FW-XIk">
-                        <rect key="frame" x="20" y="-0.5" width="239.5" height="129.5"/>
-                        <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IJm-tx-pxQ">
-                                <rect key="frame" x="0.0" y="0.0" width="25" height="30.5"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="73s-jO-daO">
-                                <rect key="frame" x="0.0" y="33.5" width="25" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lt9-Nj-20J">
-                                <rect key="frame" x="0.0" y="66.5" width="25" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vYj-Ye-DbA">
-                                <rect key="frame" x="0.0" y="99.5" width="25" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </subviews>
-                    </stackView>
                     <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillProportionally" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="NJw-t3-b6Q">
                         <rect key="frame" x="20" y="27.5" width="239.5" height="74"/>
                         <subviews>
@@ -62,7 +33,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feb 2017-present" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0eT-7B-iig">
                                 <rect key="frame" x="0.0" y="53.5" width="136.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -74,23 +45,15 @@
                     <constraint firstItem="cCO-X1-EQ0" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Lvg-dH-Tyw"/>
                     <constraint firstItem="NJw-t3-b6Q" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="M2K-ii-0Sf"/>
                     <constraint firstItem="cCO-X1-EQ0" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.4" id="NGt-DT-7T9"/>
-                    <constraint firstItem="wjF-FW-XIk" firstAttribute="trailing" secondItem="NJw-t3-b6Q" secondAttribute="trailing" id="UL6-ZL-C6V"/>
-                    <constraint firstItem="wjF-FW-XIk" firstAttribute="centerY" secondItem="NJw-t3-b6Q" secondAttribute="centerY" id="YgE-de-0rY"/>
                     <constraint firstItem="NJw-t3-b6Q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Yuj-W1-KEj"/>
                     <constraint firstAttribute="trailing" secondItem="cCO-X1-EQ0" secondAttribute="trailing" constant="20.5" id="bQe-zv-Zxj"/>
                     <constraint firstItem="cCO-X1-EQ0" firstAttribute="width" secondItem="cCO-X1-EQ0" secondAttribute="height" multiplier="1:1" id="ide-Nw-1LX"/>
-                    <constraint firstItem="wjF-FW-XIk" firstAttribute="leading" secondItem="NJw-t3-b6Q" secondAttribute="leading" id="zLp-xR-Ezu"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="companyLabel" destination="tar-Au-hZp" id="FE3-KL-VuS"/>
-                <outlet property="companyTextField" destination="IJm-tx-pxQ" id="3Jg-Q5-kgf"/>
                 <outlet property="dateLabel" destination="0eT-7B-iig" id="HHH-OI-hm5"/>
-                <outlet property="dateTextField" destination="lt9-Nj-20J" id="qjD-yU-C5u"/>
-                <outlet property="editingStack" destination="wjF-FW-XIk" id="r91-ZM-7Ha"/>
-                <outlet property="endDateTextField" destination="vYj-Ye-DbA" id="DGX-3f-JbF"/>
-                <outlet property="positionTextField" destination="73s-jO-daO" id="vup-hE-kfO"/>
                 <outlet property="viewingStack" destination="NJw-t3-b6Q" id="cz8-1X-f8w"/>
             </connections>
             <point key="canvasLocation" x="50.399999999999999" y="51.724137931034484"/>

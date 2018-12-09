@@ -14,24 +14,12 @@ struct Person: Codable {
     
     let id: Int
     let name: String
-    let education: [Education]
-    let experience: [Experience]
+    var education: [Education]
+    var experience: [Experience]
     let qualities: [Quality]
     let lastActive: String?
     
-    var profilePictureURL: String {
-        return "http://graph.facebook.com/\(id)/picture?type=large"
-    }
-    
-    func profilePicture(completion: @escaping (UIImage?) -> Void) {
-        Alamofire.request(profilePictureURL, method: .get).responseImage { response in
-            guard let image = response.result.value else {
-                completion(nil)
-                return
-            }
-            completion(image)
-        }
-    }
+
     
     func equals(Person2: Person) -> Bool {
         if self.id == Person2.id {

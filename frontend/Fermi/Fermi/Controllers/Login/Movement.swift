@@ -24,7 +24,7 @@ class Movement {
     }
     
     func showFermi(animated: Bool) {
-        let controller = main.instantiateViewController(withIdentifier: "fermi") as! Fermi
+        let controller = main.instantiateViewController(withIdentifier: "fermi") as! UIPageViewController
         host.present(controller, animated: animated, completion: nil)
     }
     

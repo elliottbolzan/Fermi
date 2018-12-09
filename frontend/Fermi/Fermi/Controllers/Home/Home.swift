@@ -13,6 +13,7 @@ class Home: UICollectionViewController {
 
     var people = [Person]()
     let server = Server()
+    var recordsLeft = true
     
     let reuseIdentifier = "Cell"
     let insets = UIEdgeInsets(top: 40.0, left: 40.0, bottom: 40.0, right: 40.0)
@@ -23,10 +24,19 @@ class Home: UICollectionViewController {
     var filterView: FilterView!
     var searchController = UISearchController(searchResultsController: nil)
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:
+            #selector(Home.handleRefresh(_:)), for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = Constants.tint
+        return refreshControl
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.collectionView.refreshControl = refreshControl
         self.filterView = UIViewController.createWith(identifier: "filter", type: FilterView.self)
         self.filterView.searchBar = searchController.searchBar
         self.filter = Filter(name: "", company: "", university: "", qualities: [])
@@ -34,21 +44,31 @@ class Home: UICollectionViewController {
         refresh()
     }
     
-    func refresh() {
-        print("Refresh")
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        refresh()
+        refreshControl.endRefreshing()
+    }
+    
+    func refresh(clear: Bool = false) {
+        if clear {
+            self.people = []
+            self.collectionView.reloadData()
+        }
         Server.getUsersWith(filter: self.filter, completion: { users in
-            print("Refereshed")
             self.people = users
             self.collectionView.reloadData()
         })
     }
     
     func getMore() {
-        print("Get More")
         Server.getUsersWith(filter: self.filter, completion: { users in
-            print("Got more")
-            self.people.append(contentsOf: users)
-            self.collectionView.reloadData()
+            if users.count != 0 {
+                self.people.append(contentsOf: users)
+                self.collectionView.reloadData()
+            }
+            else {
+                self.recordsLeft = false
+            }
         })
     }
     
@@ -72,8 +92,9 @@ extension Home: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        recordsLeft = true
         filter.clear()
-        refresh()
+        refresh(clear: filter != filterView.filter())
         filterView.reset()
         removeFilter(searchBar: searchBar)
     }
@@ -99,11 +120,14 @@ extension Home: UISearchBarDelegate {
     }
     
     func updateFilter() {
-        self.filter = self.filterView.filter()
+        recordsLeft = true
+        let newFilter = filterView.filter()
+        let filterUpdated = filter != newFilter
+        filter = newFilter
         if !filter.active() {
-            self.searchController.isActive = false
+            searchController.isActive = false
         }
-        refresh()
+        refresh(clear: filterUpdated)
     }
     
 }
@@ -115,16 +139,12 @@ extension Home {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if (self.people.count == 0) {
-            self.collectionView.setEmptyMessage("No results found.")
-        } else {
-            self.collectionView.restore()
-        }
         return self.people.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.row == self.people.count - 5 {
+        if recordsLeft && indexPath.row == self.people.count - 5 {
+            print("5th from last")
             self.filter.offset += self.filter.limit
             getMore()
         }
