@@ -11,8 +11,7 @@ import UIKit
 class QualityCell: UICollectionViewCell {
 
     @IBOutlet weak var visualPercentageView: UIView!
-    @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: BadgeButton!
     
     let shapeLayer = CAShapeLayer()
     let percentLabel = UILabel()
@@ -21,13 +20,20 @@ class QualityCell: UICollectionViewCell {
         super.awakeFromNib()
         self.backgroundColor = .clear
         makeCircle()
-        descriptionLabel.textColor = UIColor.white
-        descriptionLabel.textAlignment = .center
+        setupDescription()
+    }
+    
+    func setupDescription() {
+        self.descriptionLabel.backgroundColor = UIColor.clear
+        self.descriptionLabel.layer.borderWidth = 1
+        self.descriptionLabel.layer.borderColor = UIColor.white.cgColor
+        self.descriptionLabel.setTitleColor(UIColor.white, for: .normal)
+        self.descriptionLabel.isUserInteractionEnabled = false
     }
     
     func load(quality: Quality) {
         percentLabel.text = String(quality.percentile) + "%"
-        descriptionLabel.text = quality.name.capitalized
+        self.descriptionLabel.setTitle(quality.name.uppercased(), for: .normal)
         animateCircle(to: CGFloat(quality.percentile))
     }
     

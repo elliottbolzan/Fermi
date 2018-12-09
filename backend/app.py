@@ -74,7 +74,7 @@ def updateReferral():
     if not Authorization().authorized(request.headers):
         return unauthorized
     content = request.get_json()
-    result = dao.updateReferral(ReferralDTO(content['id'], content['sender'], content['recipient'], content['company'], content['status']))
+    result = dao.updateReferral(ReferralDTO(content['id'], content['senderId'], "", content['recipientId'], "", content['company'], content['status']))
     return jsonify(result.serialize())
 
 if __name__ == '__main__':

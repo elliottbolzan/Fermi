@@ -18,7 +18,8 @@ class Fermi: UIPageViewController {
         self.view.backgroundColor = UIColor.groupTableViewBackground
         let referrals = storyboard!.instantiateViewController(withIdentifier: "referrals")
         let home = storyboard!.instantiateViewController(withIdentifier: "home")
-        let profile = storyboard!.instantiateViewController(withIdentifier: "profile")
+        let profile = storyboard!.instantiateViewController(withIdentifier: "profile") as! Profile
+        profile.setup(person: User.shared.person!)
         pages.append(referrals)
         pages.append(home)
         pages.append(profile)
