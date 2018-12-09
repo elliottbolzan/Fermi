@@ -14,12 +14,19 @@ struct Person: Codable {
     
     let id: Int
     let name: String
-    let education: [Education]
-    let experience: [Experience]
+    var education: [Education]
+    var experience: [Experience]
     let qualities: [Quality]
     let lastActive: String?
     
 
+    
+    func equals(Person2: Person) -> Bool {
+        if self.id == Person2.id {
+            return true
+        }
+        return false
+    }
     
     func fact() -> String {
         let interesting = mostInterestingQuality()

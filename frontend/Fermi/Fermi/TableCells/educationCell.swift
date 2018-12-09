@@ -12,12 +12,12 @@ class educationCell: UITableViewCell {
 
     @IBOutlet weak var universityLabel: UILabel!
     @IBOutlet weak var classLabel: UILabel!
-    @IBOutlet weak var majorLabel: UILabel!
     
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.selectionStyle = UITableViewCell.SelectionStyle.none
         // Initialization code
     }
 
@@ -27,10 +27,9 @@ class educationCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func fullInit(_ university: String, year: Int, major: String, majorType: String) {
-        universityLabel.text = university
+    func fullInit(_ university: String, year: Int, majorType: String) {
+        universityLabel.text = majorType + " from " + university
         classLabel.text = "Class of " + String(year)
-        majorLabel.text = majorType + " in " + major
     }
     
     
