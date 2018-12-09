@@ -71,8 +71,17 @@ extension Server {
         }
     }
     
-    public class func updateUser(person: Person, completion: @escaping () -> Void) {
-        
+    public class func updateUser(person: Person, completion: @escaping (Person) -> Void) {
+        let uri = Constants.host + "user/update"
+        Alamofire.request(uri, method: HTTPMethod.post, parameters: person.toJSON(), encoding: JSONEncoding.default, headers: headers()).validate().responseJSON { response in
+            guard response.result.isSuccess,
+                let response = response.result.value as? [String: Any] else {
+                    return
+            }
+            let data = try! JSONSerialization.data(withJSONObject: response, options: [])
+            let decoded = String(data: data, encoding: .utf8)!
+            completion(Person.from(json: decoded))
+        }
     }
     
     public class func getUsersWith(filter: Filter, completion: @escaping ([Person]) -> Void) {

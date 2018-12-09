@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Sat Nov  3 00:30:35 2018
+Created on Fri Dec  7 19:42:23 2018
 
 @author: Thara
 """
+
 import json
 from flask import Flask, request, jsonify
 from PersonDAO import PersonDAO
@@ -33,6 +34,15 @@ def createUser():
     user = dao.createPerson(content['id'], content['name'], content['token'])
     return jsonify(user.serialize())
 
+@app.route('/user/update', methods = ['POST'])
+def updateUser():
+    dao = PersonDAO()
+    if not Authorization().authorized(request.headers):
+        return unauthorized
+    content = request.get_json()
+    user = dao.updatePerson(content["id"], content["education"], content["experience"])
+    return jsonify(user.serialize())
+
 @app.route('/user/filter', methods=['POST'])
 def filter():
     dao = PersonDAO()
@@ -41,21 +51,13 @@ def filter():
     filtered = dao.filter(request.get_json())
     return jsonify([x.serialize() for x in filtered])
 
-@app.route('/referrals/forUser/<userId>', methods=['GET'])
-def getReferrals(userId = None):
-    dao = ReferralDAO()
-    if not Authorization().authorized(request.headers):
-        return unauthorized
-    referrals = dao.getReferrals(userId)
-    return jsonify([x.serialize() for x in referrals])
-
 @app.route('/referrals/create', methods=['POST'])
 def createReferral():
     dao = ReferralDAO()
     if not Authorization().authorized(request.headers):
         return unauthorized
     content = request.get_json()
-    result = dao.createReferral(ReferralDTO(-1, -1, content['sender'], -1, content['recipient'], -1, content['status']))
+    result = dao.createReferral(ReferralDTO(-1, content['sender'], content['recipient'], -1, content['status']))
     return jsonify(result.serialize())
 
 @app.route('/referrals/update', methods=['POST'])
@@ -64,7 +66,7 @@ def updateReferral():
     if not Authorization().authorized(request.headers):
         return unauthorized
     content = request.get_json()
-    result = dao.updateReferral(ReferralDTO(content['id'], content['senderId'], content['sender'], content['recipientId'], content['recipient'], content['company'], content['status']))
+    result = dao.updateReferral(ReferralDTO(content['id'], content['sender'], content['recipient'], content['company'], content['status']))
     return jsonify(result.serialize())
 
 if __name__ == '__main__':
