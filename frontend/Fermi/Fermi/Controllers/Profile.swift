@@ -10,260 +10,350 @@ import UIKit
 
 class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    
-    // Outlets
-    @IBOutlet weak var profilePic: PolyImageView!
+    @IBOutlet weak var profilePicture: PolyImageView!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var collectionView: UICollectionView!
-    
-    // person variable -- stores data arrays necessary for cell population.
+    @IBOutlet weak var qualityView: UICollectionView!
+    @IBOutlet weak var educationView: UITableView!
+    @IBOutlet weak var experienceView: UITableView!
+    @IBOutlet weak var contactButton: BadgeButton!
+    @IBOutlet weak var backButton: UIButton!
+
     var person: Person = User.shared.person!
     
-    @IBOutlet weak var requestButton: UIButton!
-    @IBOutlet weak var sendButton: UIButton!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        segmentedControl.selectedSegmentIndex = 0
+    }
     
-    var personIsUser = true
-    
+    func setup() {
+        self.view.backgroundColor = State.shared.colorFor(id: person.id)
+        setupName()
+        setupProfilePicture()
+        setupQualityView()
+        setupEducationView()
+        setupExperienceView()
+        if thisIsMe() {
+            setupMe()
+        }
+        else {
+            setupThem()
+        }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // determines if person variable is the user themself.
-        if !person.equals(Person2: User.shared.person!) {
-            personIsUser = false
-            setUpExternal()
-        }
-        else {
-            setUpInternal()
-        }
-        profilePic.imageView.image = #imageLiteral(resourceName: "wallpaper.wiki-Free-Download-Fruit-Background-PIC-WPD004648")
-        
-        // Set selected index to 0
-        segmentedControl.selectedSegmentIndex = 0
-        
-        
-        // sets background color
-        if self.view.backgroundColor == UIColor.white {
-            self.view.backgroundColor = State.shared.colorFor(id: User.shared.person!.id)
-        }
-        
-        profileName.text = person.name
-        
-        // Initialize Views for segmented control
-        initializeTableView()
-        initializeCollectionView()
-        
-        
-        // Show the view for the first segmented control index.
-        collectionView.isHidden = false
-        tableView.isHidden = true
-        
-        // In order to allow switching between tabs
-        collectionView.reloadData()
-        tableView.reloadData()
-        
+        self.navigationController?.navigationBar.isHidden = true
+        setup()
     }
-    
-    func setUpExternal() {
-        requestButton.isHidden = false
-        sendButton.isHidden = false
-        navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Actions", style: UIBarButtonItem.Style.plain, target: self, action: #selector(actionsPressed(_:)))
-        
-    }
-    
-    @objc func actionsPressed(_ sender: Any) {
-        // I was thinking here that we could do a similar thing to what you did in the referrals tab with the alert popping up
-        //let alert = UIAlertController(title: "Request or send a referral to " + person.name + "?", message: "", preferredStyle: .actionSheet)
-    }
-    
-    func setUpInternal() {
-        requestButton.isHidden = true
-        sendButton.isHidden = true
-    }
-    
-    func initializeTableView() {
-        
-        // Set background transparent
-        tableView.backgroundColor = self.view.backgroundColor
-        
-        //Set up Table View Controller
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        //Creates the nib for the table view to reference
-        let nibName1 = UINib(nibName: "educationCell", bundle: nil)
-        let nibName2 = UINib(nibName: "experienceCell", bundle: nil)
-        let nibName3 = UINib(nibName: "addExperience", bundle: nil)
-        
-        
-        //registers the nib for use with the table views
-        tableView.register(nibName1, forCellReuseIdentifier: "educationCell")
-        tableView.register(nibName2, forCellReuseIdentifier: "experienceCell")
-        tableView.register(nibName3, forCellReuseIdentifier: "addExperience")
-    }
-    
-    func initializeCollectionView() {
-        
-        // Set background transparent
-        collectionView.backgroundColor = self.view.backgroundColor
-        
-        //Set up Collection View
-        collectionView.delegate = self
-        collectionView.dataSource = self
-    }
-
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        //self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.navigationBar.isHidden = false
     }
     
+    func thisIsMe() -> Bool {
+        return person.id == User.shared.person!.id
+    }
     
+    func setupName() {
+        profileName.text = person.name
+        profileName.font = UIFont.systemFont(ofSize: 34, weight: .bold)
+        profileName.textColor = .white
+    }
     
-    // Segmented Control configuration
+    func setupProfilePicture() {
+        Server.profilePicture(id: person.id, completion: { image in
+            self.profilePicture.imageView.image = image
+        })
+    }
+    
+    func setupMe() {
+        contactButton.isHidden = true
+    }
+    
+    func setupThem() {
+        contactButton.isHidden = false
+    }
+    
+    func showBackButton() {
+        backButton.isHidden = false
+    }
+    
+    @IBAction func back() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func setupEducationView() {
+        educationView.backgroundColor = .clear
+        educationView.delegate = self
+        educationView.dataSource = self
+        educationView.register(UINib(nibName: "EducationCell", bundle: nil), forCellReuseIdentifier: "EducationCell")
+        educationView.register(UINib(nibName: "AddCell", bundle: nil), forCellReuseIdentifier: "AddCell")
+        educationView.isHidden = true
+        educationView.tableFooterView = UIView()
+    }
+    
+    func setupExperienceView() {
+        experienceView.backgroundColor = .clear
+        experienceView.delegate = self
+        experienceView.dataSource = self
+        experienceView.register(UINib(nibName: "ExperienceCell", bundle: nil), forCellReuseIdentifier: "ExperienceCell")
+        experienceView.register(UINib(nibName: "AddCell", bundle: nil), forCellReuseIdentifier: "AddCell")
+        experienceView.isHidden = true
+        experienceView.tableFooterView = UIView()
+    }
+    
+    func setupQualityView() {
+        qualityView.backgroundColor = .clear
+        qualityView.delegate = self
+        qualityView.dataSource = self
+        qualityView.isHidden = false
+    }
+    
     @IBAction func indexChanged(_ sender: Any) {
         if segmentedControl.selectedSegmentIndex == 0 {
-            collectionView.isHidden = false
-            collectionView.reloadData()
-            tableView.isHidden = true
+            qualityView.isHidden = false
+            educationView.isHidden = true
+            experienceView.isHidden = true
+            qualityView.reloadData()
+        }
+        else if segmentedControl.selectedSegmentIndex == 1 {
+            qualityView.isHidden = true
+            educationView.isHidden = false
+            experienceView.isHidden = true
+            educationView.reloadData()
         }
         else {
-            collectionView.isHidden = true
-            tableView.isHidden = false
-            tableView.reloadData()
+            qualityView.isHidden = true
+            educationView.isHidden = true
+            experienceView.isHidden = false
+            educationView.reloadData()
         }
     }
     
-    @IBAction func sendButton(_ sender: Any) {
-        print("send referral")
-    }
-    
-    @IBAction func requestButton(_ sender: Any) {
-        print("send referral request")
-    }
-    
-    
-    
-    
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        navigationController?.navigationBar.topItem?.rightBarButtonItem = nil
-    }
-
 }
 
-// Handles all Table View stuff.
 extension Profile {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if segmentedControl.selectedSegmentIndex == 1 {
-            if indexPath.item > person.education.count { return 30 }
+    
+    @IBAction func contact(sender: UIButton) {
+        let alert = UIAlertController(title: "Contacting " + person.name, message: "The following options are available.", preferredStyle: .actionSheet)
+        print(User.shared.person!.experience.count)
+        if User.shared.person!.experience.count > 0 {
+            alert.addAction(UIAlertAction(title: "Refer", style: .default, handler: { action in
+                Server.createReferral(sender: User.shared.person!.id, recipient: self.person.id, status: Status.granted, completion: { referral in })
+            }))
         }
-        if segmentedControl.selectedSegmentIndex == 2 {
-            if indexPath.item > person.experience.count { return 30 }
+        if person.experience.count > 0 {
+            alert.addAction(UIAlertAction(title: "Request Referral", style: .default, handler: { action in
+                Server.createReferral(sender: self.person.id, recipient: User.shared.person!.id, status: Status.requested, completion: { referral in })
+            }))
         }
-        return 150
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
     }
     
+}
+
+extension Profile {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if (tableView == educationView && indexPath.item > person.education.count) ||
+            (tableView == experienceView && indexPath.item > person.experience.count) {
+            return 30
+        }
+        return 100
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if User.shared.person!.equals(Person2: self.person) {
+        if thisIsMe() {
             if segmentedControl.selectedSegmentIndex == 1 {
-                if person.education.count == 3 { return person.education.count }
-                else { return person.education.count + 1 }
+                return min(3, person.education.count + 1)
             }
-            else if segmentedControl.selectedSegmentIndex == 2 {
-                if person.experience.count == 1 { return person.experience.count }
-                else { return person.experience.count + 1 }
-            }
-            else { return 0 }
+            return 1
         }
         else {
             if segmentedControl.selectedSegmentIndex == 1 {
                 return person.education.count
             }
-            else {
-                return person.experience.count
-            }
+            return person.experience.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        if segmentedControl.selectedSegmentIndex == 1 {
+        if tableView == educationView {
             if indexPath.item >= person.education.count {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "addExperience", for: indexPath) as! addExperience
-                cell.fullInit("Add Education")
-                return cell
+                return tableView.dequeueReusableCell(withIdentifier: "AddCell", for: indexPath) as! AddCell
             }
-            else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "educationCell", for: indexPath) as! educationCell
-                let currentEducation = person.education[indexPath.item]
-                cell.fullInit(currentEducation.university, year: 2021, majorType: currentEducation.degreeType)
-                cell.backgroundColor = self.view.backgroundColor
-                return cell
-            }
+            let cell = tableView.dequeueReusableCell(withIdentifier: "EducationCell", for: indexPath) as! EducationCell
+            cell.load(education: person.education[indexPath.item])
+            return cell
         }
-        else if segmentedControl.selectedSegmentIndex == 2 {
-            if indexPath.item > person.education.count {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "addExperience", for: indexPath) as! addExperience
-                cell.fullInit("Add Experience")
-                return cell
+        else if tableView == experienceView {
+            if indexPath.item >= person.experience.count {
+                return tableView.dequeueReusableCell(withIdentifier: "AddCell", for: indexPath) as! AddCell
             }
-            else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "experienceCell", for: indexPath) as! experienceCell
-                let currentEducation = person.experience[indexPath.item]
-                cell.fullInit(currentEducation.company, date: [currentEducation.startdate, currentEducation.enddate ?? "present"], position: currentEducation.position)
-                cell.backgroundColor = self.view.backgroundColor
-                return cell
-            }
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ExperienceCell", for: indexPath) as! ExperienceCell
+            cell.load(experience: person.experience[indexPath.item])
+            return cell
         }
-        else { return UITableViewCell() }
+        return UITableViewCell()
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        if User.shared.person!.equals(Person2: self.person) {
-            return true
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)!
+        if thisIsMe() {
+            if tableView == educationView {
+                clickedEducationRow(cell: cell, indexPath: indexPath)
+            }
+            else if tableView == experienceView {
+                clickedExperienceRow(cell: cell, indexPath: indexPath)
+            }
+        }
+    }
+    
+    func clickedEducationRow(cell: UITableViewCell, indexPath: IndexPath) {
+        let controller = storyboard!.instantiateViewController(withIdentifier: "education") as! UINavigationController
+        let child = controller.viewControllers[0] as! DraftEducation
+        if let _ = cell as? EducationCell {
+            child.load(education: self.person.education[indexPath.item], completion: { education in
+                self.updatedEducation(education: education)
+            })
+            let alert = UIAlertController(title: "Do you want to edit or delete this entry?", message: nil, preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Edit", style: .default, handler: { action in
+                DispatchQueue.main.async { [weak self] in
+                    self!.present(controller, animated: true, completion: nil)
+                }
+            }))
+            alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { action in
+                self.person.education.remove(at: indexPath.item)
+                self.educationView.reloadData()
+                self.update()
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            DispatchQueue.main.async { [weak self] in
+                self!.present(alert, animated: true)
+            }
         }
         else {
-            return false
+            child.load(education: nil, completion: { education in
+                self.addedEducation(education: education)
+            })
+            DispatchQueue.main.async { [weak self] in
+                self!.present(controller, animated: true, completion: nil)
+            }
         }
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == .delete) {
-            // TODO: Handle delete for the server
-            
-            
-            
-            // Handle delete locally
-            if segmentedControl.selectedSegmentIndex == 1 {
-                print("deleting education!!")
-                person.education.remove(at: indexPath.item)
+    func clickedExperienceRow(cell: UITableViewCell, indexPath: IndexPath) {
+        let controller = storyboard!.instantiateViewController(withIdentifier: "experience") as! UINavigationController
+        let child = controller.viewControllers[0] as! DraftExperience
+        if let _ = cell as? ExperienceCell {
+            child.load(experience: self.person.experience[indexPath.item], completion: { experience in
+                self.updatedExperience(experience: experience)
+            })
+            let alert = UIAlertController(title: "Do you want to edit or delete this entry?", message: nil, preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Edit", style: .default, handler: { action in
+                DispatchQueue.main.async { [weak self] in
+                    self!.present(controller, animated: true, completion: nil)
+                }
+            }))
+            alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { action in
+                self.person.experience.remove(at: indexPath.item)
+                self.experienceView.reloadData()
+                self.update()
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            DispatchQueue.main.async { [weak self] in
+                self!.present(alert, animated: true)
             }
-            else {
-                print("deleting experience!!")
-                person.experience.remove(at: indexPath.item)
+        }
+        else {
+            child.load(experience: nil, completion: { experience in
+                self.addedExperience(experience: experience)
+            })
+            DispatchQueue.main.async { [weak self] in
+                self!.present(controller, animated: true, completion: nil)
             }
-            tableView.reloadData()
         }
     }
     
 }
 
-
-
-// Handles all CollectionView stuff
-extension Profile {
+extension Profile: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let yourWidth = collectionView.bounds.width / 2.0
+        let yourHeight = CGFloat(140)
+        return CGSize(width: yourWidth, height: yourHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets.zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "statsCell", for: indexPath) as! statsCell
-        cell.fullInit(person.qualities[indexPath.item].percentile, description: person.qualities[indexPath.item].name.capitalized)
-        cell.backgroundColor = self.view.backgroundColor
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "QualityCell", for: indexPath) as! QualityCell
+        cell.load(quality: person.qualities[indexPath.row])
         return cell
     }
+    
+}
+
+extension Profile {
+    
+    func addedEducation(education: Education) {
+        self.person.education.append(education)
+        self.person.education = self.person.education.sorted(by: { Constants.degrees.firstIndex(of: $0.degreeType)! < Constants.degrees.firstIndex(of: $1.degreeType)! })
+        educationView.reloadData()
+        update()
+    }
+    
+    func updatedEducation(education: Education) {
+        for i in 0..<self.person.education.count {
+            let entry = self.person.education[i]
+            if entry.id == education.id {
+                self.person.education.remove(at: i)
+                break
+            }
+        }
+        addedEducation(education: education)
+    }
+    
+    func addedExperience(experience: Experience) {
+        self.person.experience.append(experience)
+        experienceView.reloadData()
+        update()
+    }
+    
+    func updatedExperience(experience: Experience) {
+        for i in 0..<self.person.experience.count {
+            let entry = self.person.experience[i]
+            if entry.id == experience.id {
+                self.person.experience.remove(at: i)
+                break
+            }
+        }
+        addedExperience(experience: experience)
+    }
+    
+    func update() {
+        User.shared.person = person
+        Server.updateUser(person: person, completion: { person in
+            self.person = person
+        })
+    }
+    
 }

@@ -10,102 +10,105 @@ import UIKit
 import Eureka
 
 class DraftEducation: FormViewController {
-
+    
+    var education: Education!
+    var completion: ((Education) -> Void)!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.prefersLargeTitles = false
+        self.title = "Edit"
+        setupNavigationBar()
         setupForm()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    func setupNavigationBar() {
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancel))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(save))
+    }
+    
+    func load(education: Education?, completion: @escaping (Education) -> Void) {
+        self.education = education
+        if self.education == nil {
+            self.education = Education(id: -1, university: "", degreeType: "", startdate: "", enddate: nil)
+        }
+        self.completion = completion
+    }
+    
+    @objc func cancel() {
+        self.navigationController!.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func save() {
+        if form.validate().count == 0 {
+            self.education!.university = form.values()["university"] as! String
+            self.education!.degreeType = form.values()["degree"] as! String
+            self.education!.startdate = (form.values()["startdate"] as! Date).toBackendFormat()
+            if let enddate = form.values()["enddate"] as? Date {
+                self.education!.enddate = enddate.toBackendFormat()
+            }
+            else {
+                self.education!.enddate = nil
+            }
+            completion(self.education)
+            self.navigationController!.dismiss(animated: true, completion: nil)
+        }
     }
     
     func setupForm() {
         form
-            +++ Section("Is / was at")
+            +++ Section("Education")
             <<< TextRow(){ row in
-                row.tag = "company"
-                row.title = "Company"
-                row.placeholder = "Facebook"
-            }
-            <<< TextRow(){ row in
+                row.add(rule: RuleRequired())
                 row.tag = "university"
                 row.title = "University"
                 row.placeholder = "Duke University"
+                row.value = education.university
+            }.cellUpdate { cell, row in
+                if !row.isValid {
+                    cell.titleLabel!.textColor = .red
+                }
             }
-            +++ Section("Has")
-            <<< ButtonRow(){ row in
-                row.title = "Add Quality"
-                }.onCellSelection({ cell, row in
-                    self.form.insert(self.addMetric(), at: self.form.endIndex - 2)
-                })
-            +++ Section()
-            <<< ButtonRow(){ row in
-                row.title = "Clear"
-                }.cellUpdate { cell, row in
-                    cell.textLabel!.textColor = UIColor.red
-                }.onCellSelection({ cell, row in
-                    self.searchBar.text = ""
-                    let company = self.form.rowBy(tag: "company") as! TextRow
-                    company.value = ""
-                    company.updateCell()
-                    let university = self.form.rowBy(tag: "university") as! TextRow
-                    university.value = ""
-                    university.updateCell()
-                    while self.form.endIndex > 3 {
-                        self.form.remove(at: 1)
-                    }
-                })
-            <<< ButtonRow(){ row in
-                row.title = "Filter"
-                }.cellUpdate { cell, row in
-                    cell.textLabel!.textColor = UIColor.white
-                    cell.backgroundColor = Constants.tint
-                }.onCellSelection({ cell, row in
-                    self.searchBar.endEditing(true)
-                    self.searchBar.delegate!.searchBarSearchButtonClicked!(self.searchBar)
-                })
+            <<< PushRow<String>(){ row in
+                row.add(rule: RuleRequired())
+                row.tag = "degree"
+                row.title = "Degree"
+                row.options = ["Bachelors", "Masters", "Doctorate"]
+                if education.degreeType != "" {
+                    row.value = education.degreeType
+                }
+            }.onPresent { from, to in
+                from.title = "Edit"
+                to.title = "Degree"
+            }.cellUpdate { cell, row in
+                if !row.isValid {
+                    cell.textLabel!.textColor = .red
+                }
+            }
+            <<< DateInlineRow(){ row in
+                row.add(rule: RuleRequired())
+                row.tag = "startdate"
+                row.title = "Start Date"
+                if education.startdate != "" {
+                    row.value = Date.fromBackendFormat(input: education.startdate)
+                }
+            }.cellUpdate { cell, row in
+                if !row.isValid {
+                    cell.textLabel!.textColor = .red
+                }
+            }
+            <<< DateInlineRow(){ row in
+                row.tag = "enddate"
+                row.title = "End Date"
+                if education.enddate != nil {
+                    row.value = Date.fromBackendFormat(input: education.enddate!)
+                }
+            }
+        
     }
     
-    func addMetric() -> Section {
-        let id = self.form.endIndex - 2
-        return
-            Section(header: "Is in the", footer: self.descriptions["Generosity"]!)
-                <<< StepperRow(){ row in
-                    row.tag = "\(id):percentile"
-                    row.title = "Percentile"
-                    row.cell.stepper.minimumValue = 10
-                    row.cell.stepper.maximumValue = 90
-                    row.cell.stepper.stepValue = 10
-                    row.value = 50
-                    }.cellUpdate({ (cell, row) in
-                        if row.value != nil {
-                            cell.valueLabel?.text = "\(Int(row.value!))%"
-                        }
-                    }).onChange({ (row) in
-                        if row.value != nil {
-                            row.cell.valueLabel?.text = "\(Int(row.value!))%"
-                        }
-                    })
-                <<< PushRow<String>(){ row in
-                    row.tag = "\(id):quality"
-                    row.title = "When It Comes To"
-                    row.options = ["Generosity", "Impact", "Popularity", "Success"]
-                    row.value = "Generosity"
-                    }.onPresent { from, to in
-                        to.title = "Quality"
-                        self.navigationController?.navigationBar.prefersLargeTitles = false
-                    }.onChange({ row in
-                        if row.value == nil {
-                            row.value = "Generosity"
-                            row.reload()
-                        }
-                        else {
-                            row.section!.footer = HeaderFooterView(title: self.descriptions[row.value!])
-                            self.tableView.reloadData()
-                        }
-                    })
-                <<< ButtonRow() {
-                    $0.title = "Delete"
-                    }.onCellSelection({ cell, row in
-                        self.form.remove(at: row.section!.index!)
-                    })
-    }
-
 }

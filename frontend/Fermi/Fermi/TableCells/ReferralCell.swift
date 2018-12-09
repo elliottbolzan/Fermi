@@ -28,7 +28,6 @@ class ReferralCell: UITableViewCell {
     func setup(controller: Referrals, referral: Referral) {
         self.controller = controller
         self.referral = referral
-        //self.companyLabel.text = " » " + referral.company
         if referral.iAmSender() {
             // I sent it.
             setupTheirReferral()

@@ -49,6 +49,22 @@ class PersonDAO():
         person = self.getPerson(identifier)
         return person
     
+    def getCompanyForUser(self, identifier):
+        sql = self.queryFromFile("company_for_user.sql")
+        values = (identifier, )
+        try:
+            conn = Connection()
+            conn.cur.execute(sql, values)
+            row = conn.cur.fetchone()
+            if row is not None:
+                return row[0]
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error) 
+        finally:
+            if conn is not None:
+                conn.close()
+        return None
+
     def refreshEducation(self, identifier):
         sql = self.queryFromFile("user_update/refresh_education.sql")
         values = (identifier, )
@@ -86,7 +102,8 @@ class PersonDAO():
             conn = Connection()
             conn.cur.execute(sql, values)
             row = conn.cur.fetchone()
-            return row[0]
+            if row is not None:
+                return row[0]
         except (Exception, psycopg2.DatabaseError) as error:
             print(error) 
         finally:
@@ -119,7 +136,8 @@ class PersonDAO():
             conn = Connection()
             conn.cur.execute(sql, values)
             row = conn.cur.fetchone()
-            return row[0]
+            if row is not None:
+                return row[0]
         except (Exception, psycopg2.DatabaseError) as error:
             print(error) 
         finally:
@@ -303,6 +321,8 @@ class PersonDAO():
             row = conn.cur.fetchone()
             if row is not None:
                 qualities = [QualityDTO("generosity", row[0]), QualityDTO("impact", row[1]), QualityDTO("popularity", row[2]), QualityDTO("success", row[3])]
+            else:
+                qualities = [QualityDTO("generosity", None), QualityDTO("impact", None), QualityDTO("popularity", None), QualityDTO("success", None)]
         except (Exception, psycopg2.DatabaseError) as error:
             print(error) 
         finally:

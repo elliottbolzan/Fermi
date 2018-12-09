@@ -10,8 +10,8 @@ import Foundation
 
 struct Education: Codable {
     let id: Int
-    let university: String
-    let degreeType: String
-    let startdate: String
-    let enddate: String?
+    var university: String
+    var degreeType: String
+    var startdate: String
+    var enddate: String?
 }

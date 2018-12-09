@@ -38,6 +38,7 @@ class Card: UICollectionViewCell {
         self.type!.backgroundColor = UIColor.clear
         self.type!.layer.borderWidth = 1
         self.type!.setTitleColor(UIColor.black, for: .normal)
+        self.type?.isUserInteractionEnabled = false
 
     }
     

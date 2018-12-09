@@ -1,18 +1,21 @@
 import psycopg2
+from PersonDAO import PersonDAO
 from ReferralDTO import ReferralDTO
 from Connection import Connection
 
 class ReferralDAO():
 
     def createReferral(self, referral):
-        values = (referral.sender, referral.recipient, referral.company, referral.status, referral.timestamp)
+        companyId = PersonDAO().getCompanyForUser(referral.senderId)
+        values = (referral.senderId, referral.recipientId, companyId, referral.status, referral.timestamp)
         sql = self.queryFromFile("create_referral.sql")
         conn = None
         try:
             conn = Connection()
             conn.cur.execute(sql, values)
             conn.commit()
-            referral.identifier = conn.cur.fetchone()[0]
+            row = conn.cur.fetchone()
+            referral.identifier, referral.company = row[0], row[1]
             conn.close()
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)

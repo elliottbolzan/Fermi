@@ -1,4 +1,4 @@
-SELECT 
+SELECT
 	Person.id, 
 	Person.name, 
 	Bachelors.id,
