@@ -12,8 +12,15 @@ extension Date {
     
     func toBackendFormat() -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatter.dateFormat = "E, d MMM yyyy HH:mm:ss Z"
         return formatter.string(from: self)
     }
+    
+    static func fromBackendFormat(input: String) -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "E, d MMM yyyy HH:mm:ss Z"
+        return formatter.date(from: input)!
+    }
+    
     
 }

@@ -139,7 +139,7 @@ extension Server {
     }
     
     public class func getReferralsFor(id: Int, completion: @escaping ([Referral], [Referral]) -> Void) {
-        let uri = Constants.host + "referrals/forUser/" + String(28)
+        let uri = Constants.host + "referrals/forUser/" + String(id)
         Alamofire.request(uri, method: HTTPMethod.get, parameters: nil, encoding: JSONEncoding.default, headers: headers()).validate().responseJSON { response in
             guard response.result.isSuccess,
                 let response = response.result.value as? [[String: Any]] else {

@@ -65,7 +65,7 @@ def createReferral():
     if not Authorization().authorized(request.headers):
         return unauthorized
     content = request.get_json()
-    result = dao.createReferral(ReferralDTO(-1, content['sender'], content['recipient'], -1, content['status']))
+    result = dao.createReferral(ReferralDTO(-1, content['sender'], "", content['recipient'], "", -1, content['status']))
     return jsonify(result.serialize())
 
 @app.route('/referrals/update', methods=['POST'])

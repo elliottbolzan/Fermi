@@ -14,12 +14,10 @@ struct Person: Codable {
     
     let id: Int
     let name: String
-    let education: [Education]
-    let experience: [Experience]
+    var education: [Education]
+    var experience: [Experience]
     let qualities: [Quality]
     let lastActive: String?
-    
-
     
     func fact() -> String {
         let interesting = mostInterestingQuality()

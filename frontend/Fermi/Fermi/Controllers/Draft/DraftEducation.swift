@@ -34,7 +34,7 @@ class DraftEducation: FormViewController {
     func load(education: Education?, completion: @escaping (Education) -> Void) {
         self.education = education
         if self.education == nil {
-            self.education = Education(id: -1, university: "", degreeType: "", startdate: "", enddate: "")
+            self.education = Education(id: -1, university: "", degreeType: "", startdate: "", enddate: nil)
         }
         self.completion = completion
     }
@@ -45,7 +45,6 @@ class DraftEducation: FormViewController {
     
     @objc func save() {
         if form.validate().count == 0 {
-            print(form.values())
             self.education!.university = form.values()["university"] as! String
             self.education!.degreeType = form.values()["degree"] as! String
             self.education!.startdate = (form.values()["startdate"] as! Date).toBackendFormat()
@@ -68,6 +67,7 @@ class DraftEducation: FormViewController {
                 row.tag = "university"
                 row.title = "University"
                 row.placeholder = "Duke University"
+                row.value = education.university
             }.cellUpdate { cell, row in
                 if !row.isValid {
                     cell.titleLabel!.textColor = .red
@@ -78,6 +78,9 @@ class DraftEducation: FormViewController {
                 row.tag = "degree"
                 row.title = "Degree"
                 row.options = ["Bachelors", "Masters", "Doctorate"]
+                if education.degreeType != "" {
+                    row.value = education.degreeType
+                }
             }.onPresent { from, to in
                 from.title = "Edit"
                 to.title = "Degree"
@@ -90,6 +93,9 @@ class DraftEducation: FormViewController {
                 row.add(rule: RuleRequired())
                 row.tag = "startdate"
                 row.title = "Start Date"
+                if education.startdate != "" {
+                    row.value = Date.fromBackendFormat(input: education.startdate)
+                }
             }.cellUpdate { cell, row in
                 if !row.isValid {
                     cell.textLabel!.textColor = .red
@@ -98,6 +104,9 @@ class DraftEducation: FormViewController {
             <<< DateInlineRow(){ row in
                 row.tag = "enddate"
                 row.title = "End Date"
+                if education.enddate != nil {
+                    row.value = Date.fromBackendFormat(input: education.enddate!)
+                }
             }
         
     }

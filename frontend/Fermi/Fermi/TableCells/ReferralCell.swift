@@ -28,7 +28,6 @@ class ReferralCell: UITableViewCell {
     func setup(controller: Referrals, referral: Referral) {
         self.controller = controller
         self.referral = referral
-        self.companyLabel.text = " » " + referral.company
         if referral.iAmSender() {
             // I sent it.
             setupTheirReferral()
@@ -41,6 +40,7 @@ class ReferralCell: UITableViewCell {
     
     func setupTheirReferral() {
         self.nameLabel.text = referral.recipient
+        self.companyLabel.text = " » " + referral.company
         Server.profilePicture(id: referral.recipientId, completion: { image in
             self.profilePicture.imageView.image = image
         })
@@ -58,7 +58,8 @@ class ReferralCell: UITableViewCell {
     }
     
     func setupMyReferral() {
-        self.nameLabel.text = referral.sender
+        self.nameLabel.text = referral.company
+        self.companyLabel.text = " from " + referral.sender
         Server.profilePicture(id: referral.senderId, completion: { image in
             self.profilePicture.imageView.image = image
         })

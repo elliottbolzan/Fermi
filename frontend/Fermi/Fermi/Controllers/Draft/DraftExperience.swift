@@ -34,7 +34,7 @@ class DraftExperience: FormViewController {
     func load(experience: Experience?, completion: @escaping (Experience) -> Void) {
         self.experience = experience
         if self.experience == nil {
-            self.experience = Experience(id: -1, company: "", position: "", startdate: "", enddate: "")
+            self.experience = Experience(id: -1, company: "", position: "", startdate: "", enddate: nil)
         }
         self.completion = completion
     }
@@ -45,7 +45,6 @@ class DraftExperience: FormViewController {
     
     @objc func save() {
         if form.validate().count == 0 {
-            print(form.values())
             self.experience!.company = form.values()["company"] as! String
             self.experience!.position = form.values()["position"] as! String
             self.experience!.startdate = (form.values()["startdate"] as! Date).toBackendFormat()
@@ -68,6 +67,7 @@ class DraftExperience: FormViewController {
                 row.tag = "company"
                 row.title = "Company"
                 row.placeholder = "Facebook"
+                row.value = experience.company
             }.cellUpdate { cell, row in
                 if !row.isValid {
                     cell.titleLabel!.textColor = .red
@@ -78,6 +78,7 @@ class DraftExperience: FormViewController {
                 row.tag = "position"
                 row.title = "Position"
                 row.placeholder = "Software Engineer"
+                row.value = experience.position
             }.cellUpdate { cell, row in
                 if !row.isValid {
                     cell.textLabel!.textColor = .red
@@ -87,6 +88,9 @@ class DraftExperience: FormViewController {
                 row.add(rule: RuleRequired())
                 row.tag = "startdate"
                 row.title = "Start Date"
+                if experience.startdate != "" {
+                    row.value = Date.fromBackendFormat(input: experience.startdate)
+                }
             }.cellUpdate { cell, row in
                 if !row.isValid {
                     cell.textLabel!.textColor = .red
@@ -95,6 +99,9 @@ class DraftExperience: FormViewController {
             <<< DateInlineRow(){ row in
                 row.tag = "enddate"
                 row.title = "End Date"
+                if experience.enddate != nil {
+                    row.value = Date.fromBackendFormat(input: experience.enddate!)
+                }
         }
         
     }

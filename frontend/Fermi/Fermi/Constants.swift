@@ -9,9 +9,8 @@
 import UIKit
 
 struct Constants {
-    
-//    static let host = "http://35.196.36.216:5000/"
-    static let host = "http://localhost:5000/"
+
+    static let host = "http://192.168.1.4:5000/"
     
     static let tint = UIColor(red: 235.0 / 256, green: 151.0 / 256, blue: 62.0 / 256, alpha: 1.0)
     static let dark = UIColor(red: 50.0 / 256, green: 50.0 / 256, blue: 50.0 / 256, alpha: 1.0)
@@ -44,5 +43,7 @@ struct Constants {
         "popularity": "Popular",
         "success": "Successful"
     ]
+    
+    static let degrees = ["Bachelors", "Masters", "Doctorate"]
     
 }

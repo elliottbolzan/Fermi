@@ -158,7 +158,8 @@ extension Home {
         let controller = UIViewController.createWith(identifier: "profile", type: Profile.self)
         controller.view.backgroundColor = State.shared.colorFor(id: people[indexPath.row].id)
         controller.person = people[indexPath.row]
-        navigationController?.pushViewController(controller, animated: true)
+        controller.showBackButton()
+        self.present(controller, animated: true, completion: nil)
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

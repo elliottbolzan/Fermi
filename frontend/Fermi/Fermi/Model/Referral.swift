@@ -20,7 +20,7 @@ struct Referral: Codable {
     let timestamp: String
     
     func iAmSender() -> Bool {
-        return senderId == /*User.shared.person!.id*/ 28
+        return senderId == User.shared.person!.id
     }
     
 }
