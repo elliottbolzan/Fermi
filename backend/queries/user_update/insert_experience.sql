@@ -1,0 +1,1 @@
+INSERT INTO Experience(id, person, company, position, startdate, enddate) VALUES (DEFAULT, %s, %s, %s, %s, %s);

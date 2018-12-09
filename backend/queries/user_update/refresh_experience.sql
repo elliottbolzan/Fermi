@@ -1,0 +1,1 @@
+DELETE FROM Experience WHERE person = %s;

@@ -1,0 +1,1 @@
+INSERT INTO University VALUES(DEFAULT, %s) RETURNING id;

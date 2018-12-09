@@ -1,3 +1,11 @@
+# -*- coding: utf-8 -*-
+"""
+Spyder Editor
+
+This is a temporary script file.
+"""
+
+
 import psycopg2
 from PersonDTO import PersonDTO
 from EducationDTO import EducationDTO
@@ -40,6 +48,147 @@ class PersonDAO():
                     conn.close()
         person = self.getPerson(identifier)
         return person
+    
+    def refreshEducation(self, identifier):
+        sql = self.queryFromFile("user_update/refresh_education.sql")
+        values = (identifier, )
+        conn = None
+        try:
+            conn = Connection()
+            conn.cur.execute(sql, values)
+            conn.commit()
+            conn.close()
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error)
+        finally: 
+            if conn is not None:
+                conn.close()
+        
+    def refreshExperience(self, identifier):
+        sql = self.queryFromFile("user_update/refresh_experience.sql")
+        values = (identifier, )
+        conn = None
+        try:
+            conn = Connection()
+            conn.cur.execute(sql, values)
+            conn.commit()
+            conn.close()
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error)
+        finally: 
+            if conn is not None:
+                conn.close()
+                
+    def getUniversity(self, name):
+        sql = self.queryFromFile("user_update/get_university.sql")
+        values = (name, )
+        try:
+            conn = Connection()
+            conn.cur.execute(sql, values)
+            row = conn.cur.fetchone()
+            return row[0]
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error) 
+        finally:
+            if conn is not None:
+                conn.close()
+        return None
+    
+    def insertUniversity(self, name):
+        values = (name, ) 
+        sql = self.queryFromFile("user_update/insert_university.sql")        
+        conn = None
+        try:
+            conn = Connection()
+            conn.cur.execute(sql, values)
+            row = conn.cur.fetchone()
+            conn.commit()
+            conn.close()
+            return row[0]
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error)
+        finally: 
+            if conn is not None:
+                conn.close()
+        return None
+
+    def getCompany(self, name):
+        sql = self.queryFromFile("user_update/get_company.sql")
+        values = (name, )
+        try:
+            conn = Connection()
+            conn.cur.execute(sql, values)
+            row = conn.cur.fetchone()
+            return row[0]
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error) 
+        finally:
+            if conn is not None:
+                conn.close()
+        return None
+
+    def insertCompany(self, name):
+        values = (name, ) 
+        sql = self.queryFromFile("user_update/insert_company.sql")        
+        conn = None
+        try:
+            conn = Connection()
+            conn.cur.execute(sql, values)
+            row = conn.cur.fetchone()
+            conn.commit()
+            conn.close()
+            return row[0]
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error)
+        finally: 
+            if conn is not None:
+                conn.close()
+        return None
+            
+    def updateEducation(self, education):
+        identifier = self.getUniversity(education.university)
+        if not identifier:
+            identifier = self.insertUniversity(education.university)
+        values = (education.person, identifier, education.degree_type, education.startdate, education.enddate)
+        sql = self.queryFromFile("user_update/insert_education.sql")
+        conn = None
+        try:
+            conn = Connection()
+            conn.cur.execute(sql, values)
+            conn.commit()
+            conn.close()
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error)
+        finally: 
+            if conn is not None:
+                conn.close()
+        
+    def updateExperience(self, experience): 
+        identifier = self.getCompany(experience.company)
+        if not identifier:
+            identifier = self.insertCompany(experience.company)
+        values = (experience.person, identifier, experience.position, experience.startdate, experience.enddate)
+        sql = self.queryFromFile("user_update/insert_experience.sql")
+        conn = None
+        try:
+            conn = Connection()
+            conn.cur.execute(sql, values)
+            conn.commit()
+            conn.close()
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error)
+        finally: 
+            if conn is not None:
+                conn.close()
+                 
+    def updatePerson(self, identifier, education, experience):
+        self.refreshEducation(identifier)
+        self.refreshExperience(identifier)
+        for x in education:
+            self.updateEducation(EducationDTO(x["id"], identifier, x["university"], x["degreeType"], x["startdate"], x["enddate"] if "enddate" in x else None))
+        for x in experience:
+            self.updateExperience(ExperienceDTO(x["id"], identifier, x["company"], x["position"], x["startdate"], x["enddate"] if "enddate" in x else None))
+        return self.getPerson(identifier)
     
     def filter(self, parameters):
         limit = parameters["limit"] if "limit" in parameters else 20
@@ -154,8 +303,6 @@ class PersonDAO():
             row = conn.cur.fetchone()
             if row is not None:
                 qualities = [QualityDTO("generosity", row[0]), QualityDTO("impact", row[1]), QualityDTO("popularity", row[2]), QualityDTO("success", row[3])]
-            else:
-                qualities = [QualityDTO("generosity", None), QualityDTO("impact", None), QualityDTO("popularity", None), QualityDTO("success", None)]
         except (Exception, psycopg2.DatabaseError) as error:
             print(error) 
         finally:

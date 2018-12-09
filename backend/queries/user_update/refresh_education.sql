@@ -1,0 +1,1 @@
+DELETE FROM Education WHERE person = %s;
