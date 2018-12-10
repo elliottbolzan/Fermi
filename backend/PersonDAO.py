@@ -240,10 +240,13 @@ class PersonDAO():
             rows = conn.cur.fetchall()
             for row in rows:
                 identifier, name = row[0], row[1]
-                education = self.getEducation(identifier)
-                experience = self.getExperience(identifier)
-                qualities = [QualityDTO("generosity", row[3]), QualityDTO("impact", row[3]), QualityDTO("popularity", row[4]), QualityDTO("success", row[5])]
-                lastActive = row[6]
+                undergraduate = EducationDTO(row[2], identifier, *row[3:7]) if row [2] else None
+                masters = EducationDTO(row[7], identifier, *row[8:12]) if row[7] else None
+                doctorate = EducationDTO(row[12], identifier, *row[13:17]) if row[12] else None
+                education = [x for x in [undergraduate, masters, doctorate] if x]
+                experience = [x for x in [ExperienceDTO(identifier, *row[17:22]) if row[17] else None] if x]
+                qualities = [QualityDTO("generosity", row[22]), QualityDTO("impact", row[23]), QualityDTO("popularity", row[24]), QualityDTO("success", row[25])]
+                lastActive = row[26]
                 person = PersonDTO(identifier, name, education, experience, qualities, lastActive)
                 people.append(person)
             conn.close()
