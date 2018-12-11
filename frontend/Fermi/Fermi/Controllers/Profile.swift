@@ -54,9 +54,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, UIC
         if thisIsMe() {
             User.shared.refresh(completion: { user in
                 self.person = user
-                self.qualityView.reloadData()
-                self.educationView.reloadData()
-                self.experienceView.reloadData()
+                self.selectPane()
             })
         }
     }
@@ -126,6 +124,10 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, UIC
     }
     
     @IBAction func indexChanged(_ sender: Any) {
+        selectPane()
+    }
+    
+    func selectPane() {
         if segmentedControl.selectedSegmentIndex == 0 {
             qualityView.isHidden = false
             educationView.isHidden = true
