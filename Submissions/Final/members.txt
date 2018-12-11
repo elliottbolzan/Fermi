@@ -1,3 +1,5 @@
+Note: the code for our project can be found at https://github.com/elliottbolzan/Fermi.
+
 Thara Veeramachaneni
 Thara contributed a high level of effort throughout the semester. Since the last milestone, Thara worked extensively on creating backend code to make an API call to our server and update user information. Created connection object, set groundworks for python organization of DAO and DTO classes, helped set up server and getting an external API address to send requests to, tested and worked on user create and update methods. Prior to the last milestone, Thara worked extensively on writing code to connect the backend "create user" query, worked on the backend part of the login/signup, and helped plan the design of the UI.
 
