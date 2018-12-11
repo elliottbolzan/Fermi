@@ -1,0 +1,20 @@
+Note: the code for our project can be found at https://github.com/elliottbolzan/Fermi.
+
+Thara Veeramachaneni
+Thara contributed a high level of effort throughout the semester. Since the last milestone, Thara worked extensively on creating backend code to make an API call to our server and update user information. Created connection object, set groundworks for python organization of DAO and DTO classes, helped set up server and getting an external API address to send requests to, tested and worked on user create and update methods. Prior to the last milestone, Thara worked extensively on writing code to connect the backend "create user" query, worked on the backend part of the login/signup, and helped plan the design of the UI.
+
+
+Jamie Palka
+Jamie contributed a high level of effort throughout the semester. Since the last milestone, Jamie worked extensively on updateReferral and updateUser backend methods, working on methods to make API call to server and integrate sql queries. Researched extensively to familiarize herself with connection objects, API calls, and stack technology like Postman. Worked on finishing touches and synthesizing final report.  Prior to the last milestone, Jamie worked to create the E/R diagram, wrote the SQL code to create the database, helped to plan the design of the UI, worked on writing queries for filtering users, and worked extensively on backend queries such as the user metrics for impact and success.
+
+
+Emily Mi
+Emily contributed a high level of effort throughout the semester. Since the last milestone, Emily worked extensively on creating backend code to make an API call to our server and retrieve referral history of users, create new referral, and update referral. Created new sql queries, created and updated ReferralDAO and ReferralDTO, created and tested referral create and get methods. Worked on finishing touches and synthesizing final report.  Prior to the last milestone, Emily worked extensively on writing queries for searching and filtering users based on a variety of their qualities, worked to integrate them with the backend calls to the server, and helped plan the design of the UI.
+
+
+Elliott Bolzan
+Elliott contributed an exceptional level of effort throughout the semester, leading the group with his knowledge and experience in app development. Since the last milestone, Elliott worked extensively on several parts of our frontend and backend. In the frontend, he created our login flow using Facebook’s APIs and our search-filter-display view, which lets user sort through users according to name, university, company, and qualities. Also helped integrate views that list referrals and user profiles with backend code, unifying frontend’s aesthetics in the process. In the backend, he rewrote our filtering query to make it more efficient. By shifting some of the computational load from our filter query to our queries that update referrals and using a B+ tree index on some columns, he increased the processing speed of this query by a factor of 10 (from 3000ms to < 300ms). Finally, he helped structure the backend, writing methods and stubs for many of our API endpoints.
+
+
+Davis Booth
+Davis contributed a high level of effort throughout the semester. Since the last milestone, Davis worked extensively on designing profile page (distinguishing the profile page between self and other users) and integrated with backend. Allowed adding and deleting of experiences and education. Created frontend to send referrals to users and request referrals from users and integrated with backend. Created referrals page and integrated with backend. Prior to the last milestone, Davis worked on designing statistical animations for the app, worked on some initial design of table cells and allowed for dynamic population of table cells based on how much data was received from the back-end response. Worked with Elliott to implement Alamofire, a CocoaPod that allows for simple HTTP requests.
