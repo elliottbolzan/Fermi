@@ -20,6 +20,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, UIC
     @IBOutlet weak var backButton: UIButton!
 
     var person: Person = User.shared.person!
+    var firstLoad = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,9 +46,18 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, UIC
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if firstLoad {
+            firstLoad = false
+            return
+        }
         self.navigationController?.navigationBar.isHidden = true
         if thisIsMe() {
-            self.person = User.shared.person!
+            User.shared.refresh(completion: { user in
+                self.person = user
+                self.qualityView.reloadData()
+                self.educationView.reloadData()
+                self.experienceView.reloadData()
+            })
         }
     }
     

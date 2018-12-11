@@ -96,7 +96,9 @@ extension Server {
                 let data = try! JSONSerialization.data(withJSONObject: entry, options: [])
                 let decoded = String(data: data, encoding: .utf8)!
                 let person = Person.from(json: decoded)
-                users.append(person)
+                if person.id != User.shared.person!.id {
+                    users.append(person)
+                }
             }
             completion(users)
         }
