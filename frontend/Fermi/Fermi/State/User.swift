@@ -48,4 +48,11 @@ class User {
         connection.start()
     }
     
+    func refresh(completion: @escaping (Person) -> Void) {
+        Server.createUser(id: self.person!.id, name: self.person!.name, token: AccessToken.current!.authenticationToken, completion: { person in
+            self.person = person
+            completion(person)
+        })
+    }
+    
 }

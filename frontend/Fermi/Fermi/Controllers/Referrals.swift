@@ -24,7 +24,6 @@ class Referrals: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         setupTableViews()
         segmentedControl.selectedSegmentIndex = 0
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        refresh()
     }
     
     func setupTableViews() {
@@ -43,6 +42,7 @@ class Referrals: UIViewController, UITableViewDelegate, UITableViewDataSource  {
 
     override func viewWillAppear(_ animated: Bool) {
         hideHairline()
+        refresh()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
